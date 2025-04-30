@@ -133,7 +133,7 @@ nav.navbar.bootsnav {
     background-color: transparent;
     border-bottom: transparent;
 }
-.wrap-sticky nav.navbar.bootsnav.sticked {background-color:#000;box-shadow: 0 2px 5px rgba(0,0,0,.2);}
+.wrap-sticky nav.navbar.bootsnav.sticked {background-color:#fcf7f7;box-shadow: 0 2px 5px rgba(248, 247, 247, 0.726);}
 
 /*.navbar-brand*/
 .navbar-header a.navbar-brand,.navbar-header a.navbar-brand:hover,.navbar-header a.navbar-brand:focus a.logo-img{
@@ -148,7 +148,7 @@ nav.navbar.bootsnav {
     text-transform:uppercase;
 }
 .logo-img {
-    height: 100px; 
+    height: 250px; 
     padding: 10px 0; /* vertical padding to center it like text */
 }
 
@@ -159,7 +159,7 @@ nav.navbar.bootsnav {
 
 /*.nav li*/
 nav.navbar.bootsnav ul.nav > li > a {
-    color: #f5f7fa;
+    color: #070707;
     font-size: 16px;
     font-weight: 500;
     text-transform:uppercase;
@@ -212,19 +212,21 @@ nav.navbar.bootsnav .navbar-toggle i{color: #4e4ffa;}
 --------------------------------------*/
 .welcome-hero {
     position: relative;
-    background:url(../images/welcome-hero/welcome-banner.jpg)no-repeat;
+    /* background:url(../images/welcome-hero/welcome-banner.jpg)no-repeat; */
+    background-color: rgb(251, 249, 249);
     background-position: center;
     background-size: cover;
     z-index: 1;
 }
 .welcome-hero:before {
+    /* display: none; */
     position: absolute;
     content: "";
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(42,45,84,.60);
+    background: rgba(42, 45, 84, 0.584);
 }
 .header-area{position: absolute;top:0;left:0;width: 100%;z-index: 99;}
 
@@ -655,7 +657,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #4e4ffa;}
 }
 .footer-social{text-align: right;}
 .footer-social a i {
-    color: #fff;
+    color: #090909;
     opacity: .40;
     font-size: 14px;
     margin-left: 16px;

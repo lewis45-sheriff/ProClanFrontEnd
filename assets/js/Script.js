@@ -20,96 +20,202 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error fetching years:', error);
         });
 });
-// Define a function to fetch car data from the backend
-async function fetchFeaturedCars() {
+/**
+ * Fetches car data from the API
+ * @returns {Promise<Array>} Array of car objects
+ */
+async function fetchCars() {
     try {
-        // Replace with your actual API endpoint
-        const response = await fetch('/api/featured-cars');
+        const response = await fetch('http://localhost:8080/api/v1/cars/get-cars');
         if (!response.ok) {
-            throw new Error('Failed to fetch featured cars');
+            throw new Error('Failed to fetch cars');
         }
-        const carsData = await response.json();
-        return carsData;
+        const data = await response.json();
+        
+        // Return the entity array which contains the car objects
+        return data.entity || [];
     } catch (error) {
-        console.error('Error fetching featured cars:', error);
-        // Return some fallback data in case of error
+        console.error('Error fetching cars:', error);
         return getFallbackCars();
     }
 }
 
-// Fallback data in case the API fails
+/**
+ * Returns fallback car data in case API fails
+ * @returns {Array} Array of fallback car objects
+ */
 function getFallbackCars() {
     return [
         {
             id: 1,
-            model: "BMW 6-series gran coupe",
-            price: 89395,
-            year: 2017,
-            mileage: 3100,
-            horsepower: 240,
-            transmission: "automatic",
-            image: "assets/images/featured-cars/fc1.png",
-            description: " Experience top-quality vehicles and unmatched service. We are committed to delivering the best in car sales, repairs, and insurance support to keep you on the road with confidence."
-        },
-        {
-            id: 2,
-            model: "chevrolet camaro wmv20",
-            price: 66575,
-            year: 2017,
-            mileage: 3100,
-            horsepower: 240,
-            transmission: "automatic",
-            image: "assets/images/featured-cars/fc2.png",
-            description: " Experience top-quality vehicles and unmatched service. We are committed to delivering the best in car sales, repairs, and insurance support to keep you on the road with confidence."
-        },
-        // More cars would be here in the fallback data
+            make: "Toyota",
+            model: "Prado",
+            year: "2024",
+            price: "234567",
+            mileage: "13000",
+            fuelType: "Petrol",
+            transmission: "Automatic",
+            description: "This is the best car there is in the market",
+            images: [{ imageData: "https://via.placeholder.com/300x200" }]
+        }
     ];
 }
 
-// Function to render a single car card
+/**
+ * Renders a single car card using DOM methods instead of HTML strings
+ * @param {Object} car - Car object containing details
+ * @returns {HTMLElement} DOM element for the car card
+ */
 function renderCarCard(car) {
-    // Extract any special formatting in the car model (like spans)
-    let modelDisplay = car.model;
-    
-    // Check if model has a specific part to be emphasized with span
-    if (car.modelEmphasis) {
-        modelDisplay = car.model.replace(car.modelEmphasis, `<span>${car.modelEmphasis}</span>`);
-    }
-    
-    // Format price with commas
+    // Format price with commas (KES currency)
     const formattedPrice = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'KES',
         minimumFractionDigits: 0
     }).format(car.price);
     
-    return `
-        <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="single-featured-cars">
-                <div class="featured-img-box">
-                    <div class="featured-cars-img">
-                        <img src="${car.image}" alt="${car.model}">
-                    </div>
-                    <div class="featured-model-info">
-                        <p>
-                            model: ${car.year}
-                            <span class="featured-mi-span"> ${car.mileage} mi</span> 
-                            <span class="featured-hp-span"> ${car.horsepower}HP</span>
-                            ${car.transmission}
-                        </p>
-                    </div>
-                </div>
-                <div class="featured-cars-txt">
-                    <h2><a href="/car-details/${car.id}">${modelDisplay}</a></h2>
-                    <h3>${formattedPrice}</h3>
-                    <p>${car.description}</p>
-                </div>
-            </div>
-        </div>
-    `;
+    // Get car image or use placeholder
+    const carImage = car.images && car.images.length > 0 && car.images[0].imageData
+        ? car.images[0].imageData
+        : 'https://via.placeholder.com/300x200';
+    
+    // Create main column element
+    const colDiv = document.createElement('div');
+    colDiv.className = 'col-lg-3 col-md-4 col-sm-6';
+    
+    // Create featured car container
+    const carDiv = document.createElement('div');
+    carDiv.className = 'single-featured-cars';
+    
+    // Create image box
+    const imgBoxDiv = document.createElement('div');
+    imgBoxDiv.className = 'featured-img-box';
+    
+    // Create cars image container
+    const carsImgDiv = document.createElement('div');
+    carsImgDiv.className = 'featured-cars-img';
+    
+    // Create image element
+    const imgElement = document.createElement('img');
+    imgElement.src = carImage;
+    imgElement.alt = `${car.make} ${car.model}`;
+    carsImgDiv.appendChild(imgElement);
+    
+    // Create model info
+    const modelInfoDiv = document.createElement('div');
+    modelInfoDiv.className = 'featured-model-info';
+    
+    const infoP = document.createElement('p');
+    
+    // Add make span
+    const makeSpan = document.createElement('span');
+    makeSpan.className = 'featured-make-span';
+    makeSpan.textContent = car.make;
+    infoP.appendChild(makeSpan);
+    
+    // Add year span
+    const yearSpan = document.createElement('span');
+    yearSpan.className = 'featured-year-span';
+    yearSpan.textContent = car.year;
+    infoP.appendChild(yearSpan);
+    
+    // Add mileage span
+    const mileageSpan = document.createElement('span');
+    mileageSpan.className = 'featured-mi-span';
+    mileageSpan.textContent = `${car.mileage} km`;
+    infoP.appendChild(mileageSpan);
+    
+    // Add fuel type span
+    const fuelSpan = document.createElement('span');
+    fuelSpan.className = 'featured-fuel-span';
+    fuelSpan.textContent = car.fuelType;
+    infoP.appendChild(fuelSpan);
+    
+    // Add transmission span
+    const transSpan = document.createElement('span');
+    transSpan.className = 'featured-trans-span';
+    transSpan.textContent = car.transmission;
+    infoP.appendChild(transSpan);
+    
+    modelInfoDiv.appendChild(infoP);
+    
+    // Add all elements to image box
+    imgBoxDiv.appendChild(carsImgDiv);
+    imgBoxDiv.appendChild(modelInfoDiv);
+    
+    // Create text content area
+    const txtDiv = document.createElement('div');
+    txtDiv.className = 'featured-cars-txt';
+    
+    // Create title with link
+    const titleH2 = document.createElement('h2');
+    const titleLink = document.createElement('a');
+    titleLink.href = `/car-details/${car.id}`;
+    titleLink.textContent = `${car.make} ${car.model}`;
+    titleH2.appendChild(titleLink);
+    
+    // Create price element
+    const priceH3 = document.createElement('h3');
+    priceH3.textContent = formattedPrice;
+    
+    // Add elements to text div
+    txtDiv.appendChild(titleH2);
+    txtDiv.appendChild(priceH3);
+    
+    // Assemble the complete card
+    carDiv.appendChild(imgBoxDiv);
+    carDiv.appendChild(txtDiv);
+    colDiv.appendChild(carDiv);
+    
+    return colDiv;
 }
 
-// Main function to initialize the featured cars section
+/**
+ * Initialize and render all car listings
+ */
+async function initCarListings() {
+    // Get container elements
+    const carsContainer = document.getElementById('cars-container');
+    
+    if (!carsContainer) {
+        console.error('Cars container not found');
+        return;
+    }
+    
+    // Show loading state
+    carsContainer.innerHTML = '';
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = 'col-12 text-center';
+    const loadingP = document.createElement('p');
+    loadingP.textContent = 'Loading cars...';
+    loadingDiv.appendChild(loadingP);
+    carsContainer.appendChild(loadingDiv);
+    
+    // Fetch cars data
+    const cars = await fetchCars();
+    
+    // Clear container
+    carsContainer.innerHTML = '';
+    
+    if (cars.length === 0) {
+        const emptyDiv = document.createElement('div');
+        emptyDiv.className = 'col-12 text-center';
+        const emptyP = document.createElement('p');
+        emptyP.textContent = 'No cars available';
+        emptyDiv.appendChild(emptyP);
+        carsContainer.appendChild(emptyDiv);
+        return;
+    }
+    
+    // Render all cars using DOM methods
+    cars.forEach(car => {
+        carsContainer.appendChild(renderCarCard(car));
+    });
+}
+
+/**
+ * For featured cars section with two rows
+ */
 async function initFeaturedCars() {
     // Get container elements
     const firstRowContainer = document.getElementById('featured-cars-container');
@@ -120,23 +226,61 @@ async function initFeaturedCars() {
         return;
     }
     
-    // Fetch cars data
-    const carsData = await fetchFeaturedCars();
+    // Show loading state
+    firstRowContainer.innerHTML = '';
+    secondRowContainer.innerHTML = '';
     
-    // Split cars into two rows (4 per row)
-    const firstRowCars = carsData.slice(0, 4);
-    const secondRowCars = carsData.slice(4, 8);
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = 'col-12 text-center';
+    const loadingP = document.createElement('p');
+    loadingP.textContent = 'Loading featured cars...';
+    loadingDiv.appendChild(loadingP);
+    firstRowContainer.appendChild(loadingDiv);
+    
+    // Fetch cars data
+    const cars = await fetchCars();
+    
+    // Clear containers
+    firstRowContainer.innerHTML = '';
+    
+    if (cars.length === 0) {
+        const emptyDiv = document.createElement('div');
+        emptyDiv.className = 'col-12 text-center';
+        const emptyP = document.createElement('p');
+        emptyP.textContent = 'No featured cars available';
+        emptyDiv.appendChild(emptyP);
+        firstRowContainer.appendChild(emptyDiv);
+        return;
+    }
+    
+    // Split cars into two rows (4 per row if available)
+    const firstRowCars = cars.slice(0, 4);
+    const secondRowCars = cars.slice(4, 8);
+    
+    // Clear containers first
+    firstRowContainer.innerHTML = '';
+    secondRowContainer.innerHTML = '';
     
     // Render first row
-    firstRowContainer.innerHTML = firstRowCars.map(car => renderCarCard(car)).join('');
+    firstRowCars.forEach(car => {
+        firstRowContainer.appendChild(renderCarCard(car));
+    });
     
-    // Render second row
-    secondRowContainer.innerHTML = secondRowCars.map(car => renderCarCard(car)).join('');
+    // Render second row if there are enough cars
+    if (secondRowCars.length > 0) {
+        secondRowCars.forEach(car => {
+            secondRowContainer.appendChild(renderCarCard(car));
+        });
+    }
 }
 
 // Run initialization when DOM is fully loaded
-document.addEventListener('DOMContentLoaded', initFeaturedCars);
-
+document.addEventListener('DOMContentLoaded', function() {
+    // Use either initCarListings() or initFeaturedCars() based on your page layout
+    initFeaturedCars();
+    // Uncomment the line below if you want to display all cars in a single container
+    // initCarListings();
+});
 // Define a function to fetch new car data from the backend
 async function fetchNewCars() {
     try {
@@ -184,30 +328,40 @@ function getFallbackNewCars() {
         }
     ];
 }
-
+// Parse the JSON response
+const response = JSON.parse(jsonData);
+// Get the array of cars
+const cars = response.entity;
+// Map each car to its HTML representation
+const carsHtml = cars.map(car => renderCarouselItem(car)).join('');
+// Insert the HTML into your carousel container
+document.getElementById('cars-carousel').innerHTML = carsHtml;
 // Function to render a single carousel item
 function renderCarouselItem(car) {
-    // Format model name with emphasis if needed
-    let modelDisplay = car.model;
-    if (car.modelEmphasis) {
-        const emphasizedPart = car.modelEmphasis;
-        modelDisplay = car.model.replace(emphasizedPart, `<span> ${emphasizedPart}</span>`);
-    }
+    // Get the first image from the car's images array (if it exists)
+    const imageUrl = car.images && car.images.length > 0 ? car.images[0].imageData : 'placeholder-image.jpg';
+    
+    // Create a more descriptive model display that includes the make, model and year
+    const modelDisplay = `${car.make} ${car.model} ${car.year}`;
     
     return `
-        <div class="new-cars-item" data-category="${car.category}">
+        <div class="new-cars-item" data-category="${car.bodyType}">
             <div class="single-new-cars-item">
                 <div class="row">
                     <div class="col-md-7 col-sm-12">
                         <div class="new-cars-img">
-                            <img src="${car.image}" alt="${car.model}"/>
+                            <img src="${imageUrl}" alt="${modelDisplay}"/>
                         </div><!--/.new-cars-img-->
                     </div>
                     <div class="col-md-5 col-sm-12">
                         <div class="new-cars-txt">
                             <h2><a href="/car-details/${car.id}">${modelDisplay}</a></h2>
                             <p>${car.description}</p>
-                            <p class="new-cars-para2">${car.additionalInfo}</p>
+                            <p class="new-cars-para2">
+                              Price: $${car.price} | Mileage: ${car.mileage} | 
+                              Fuel: ${car.fuelType} | Transmission: ${car.transmission} | 
+                              Color: ${car.color} | Status: ${car.status}
+                            </p>
                             <button class="welcome-btn new-cars-btn" onclick="window.location.href='/car-details/${car.id}'">
                                 view details
                             </button>
@@ -218,7 +372,6 @@ function renderCarouselItem(car) {
         </div><!--/.new-cars-item-->
     `;
 }
-
 // Function to initialize the carousel
 function initializeCarousel() {
     $('#new-cars-carousel').owlCarousel({
