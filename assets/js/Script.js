@@ -172,7 +172,73 @@ function renderCarCard(car) {
 
 /**
  * Initialize and render all car listings
- */
+//  */
+// document.addEventListener('DOMContentLoaded', function() {
+//     const navbar = document.getElementById('mainNav');
+    
+//     window.addEventListener('scroll', function() {
+//       if (window.scrollY > 50) {
+//         navbar.classList.add('navbar-scrolled');
+//       } else {
+//         navbar.classList.remove('navbar-scrolled');
+//       }
+//     });
+//   });
+  document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.getElementById('mainNav');
+    const topBar = document.querySelector('.top-bar');
+    let lastScrollTop = 0;
+    
+    function handleScroll() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const topBarHeight = topBar.classList.contains('hidden') ? 0 : topBar.offsetHeight;
+      
+      // Handle top bar visibility
+      if (scrollTop > lastScrollTop && scrollTop > 50) {
+        // Scrolling DOWN - hide top bar
+        topBar.classList.add('hidden');
+        navbar.style.top = '0';
+      } else if (scrollTop < lastScrollTop || scrollTop <= 10) {
+        // Scrolling UP or at top - show top bar
+        topBar.classList.remove('hidden');
+        navbar.style.top = topBarHeight + 'px';
+      }
+      
+      // Add scroll effect to navbar
+      if (scrollTop > 50) {
+        navbar.classList.add('navbar-scrolled');
+      } else {
+        navbar.classList.remove('navbar-scrolled');
+      }
+      
+      lastScrollTop = scrollTop;
+    }
+    
+    // Initial position setup
+    function adjustInitialPositions() {
+      const topBarHeight = topBar.offsetHeight;
+      navbar.style.top = topBarHeight + 'px';
+    }
+    
+    // Run on load
+    adjustInitialPositions();
+    
+    // Run on scroll with some throttling for performance
+    let isScrolling;
+    window.addEventListener('scroll', function() {
+      window.clearTimeout(isScrolling);
+      isScrolling = setTimeout(function() {
+        handleScroll();
+      }, 10);
+    });
+    
+    // Handle immediate scroll actions
+    window.addEventListener('scroll', handleScroll);
+    
+    // Run on window resize as well
+    window.addEventListener('resize', adjustInitialPositions);
+  });
+  
 async function initCarListings() {
     // Get container elements
     const carsContainer = document.getElementById('cars-container');
@@ -443,3 +509,4 @@ async function initNewCars() {
 
 // Run initialization when DOM is fully loaded
 document.addEventListener('DOMContentLoaded', initNewCars);
+
