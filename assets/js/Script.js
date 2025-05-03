@@ -510,3 +510,30 @@ async function initNewCars() {
 // Run initialization when DOM is fully loaded
 document.addEventListener('DOMContentLoaded', initNewCars);
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to reset animations when a slide changes
+    function resetAnimations() {
+        const elements = document.querySelectorAll('.animated');
+        elements.forEach(element => {
+            element.style.animationName = 'none';
+            element.offsetHeight; // Trigger reflow
+            element.style.animationName = '';
+        });
+    }
+
+    // Get the carousel element
+    const carousel = document.getElementById('header-carousel');
+    
+    // Add event listener for slide event
+    carousel.addEventListener('slide.bs.carousel', function() {
+        setTimeout(resetAnimations, 50);
+    });
+    
+    // Initialize the carousel with options
+    const bsCarousel = new bootstrap.Carousel(carousel, {
+        interval: 6000, // Time between automatic cycling (6 seconds)
+        ride: 'carousel', // Auto-start sliding
+        wrap: true, // Cycle continuously
+        touch: true // Allow touch swiping on touch devices
+    });
+});
