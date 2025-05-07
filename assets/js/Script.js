@@ -1,25 +1,12 @@
-const apiUrl = 'http://localhost:8081/api/v1/year';
+/**
+ * Car Dealership Website JavaScript
+ * Main script file with consolidated functionality
+ */
 
-document.addEventListener('DOMContentLoaded', () => {
-    const select = document.getElementById('year-select');
-    if (!select) return;
+// =========================================
+// API and Data Handling
+// =========================================
 
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            const years = data.entity; // this is an array of objects
-
-            years.forEach(item => {
-                const option = document.createElement('option');
-                option.value = item.year;
-                option.textContent = item.year;
-                select.appendChild(option);
-            });
-        })
-        .catch(error => {
-            console.error('Error fetching years:', error);
-        });
-});
 /**
  * Fetches car data from the API
  * @returns {Promise<Array>} Array of car objects
@@ -31,14 +18,34 @@ async function fetchCars() {
             throw new Error('Failed to fetch cars');
         }
         const data = await response.json();
-        
-        // Return the entity array which contains the car objects
         return data.entity || [];
     } catch (error) {
         console.error('Error fetching cars:', error);
         return getFallbackCars();
     }
 }
+
+/**
+ * Fetches specific car details by ID
+ * @param {string} carId - The ID of the car to fetch
+ * @returns {Promise<Object>} Car details object
+ */
+async function fetchCarById(carId) {
+    try {
+        const response = await fetch(`http://localhost:8080/api/v1/cars/get-car/${carId}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch car details');
+        }
+        const data1 = await response.json();
+        return data1.entity || null;
+        
+    } catch (error) {
+        console.error(`Error fetching car ${carId}:`, error);
+        return null;
+    }
+    
+}
+
 
 /**
  * Returns fallback car data in case API fails
@@ -62,260 +69,304 @@ function getFallbackCars() {
 }
 
 /**
- * Renders a single car card using DOM methods instead of HTML strings
+ * Fetches year data for dropdown
+ */
+async function fetchYearData() {
+    try {
+        const response = await fetch('http://localhost:8081/api/v1/year');
+        if (!response.ok) {
+            throw new Error('Failed to fetch years');
+        }
+        const data = await response.json();
+        return data.entity || [];
+    } catch (error) {
+        console.error('Error fetching years:', error);
+        return [];
+    }
+}
+
+// =========================================
+// Car Card Rendering
+// =========================================
+
+/**
+ * Renders a single car card using DOM methods
  * @param {Object} car - Car object containing details
  * @returns {HTMLElement} DOM element for the car card
  */
-function renderCarCard(car) {
+function renderCarCard(car,car1) {
     // Format price with commas (KES currency)
-    const formattedPrice = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'KES',
-        minimumFractionDigits: 0
-    }).format(car.price);
+    const formattedPrice = formatCurrency(car.price);
     
     // Get car image or use placeholder
     const carImage = car.images && car.images.length > 0 && car.images[0].imageData
         ? car.images[0].imageData
         : 'https://via.placeholder.com/300x200';
     
-    // Create main column element
+    // Create main column element with improved styling
     const colDiv = document.createElement('div');
-    colDiv.className = 'col-lg-3 col-md-4 col-sm-6';
+    colDiv.className = 'col-lg-3 col-md-4 col-sm-6 mb-4';
     
-    // Create featured car container
+    // Create featured car container with shadow and rounded corners
     const carDiv = document.createElement('div');
-    carDiv.className = 'single-featured-cars';
+    carDiv.className = 'single-featured-cars card h-100 shadow-sm rounded overflow-hidden transition-all hover-effect';
+    carDiv.style.transition = 'all 0.3s ease';
     
-    // Create image box
+    // Create image box with proper aspect ratio
     const imgBoxDiv = document.createElement('div');
-    imgBoxDiv.className = 'featured-img-box';
+    imgBoxDiv.className = 'featured-img-box position-relative';
     
-    // Create cars image container
+    // Create cars image container with fixed height
     const carsImgDiv = document.createElement('div');
-    carsImgDiv.className = 'featured-cars-img';
+    carsImgDiv.className = 'featured-cars-img overflow-hidden';
+    carsImgDiv.style.height = '200px';
     
-    // Create image element
+    // Create image element with cover fit
     const imgElement = document.createElement('img');
     imgElement.src = carImage;
     imgElement.alt = `${car.make} ${car.model}`;
+    imgElement.className = 'w-100 h-100 object-fit-cover';
+    imgElement.style.objectFit = 'cover';
     carsImgDiv.appendChild(imgElement);
     
-    // Create model info
+    // Create model info with improved styling
     const modelInfoDiv = document.createElement('div');
-    modelInfoDiv.className = 'featured-model-info';
+    modelInfoDiv.className = 'featured-model-info d-flex flex-wrap gap-2 p-2 bg-light';
     
-    const infoP = document.createElement('p');
+    // Create badges for car specifications
+    const specs = [
+        { value: car.make, class: 'bg-primary' },
+        { value: car.year, class: 'bg-secondary' },
+        { value: `${car.mileage} km`, class: 'bg-info' },
+        { value: car.fuelType, class: 'bg-warning' },
+        { value: car.transmission, class: 'bg-success' }
+    ];
     
-    // Add make span
-    const makeSpan = document.createElement('span');
-    makeSpan.className = 'featured-make-span';
-    makeSpan.textContent = car.make;
-    infoP.appendChild(makeSpan);
-    
-    // Add year span
-    const yearSpan = document.createElement('span');
-    yearSpan.className = 'featured-year-span';
-    yearSpan.textContent = car.year;
-    infoP.appendChild(yearSpan);
-    
-    // Add mileage span
-    const mileageSpan = document.createElement('span');
-    mileageSpan.className = 'featured-mi-span';
-    mileageSpan.textContent = `${car.mileage} km`;
-    infoP.appendChild(mileageSpan);
-    
-    // Add fuel type span
-    const fuelSpan = document.createElement('span');
-    fuelSpan.className = 'featured-fuel-span';
-    fuelSpan.textContent = car.fuelType;
-    infoP.appendChild(fuelSpan);
-    
-    // Add transmission span
-    const transSpan = document.createElement('span');
-    transSpan.className = 'featured-trans-span';
-    transSpan.textContent = car.transmission;
-    infoP.appendChild(transSpan);
-    
-    modelInfoDiv.appendChild(infoP);
+    specs.forEach(spec => {
+        if (spec.value) {
+            const badge = document.createElement('span');
+            badge.className = `badge ${spec.class} text-white rounded-pill fw-normal`;
+            badge.textContent = spec.value;
+            modelInfoDiv.appendChild(badge);
+        }
+    });
     
     // Add all elements to image box
     imgBoxDiv.appendChild(carsImgDiv);
     imgBoxDiv.appendChild(modelInfoDiv);
     
-    // Create text content area
+    // Create text content area with improved padding
     const txtDiv = document.createElement('div');
-    txtDiv.className = 'featured-cars-txt';
+    txtDiv.className = 'featured-cars-txt p-3';
     
-    // Create title with link
+    // Create title with link and improved typography
     const titleH2 = document.createElement('h2');
+    titleH2.className = 'fs-5 mb-2 text-truncate';
     const titleLink = document.createElement('a');
-    titleLink.href = `/car-details/${car.id}`;
+    titleLink.href = `/cars-detail.html?carId=$/${car1.id}`;
+    titleLink.className = 'text-decoration-none text-dark';
     titleLink.textContent = `${car.make} ${car.model}`;
     titleH2.appendChild(titleLink);
     
-    // Create price element
+    // Create price element with accent color
     const priceH3 = document.createElement('h3');
+    priceH3.className = 'fs-4 fw-bold text-primary mb-0';
     priceH3.textContent = formattedPrice;
+    
+    // Create a button for details
+    const detailsBtn = document.createElement('a');
+    detailsBtn.href = `/cars-detail.html?carId=$${car1.id}`;
+    detailsBtn.className = 'btn btn-sm btn-outline-primary mt-3 w-100';
+    detailsBtn.textContent = 'View Details';
     
     // Add elements to text div
     txtDiv.appendChild(titleH2);
     txtDiv.appendChild(priceH3);
+    txtDiv.appendChild(detailsBtn);
+    
+    // Add a favorite button in the corner
+    const favBtn = document.createElement('button');
+    favBtn.className = 'btn btn-sm btn-light rounded-circle position-absolute end-0 top-0 m-2 shadow-sm';
+    favBtn.innerHTML = '<i class="bi bi-heart"></i>';
+    favBtn.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        favBtn.innerHTML = favBtn.innerHTML.includes('bi-heart-fill') 
+            ? '<i class="bi bi-heart"></i>' 
+            : '<i class="bi bi-heart-fill text-danger"></i>';
+        
+        // Show notification
+        showNotification(favBtn.innerHTML.includes('bi-heart-fill') 
+            ? 'Car saved to favorites!' 
+            : 'Car removed from favorites');
+    };
+    imgBoxDiv.appendChild(favBtn);
+    
+    // Add a badge for special features if available
+    if (car.featured) {
+        const featuredBadge = document.createElement('div');
+        featuredBadge.className = 'position-absolute start-0 top-0 m-2';
+        featuredBadge.innerHTML = '<span class="badge bg-danger">Featured</span>';
+        imgBoxDiv.appendChild(featuredBadge);
+    }
     
     // Assemble the complete card
     carDiv.appendChild(imgBoxDiv);
     carDiv.appendChild(txtDiv);
     colDiv.appendChild(carDiv);
     
+    // Add hover effect
+    carDiv.addEventListener('mouseenter', () => {
+        carDiv.classList.add('shadow');
+        carDiv.style.transform = 'translateY(-5px)';
+    });
+    
+    carDiv.addEventListener('mouseleave', () => {
+        carDiv.classList.remove('shadow');
+        carDiv.style.transform = 'translateY(0)';
+    });
+    
     return colDiv;
 }
 
+// =========================================
+// UI Component Functions
+// =========================================
+
 /**
- * Initialize and render all car listings
-//  */
-// document.addEventListener('DOMContentLoaded', function() {
-//     const navbar = document.getElementById('mainNav');
+ * Initialize year dropdown
+ */
+async function initYearDropdown() {
+    const select = document.getElementById('year-select');
+    if (!select) return;
     
-//     window.addEventListener('scroll', function() {
-//       if (window.scrollY > 50) {
-//         navbar.classList.add('navbar-scrolled');
-//       } else {
-//         navbar.classList.remove('navbar-scrolled');
-//       }
-//     });
-//   });
-  document.addEventListener('DOMContentLoaded', function() {
-    const navbar = document.getElementById('mainNav');
-    const topBar = document.querySelector('.top-bar');
-    let lastScrollTop = 0;
+    const years = await fetchYearData();
     
-    function handleScroll() {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const topBarHeight = topBar.classList.contains('hidden') ? 0 : topBar.offsetHeight;
-      
-      // Handle top bar visibility
-      if (scrollTop > lastScrollTop && scrollTop > 50) {
-        // Scrolling DOWN - hide top bar
-        topBar.classList.add('hidden');
-        navbar.style.top = '0';
-      } else if (scrollTop < lastScrollTop || scrollTop <= 10) {
-        // Scrolling UP or at top - show top bar
-        topBar.classList.remove('hidden');
-        navbar.style.top = topBarHeight + 'px';
-      }
-      
-      // Add scroll effect to navbar
-      if (scrollTop > 50) {
-        navbar.classList.add('navbar-scrolled');
-      } else {
-        navbar.classList.remove('navbar-scrolled');
-      }
-      
-      lastScrollTop = scrollTop;
+    if (years && years.length > 0) {
+        years.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item.year;
+            option.textContent = item.year;
+            select.appendChild(option);
+        });
     }
+}
+
+/**
+ * Format currency for display
+ * @param {number|string} amount - The amount to format
+ * @param {string} currency - Currency code, defaults to KES
+ * @returns {string} Formatted currency string
+ */
+function formatCurrency(amount, currency = 'KES') {
+    return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: currency,
+        minimumFractionDigits: 0
+    }).format(amount);
+}
+
+/**
+ * Display cars list in a container
+ * @param {Array} cars - Array of car objects
+ * @param {string} containerId - ID of container element
+ */
+function renderCarsList(cars, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
     
-    // Initial position setup
-    function adjustInitialPositions() {
-      const topBarHeight = topBar.offsetHeight;
-      navbar.style.top = topBarHeight + 'px';
-    }
+    container.innerHTML = '';
     
-    // Run on load
-    adjustInitialPositions();
-    
-    // Run on scroll with some throttling for performance
-    let isScrolling;
-    window.addEventListener('scroll', function() {
-      window.clearTimeout(isScrolling);
-      isScrolling = setTimeout(function() {
-        handleScroll();
-      }, 10);
-    });
-    
-    // Handle immediate scroll actions
-    window.addEventListener('scroll', handleScroll);
-    
-    // Run on window resize as well
-    window.addEventListener('resize', adjustInitialPositions);
-  });
-  
-async function initCarListings() {
-    // Get container elements
-    const carsContainer = document.getElementById('cars-container');
-    
-    if (!carsContainer) {
-        console.error('Cars container not found');
+    if (!cars || cars.length === 0) {
+        container.innerHTML = '<div class="col-12 text-center p-5"><h3>No cars found</h3></div>';
         return;
     }
     
-    // Show loading state
-    carsContainer.innerHTML = '';
-    const loadingDiv = document.createElement('div');
-    loadingDiv.className = 'col-12 text-center';
-    const loadingP = document.createElement('p');
-    loadingP.textContent = 'Loading cars...';
-    loadingDiv.appendChild(loadingP);
-    carsContainer.appendChild(loadingDiv);
-    
-    // Fetch cars data
-    const cars = await fetchCars();
-    
-    // Clear container
-    carsContainer.innerHTML = '';
-    
-    if (cars.length === 0) {
-        const emptyDiv = document.createElement('div');
-        emptyDiv.className = 'col-12 text-center';
-        const emptyP = document.createElement('p');
-        emptyP.textContent = 'No cars available';
-        emptyDiv.appendChild(emptyP);
-        carsContainer.appendChild(emptyDiv);
-        return;
-    }
-    
-    // Render all cars using DOM methods
     cars.forEach(car => {
-        carsContainer.appendChild(renderCarCard(car));
+        container.appendChild(renderCarCard(car));
     });
 }
 
 /**
- * For featured cars section with two rows
+ * Show notification message
+ * @param {string} message - Message to display
+ */
+function showNotification(message) {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = 'position-fixed bottom-0 end-0 p-3';
+    notification.style.zIndex = '1080';
+    
+    notification.innerHTML = `
+        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Notification</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                ${message}
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Remove notification after 3 seconds
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
+/**
+ * Display error message on the page
+ * @param {string} message - The error message to display
+ */
+function showError(message) {
+    const container = document.querySelector('.container.py-5');
+    if (container) {
+        const errorAlert = document.createElement('div');
+        errorAlert.className = 'alert alert-danger';
+        errorAlert.textContent = message;
+        container.prepend(errorAlert);
+    } else {
+        console.error(message);
+    }
+}
+
+// =========================================
+// Initialization Functions for Different Pages
+// =========================================
+
+/**
+ * Initialize featured cars section with two rows
  */
 async function initFeaturedCars() {
     // Get container elements
     const firstRowContainer = document.getElementById('featured-cars-container');
     const secondRowContainer = document.getElementById('featured-cars-container-second');
     
-    if (!firstRowContainer || !secondRowContainer) {
-        console.error('Featured cars containers not found');
-        return;
-    }
+    if (!firstRowContainer) return;
     
     // Show loading state
-    firstRowContainer.innerHTML = '';
-    secondRowContainer.innerHTML = '';
-    
-    const loadingDiv = document.createElement('div');
-    loadingDiv.className = 'col-12 text-center';
-    const loadingP = document.createElement('p');
-    loadingP.textContent = 'Loading featured cars...';
-    loadingDiv.appendChild(loadingP);
-    firstRowContainer.appendChild(loadingDiv);
+    if (firstRowContainer) {
+        firstRowContainer.innerHTML = '<div class="col-12 text-center"><p>Loading featured cars...</p></div>';
+    }
+    if (secondRowContainer) {
+        secondRowContainer.innerHTML = '';
+    }
     
     // Fetch cars data
     const cars = await fetchCars();
     
     // Clear containers
-    firstRowContainer.innerHTML = '';
+    if (firstRowContainer) {
+        firstRowContainer.innerHTML = '';
+    }
     
     if (cars.length === 0) {
-        const emptyDiv = document.createElement('div');
-        emptyDiv.className = 'col-12 text-center';
-        const emptyP = document.createElement('p');
-        emptyP.textContent = 'No featured cars available';
-        emptyDiv.appendChild(emptyP);
-        firstRowContainer.appendChild(emptyDiv);
+        if (firstRowContainer) {
+            firstRowContainer.innerHTML = '<div class="col-12 text-center"><p>No featured cars available</p></div>';
+        }
         return;
     }
     
@@ -323,194 +374,303 @@ async function initFeaturedCars() {
     const firstRowCars = cars.slice(0, 4);
     const secondRowCars = cars.slice(4, 8);
     
-    // Clear containers first
-    firstRowContainer.innerHTML = '';
-    secondRowContainer.innerHTML = '';
-    
     // Render first row
-    firstRowCars.forEach(car => {
-        firstRowContainer.appendChild(renderCarCard(car));
-    });
+    if (firstRowContainer) {
+        firstRowCars.forEach(car => {
+            firstRowContainer.appendChild(renderCarCard(car));
+        });
+    }
     
     // Render second row if there are enough cars
-    if (secondRowCars.length > 0) {
+    if (secondRowContainer && secondRowCars.length > 0) {
         secondRowCars.forEach(car => {
             secondRowContainer.appendChild(renderCarCard(car));
         });
     }
 }
 
-// Run initialization when DOM is fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Use either initCarListings() or initFeaturedCars() based on your page layout
-    initFeaturedCars();
-    // Uncomment the line below if you want to display all cars in a single container
-    // initCarListings();
-});
-// Define a function to fetch new car data from the backend
-async function fetchNewCars() {
-    try {
-        // Replace with your actual API endpoint
-        const response = await fetch('/api/new-cars');
-        if (!response.ok) {
-            throw new Error('Failed to fetch new cars');
-        }
-        const carsData = await response.json();
-        return carsData;
-    } catch (error) {
-        console.error('Error fetching new cars:', error);
-        // Return some fallback data in case of error
-        return getFallbackNewCars();
-    }
+/**
+ * Initialize all car listings
+ */
+async function initCarListings() {
+    // Get container elements
+    const carsContainer = document.getElementById('cars-container');
+    
+    if (!carsContainer) return;
+    
+    // Show loading state
+    carsContainer.innerHTML = '<div class="col-12 text-center"><p>Loading cars...</p></div>';
+    
+    // Fetch cars data
+    const cars = await fetchCars();
+    
+    // Render all cars
+    renderCarsList(cars, 'cars-container');
 }
 
-// Fallback data in case the API fails
-function getFallbackNewCars() {
-    return [
-        {
-            id: 1,
-            model: "chevrolet camaro za100",
-            modelEmphasis: "za100",
-            description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            additionalInfo: "Sed ut pers unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
-            image: "assets/images/new-cars-model/ncm1.png",
-            category: "all" // not ex-japan
-        },
-        {
-            id: 2,
-            model: "BMW series-3 wagon",
-            description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            additionalInfo: "Sed ut pers unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
-            image: "assets/images/new-cars-model/ncm2.png",
-            category: "ex-japan" // ex-japan
-        },
-        {
-            id: 3,
-            model: "ferrari 488 superfast",
-            description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            additionalInfo: "Sed ut pers unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
-            image: "assets/images/new-cars-model/ncm3.png",
-            category: "all" // not ex-japan
-        }
-    ];
-}
-// Parse the JSON response
-const response = JSON.parse(jsonData);
-// Get the array of cars
-const cars = response.entity;
-// Map each car to its HTML representation
-const carsHtml = cars.map(car => renderCarouselItem(car)).join('');
-// Insert the HTML into your carousel container
-document.getElementById('cars-carousel').innerHTML = carsHtml;
-// Function to render a single carousel item
-function renderCarouselItem(car) {
-    // Get the first image from the car's images array (if it exists)
-    const imageUrl = car.images && car.images.length > 0 ? car.images[0].imageData : 'placeholder-image.jpg';
+/**
+ * Initialize car details page
+ */
+async function initCarDetailsPage() {
+    // Get car ID from URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const carId = urlParams.get('id');
     
-    // Create a more descriptive model display that includes the make, model and year
-    const modelDisplay = `${car.make} ${car.model} ${car.year}`;
-    
-    return `
-        <div class="new-cars-item" data-category="${car.bodyType}">
-            <div class="single-new-cars-item">
-                <div class="row">
-                    <div class="col-md-7 col-sm-12">
-                        <div class="new-cars-img">
-                            <img src="${imageUrl}" alt="${modelDisplay}"/>
-                        </div><!--/.new-cars-img-->
-                    </div>
-                    <div class="col-md-5 col-sm-12">
-                        <div class="new-cars-txt">
-                            <h2><a href="/car-details/${car.id}">${modelDisplay}</a></h2>
-                            <p>${car.description}</p>
-                            <p class="new-cars-para2">
-                              Price: $${car.price} | Mileage: ${car.mileage} | 
-                              Fuel: ${car.fuelType} | Transmission: ${car.transmission} | 
-                              Color: ${car.color} | Status: ${car.status}
-                            </p>
-                            <button class="welcome-btn new-cars-btn" onclick="window.location.href='/car-details/${car.id}'">
-                                view details
-                            </button>
-                        </div><!--/.new-cars-txt-->	
-                    </div><!--/.col-->
-                </div><!--/.row-->
-            </div><!--/.single-new-cars-item-->
-        </div><!--/.new-cars-item-->
-    `;
-}
-// Function to initialize the carousel
-function initializeCarousel() {
-    $('#new-cars-carousel').owlCarousel({
-        items: 1,
-        loop: true,
-        autoplay: true,
-        autoplayTimeout: 5000,
-        autoplayHoverPause: true,
-        nav: true,
-        navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"]
-    });
-}
-
-// Function to destroy and reinitialize the carousel
-function refreshCarousel() {
-    const carousel = $('#new-cars-carousel');
-    if (carousel.data('owl.carousel')) {
-        carousel.trigger('destroy.owl.carousel');
-    }
-    initializeCarousel();
-}
-
-// Function to filter cars by category
-function filterCarsByCategory(category) {
-    if (category === 'all') {
-        $('.new-cars-item').show();
-    } else {
-        $('.new-cars-item').hide();
-        $(`.new-cars-item[data-category="${category}"]`).show();
-        $('.new-cars-item[data-category="all"]').show(); // Always show 'all' category cars
-    }
-    
-    // Refresh the carousel to adjust to the new visible items
-    refreshCarousel();
-}
-
-// Main function to initialize the new cars section
-async function initNewCars() {
-    const carouselContainer = document.getElementById('new-cars-carousel');
-    
-    if (!carouselContainer) {
-        console.error('New cars carousel container not found');
+    if (!carId) {
+        showError('Car ID not found in URL');
         return;
     }
     
-    // Fetch cars data
-    const carsData = await fetchNewCars();
+    try {
+        // Fetch car details
+        const car = await fetchCarById(carId);
+        
+        if (!car) {
+            showError('Car not found');
+            return;
+        }
+        
+        // Display car details
+        displayCarDetails(car);
+        
+        // Initialize image gallery
+        initializeGallery();
+        
+        // Load similar cars
+        loadSimilarCars();
+        
+        // Initialize save button
+        const saveButton = document.getElementById('saveButton');
+        if (saveButton) {
+            saveButton.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('bi-heart')) {
+                    icon.classList.remove('bi-heart');
+                    icon.classList.add('bi-heart-fill');
+                    this.classList.remove('btn-outline-primary');
+                    this.classList.add('btn-danger');
+                    this.querySelector('i + span').textContent = ' Saved';
+                    showNotification('Car saved to favorites!');
+                } else {
+                    icon.classList.remove('bi-heart-fill');
+                    icon.classList.add('bi-heart');
+                    this.classList.remove('btn-danger');
+                    this.classList.add('btn-outline-primary');
+                    this.querySelector('i + span').textContent = ' Save This Car';
+                    showNotification('Car removed from favorites');
+                }
+            });
+        }
+    } catch (error) {
+        showError('Error loading car details: ' + error.message);
+    }
+}
+
+/**
+ * Display car details in the HTML
+ * @param {Object} car - The car object with details
+ */
+function displayCarDetails(car) {
+    // Update page title
+    document.title = `${car.make} ${car.model} - Proclan Motors`;
     
-    // Render all carousel items
-    carouselContainer.innerHTML = carsData.map(car => renderCarouselItem(car)).join('');
+    // Update breadcrumb
+    const breadcrumbItem = document.querySelector('.breadcrumb-item.active');
+    if (breadcrumbItem) {
+        breadcrumbItem.textContent = `${car.make} ${car.model}`;
+    }
     
-    // Initialize Owl Carousel
-    initializeCarousel();
+    // Update main car title
+    const carTitle = document.querySelector('.car-title');
+    if (carTitle) {
+        carTitle.textContent = `${car.make} ${car.model} ${car.year}`;
+    }
     
-    // Set up category filter buttons
-    const categoryButtons = document.querySelectorAll('.car-category-selector button');
-    categoryButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Update active button
-            categoryButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Filter cars by selected category
-            const selectedCategory = this.getAttribute('data-category');
-            filterCarsByCategory(selectedCategory);
+    // Update car price with formatting
+    const formattedPrice = formatCurrency(car.price);
+    
+    const carPrice = document.querySelector('.car-price');
+    if (carPrice) {
+        carPrice.textContent = formattedPrice;
+    }
+    
+    // Update vehicle specifications
+    updateSpecValue('Year', car.year);
+    updateSpecValue('Mileage', `${car.mileage} km`);
+    updateSpecValue('Fuel Type', car.fuelType);
+    updateSpecValue('Transmission', car.transmission);
+    updateSpecValue('Color', car.color || 'Not specified');
+    updateSpecValue('Seats', car.seats || 'Not specified');
+    updateSpecValue('Engine Size', car.engineSize || 'Not specified');
+    
+    // Update car description
+    const carDescription = document.querySelector('.car-description');
+    if (carDescription && car.description) {
+        carDescription.innerHTML = `<p>${car.description}</p>`;
+    }
+    
+    // Update car images
+    updateCarImages(car);
+}
+
+/**
+ * Update spec value in the specifications list
+ * @param {string} label - The specification label
+ * @param {string} value - The specification value
+ */
+function updateSpecValue(label, value) {
+    const specItems = document.querySelectorAll('.spec-item');
+    for (const item of specItems) {
+        const labelElement = item.querySelector('.spec-label');
+        if (labelElement && labelElement.textContent === label) {
+            const valueElement = item.querySelector('.spec-value');
+            if (valueElement) {
+                valueElement.textContent = value;
+            }
+            break;
+        }
+    }
+}
+
+/**
+ * Update car images in the gallery
+ * @param {Object} car - The car object with image data
+ */
+function updateCarImages(car) {
+    if (car.images && car.images.length > 0) {
+        // Update main image
+        const mainImage = document.getElementById('mainImage');
+        if (mainImage && car.images[0].imageData) {
+            mainImage.src = car.images[0].imageData;
+            mainImage.alt = `${car.make} ${car.model}`;
+        }
+        
+        // Update gallery images
+        const galleryImages = document.querySelectorAll('.gallery-img');
+        for (let i = 0; i < galleryImages.length && i < car.images.length; i++) {
+            if (car.images[i].imageData) {
+                galleryImages[i].src = car.images[i].imageData;
+                galleryImages[i].alt = `${car.make} ${car.model} View ${i+1}`;
+            }
+        }
+    }
+}
+
+/**
+ * Initialize image gallery functionality
+ */
+function initializeGallery() {
+    const galleryImages = document.querySelectorAll('.gallery-img');
+    const mainImage = document.getElementById('mainImage');
+    
+    if (!mainImage) return;
+    
+    galleryImages.forEach(img => {
+        img.addEventListener('click', function() {
+            mainImage.src = this.src;
         });
     });
 }
 
-// Run initialization when DOM is fully loaded
-document.addEventListener('DOMContentLoaded', initNewCars);
+/**
+ * Change the main image when a gallery image is clicked
+ * @param {string} src - The source URL of the new main image
+ */
+function changeMainImage(src) {
+    const mainImage = document.getElementById('mainImage');
+    if (mainImage) {
+        mainImage.src = src;
+    }
+}
 
-document.addEventListener('DOMContentLoaded', function() {
+/**
+ * Load similar cars to display in the similar vehicles section
+ */
+async function loadSimilarCars() {
+    try {
+        const cars = await fetchCars();
+        const similarCarsContainer = document.getElementById('similarCars');
+        
+        if (!similarCarsContainer) return;
+        
+        // Display up to 4 similar cars
+        const similarCars = cars.slice(0, 4);
+        similarCars.forEach(car => {
+            similarCarsContainer.appendChild(renderCarCard(car));
+        });
+        
+    } catch (error) {
+        console.error('Error loading similar cars:', error);
+    }
+}
+
+// =========================================
+// Layout and Navigation Functions
+// =========================================
+
+/**
+ * Initialize navbar and top bar behavior
+ */
+function initNavbar() {
+    const navbar = document.getElementById('mainNav');
+    const topBar = document.querySelector('.top-bar');
+    
+    if (!navbar || !topBar) return;
+    
+    let lastScrollTop = 0;
+    
+    function handleScroll() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const topBarHeight = topBar.classList.contains('hidden') ? 0 : topBar.offsetHeight;
+        
+        // Handle top bar visibility
+        if (scrollTop > lastScrollTop && scrollTop > 50) {
+            // Scrolling DOWN - hide top bar
+            topBar.classList.add('hidden');
+            navbar.style.top = '0';
+        } else if (scrollTop < lastScrollTop || scrollTop <= 10) {
+            // Scrolling UP or at top - show top bar
+            topBar.classList.remove('hidden');
+            navbar.style.top = topBarHeight + 'px';
+        }
+        
+        // Add scroll effect to navbar
+        if (scrollTop > 50) {
+            navbar.classList.add('navbar-scrolled');
+        } else {
+            navbar.classList.remove('navbar-scrolled');
+        }
+        
+        lastScrollTop = scrollTop;
+    }
+    
+    // Initial position setup
+    function adjustInitialPositions() {
+        const topBarHeight = topBar.offsetHeight;
+        navbar.style.top = topBarHeight + 'px';
+    }
+    
+    // Run on load
+    adjustInitialPositions();
+    
+    // Add event listeners with throttling
+    let isScrolling;
+    window.addEventListener('scroll', function() {
+        window.clearTimeout(isScrolling);
+        isScrolling = setTimeout(handleScroll, 10);
+    });
+    
+    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', adjustInitialPositions);
+}
+
+/**
+ * Initialize carousel with animations
+ */
+function initCarousel() {
+    const carousel = document.getElementById('header-carousel');
+    if (!carousel) return;
+    
     // Function to reset animations when a slide changes
     function resetAnimations() {
         const elements = document.querySelectorAll('.animated');
@@ -520,20 +680,77 @@ document.addEventListener('DOMContentLoaded', function() {
             element.style.animationName = '';
         });
     }
-
-    // Get the carousel element
-    const carousel = document.getElementById('header-carousel');
     
     // Add event listener for slide event
     carousel.addEventListener('slide.bs.carousel', function() {
         setTimeout(resetAnimations, 50);
     });
     
-    // Initialize the carousel with options
-    const bsCarousel = new bootstrap.Carousel(carousel, {
-        interval: 6000, // Time between automatic cycling (6 seconds)
-        ride: 'carousel', // Auto-start sliding
-        wrap: true, // Cycle continuously
-        touch: true // Allow touch swiping on touch devices
-    });
-});
+    // Initialize carousel with Bootstrap
+    if (typeof bootstrap !== 'undefined' && bootstrap.Carousel) {
+        new bootstrap.Carousel(carousel, {
+            interval: 6000,
+            ride: 'carousel',
+            wrap: true,
+            touch: true
+        });
+    }
+}
+
+// =========================================
+// Add Global Styles
+// =========================================
+
+/**
+ * Add CSS styles to document head
+ */
+function addGlobalStyles() {
+    const style = document.createElement('style');
+    style.textContent = `
+        .hover-effect:hover {
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        }
+        .object-fit-cover {
+            object-fit: cover;
+        }
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// =========================================
+// Main Initialization
+// =========================================
+
+/**
+ * Main initialization function
+ * Detects page type and runs appropriate initializations
+ */
+function initApp() {
+    // Add global styles
+    addGlobalStyles();
+    
+    // Initialize layout components
+    initNavbar();
+    initCarousel();
+    
+    // Initialize year dropdown if exists
+    initYearDropdown();
+    
+    // Detect page type and initialize accordingly
+    if (document.getElementById('car-details-page')) {
+        // Car details page
+        initCarDetailsPage();
+    } else if (document.getElementById('featured-cars-container')) {
+        // Home page with featured cars
+        initFeaturedCars();
+    } else if (document.getElementById('cars-container')) {
+        // Cars listing page
+        initCarListings();
+    }
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', initApp);

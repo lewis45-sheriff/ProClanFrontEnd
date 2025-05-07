@@ -337,7 +337,7 @@ nav.navbar.bootsnav {
   }
   /* Logo styles */
 .logo-img {
-  height:250px; /* Reduced from 250px for better navbar fit */
+  height:80px; 
   width: auto;
   max-width: 180%; /* Changed from 180% to prevent overflow */
   object-fit: contain; /* Ensures logo maintains proportions */
@@ -347,22 +347,22 @@ nav.navbar.bootsnav {
 /* Responsive adjustments for logo */
 @media (max-width: 992px) {
   .logo-img {
-      height: 250px; /* Slightly smaller on medium screens */
-      align-items: center;
+      height: 50px; /* Slightly smaller on medium screens */
+      align-items: right;
 
   }
 }
 
 @media (max-width: 768px) {
   .logo-img {
-      height: 250px; /* Smaller on small screens */
+      height: 50px; /* Smaller on small screens */
       align-items: center;
   }
 }
 
 @media (max-width: 576px) {
   .logo-img {
-      height: 250px; /* Even smaller on very small screens */
+      height: 75px; /* Even smaller on very small screens */
       align-items: center;
 
   }
@@ -1592,3 +1592,171 @@ nav.navbar.bootsnav .navbar-toggle i{color: #4e4ffa;}
     padding-right: 0;
     border-right: none;
 }
+/*** indivitual ***/
+:root {
+    --primary-color: #1e73be;
+    --secondary-color: #f8f9fa;
+    --accent-color: #ff6b35;
+    --text-color: #333;
+    --light-gray: #eaeaea;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    background-color: #f9f9f9;
+}
+
+.car-title {
+    font-weight: 700;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.car-price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+.car-specs {
+    background-color: var(--secondary-color);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.spec-item {
+    display: flex;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.spec-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(30, 115, 190, 0.1);
+    color: var(--primary-color);
+    border-radius: 8px;
+    margin-right: 15px;
+    font-size: 1.5rem;
+}
+
+.spec-label {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 0;
+}
+
+.spec-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.car-description {
+    line-height: 1.8;
+    margin-top: 20px;
+}
+
+.gallery-img {
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.gallery-img:hover {
+    transform: scale(1.03);
+}
+
+.main-image {
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.feature-badge {
+    background-color: var(--light-gray);
+    color: var(--text-color);
+    border-radius: 20px;
+    padding: 8px 16px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.feature-badge i {
+    margin-right: 6px;
+    color: var(--primary-color);
+}
+
+.contact-box {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    padding: 10px 25px;
+    font-weight: 600;
+}
+
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    padding: 10px 25px;
+    font-weight: 600;
+}
+
+.section-heading {
+    position: relative;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.section-heading:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background-color: var(--accent-color);
+}
+
+.breadcrumb-item a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.breadcrumb-item.active {
+    color: var(--accent-color);
+}
+
+/* Animation for features */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animated {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
