@@ -94,7 +94,7 @@ async function fetchYearData() {
  * @param {Object} car - Car object containing details
  * @returns {HTMLElement} DOM element for the car card
  */
-function renderCarCard(car,car1) {
+function renderCarCard(car) {
     // Format price with commas (KES currency)
     const formattedPrice = formatCurrency(car.price);
     
@@ -163,7 +163,7 @@ function renderCarCard(car,car1) {
     const titleH2 = document.createElement('h2');
     titleH2.className = 'fs-5 mb-2 text-truncate';
     const titleLink = document.createElement('a');
-    titleLink.href = `/cars-detail.html?carId=$/${car1.id}`;
+    titleLink.href = `/cars-detail.html?carId=$/${car.id}`;
     titleLink.className = 'text-decoration-none text-dark';
     titleLink.textContent = `${car.make} ${car.model}`;
     titleH2.appendChild(titleLink);
@@ -175,7 +175,7 @@ function renderCarCard(car,car1) {
     
     // Create a button for details
     const detailsBtn = document.createElement('a');
-    detailsBtn.href = `/cars-detail.html?carId=$${car1.id}`;
+    detailsBtn.href = `/cars-detail.html?carId=$${car.id}`;
     detailsBtn.className = 'btn btn-sm btn-outline-primary mt-3 w-100';
     detailsBtn.textContent = 'View Details';
     
