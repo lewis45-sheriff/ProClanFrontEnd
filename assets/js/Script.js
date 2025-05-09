@@ -163,7 +163,7 @@ function renderCarCard(car) {
     const titleH2 = document.createElement('h2');
     titleH2.className = 'fs-5 mb-2 text-truncate';
     const titleLink = document.createElement('a');
-    titleLink.href = `/cars-detail.html?carId=$/${car.id}`;
+    titleLink.href = `/car-detail.html?carId=${car.id}`;
     titleLink.className = 'text-decoration-none text-dark';
     titleLink.textContent = `${car.make} ${car.model}`;
     titleH2.appendChild(titleLink);
@@ -175,7 +175,7 @@ function renderCarCard(car) {
     
     // Create a button for details
     const detailsBtn = document.createElement('a');
-    detailsBtn.href = `/cars-detail.html?carId=$${car.id}`;
+    detailsBtn.href = `/car-detail.html?carId=${car.id}`;
     detailsBtn.className = 'btn btn-sm btn-outline-primary mt-3 w-100';
     detailsBtn.textContent = 'View Details';
     
@@ -414,7 +414,7 @@ async function initCarListings() {
 async function initCarDetailsPage() {
     // Get car ID from URL parameter
     const urlParams = new URLSearchParams(window.location.search);
-    const carId = urlParams.get('id');
+    const carId = urlParams.get('carId');
     
     if (!carId) {
         showError('Car ID not found in URL');
@@ -511,6 +511,45 @@ function displayCarDetails(car) {
     
     // Update car images
     updateCarImages(car);
+}
+function renderFeatures(car) {
+  const featuresContainer = document.querySelector('.d-flex.flex-wrap');
+
+  // Clear any existing features
+  featuresContainer.innerHTML = '';
+
+  // Map some common feature names to icons
+  const iconMap = {
+    'Sunroof': 'bi-umbrella',
+    'Bluetooth Connectivity': 'bi-bluetooth',
+    'Leather Seats': 'bi-person',
+    'Navigation System': 'bi-tv',
+    'Backup Camera': 'bi-camera-video',
+    'Heated Seats': 'bi-fire',
+    'Cruise Control': 'bi-speedometer2',
+    'USB Ports': 'bi-usb',
+    'ABS Brakes': 'bi-shield-check',
+    'Parking Sensors': 'bi-alarm',
+    'Premium Sound': 'bi-music-note-beamed',
+    'Climate Control': 'bi-snow',
+    '4WD': 'bi-gear',
+    'Reverse Camera': 'bi-camera-video'
+  };
+
+  if (car.features && car.features.length > 0) {
+    car.features.forEach(feature => {
+      const featureName = feature.featureName;
+      const iconClass = iconMap[featureName] || 'bi-check-circle'; // Default icon
+
+      const span = document.createElement('span');
+      span.className = 'feature-badge';
+      span.innerHTML = `<i class="bi ${iconClass}"></i> ${featureName}`;
+
+      featuresContainer.appendChild(span);
+    });
+  } else {
+    featuresContainer.innerHTML = '<span class="text-muted">No features listed.</span>';
+  }
 }
 
 /**

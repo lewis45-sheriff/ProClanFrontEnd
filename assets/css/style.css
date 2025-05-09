@@ -245,7 +245,7 @@ nav.navbar.bootsnav {
   
   /* Logo styles */
   .logo-img {
-    height: 100px; /* Make logo bigger */
+    height: 250px; /* Make logo bigger */
     width: auto;
     max-width: 100%;
   }
@@ -278,7 +278,7 @@ nav.navbar.bootsnav {
     }
     
     .logo-img {
-      height: 50px; /* Slightly smaller on medium screens */
+      height: 200px; /* Slightly smaller on medium screens */
     }
   }
   
@@ -314,7 +314,7 @@ nav.navbar.bootsnav {
     }
     
     .logo-img {
-      height: 45px; /* Smaller on small screens */
+      height: 200px; /* Smaller on small screens */
     }
   }
   
@@ -347,7 +347,7 @@ nav.navbar.bootsnav {
 /* Responsive adjustments for logo */
 @media (max-width: 992px) {
   .logo-img {
-      height: 50px; /* Slightly smaller on medium screens */
+      height: 250px; /* Slightly smaller on medium screens */
       align-items: right;
 
   }
@@ -355,14 +355,14 @@ nav.navbar.bootsnav {
 
 @media (max-width: 768px) {
   .logo-img {
-      height: 50px; /* Smaller on small screens */
+      height: 250px; /* Smaller on small screens */
       align-items: center;
   }
 }
 
 @media (max-width: 576px) {
   .logo-img {
-      height: 75px; /* Even smaller on very small screens */
+      height: 200px; /* Even smaller on very small screens */
       align-items: center;
 
   }
