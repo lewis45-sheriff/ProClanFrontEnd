@@ -1,483 +1,344 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html lang="en">
 
 <head>
-    <!-- meta data -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<!-- meta data -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
-    <!--font-family-->
-    <link
-        href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Rufina:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+	<!--font-family-->
+	<link
+		href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+		rel="stylesheet">
 
-    <!-- title of site -->
-    <title>Proclan Motors</title>
+	<link href="https://fonts.googleapis.com/css?family=Rufina:400,700" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<!-- Bootstrap Icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
 
-    <!-- For favicon png -->
-    <link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700&family=Ubuntu:wght@400;500&display=swap"
-        rel="stylesheet">
+	<!-- title of site -->
+	<title>Proclan Motors</title>
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+	<!-- For favicon png -->
+	<link rel="shortcut icon" type="image/icon"
+		href="assets\logo\WhatsApp Image 2025-04-29 at 11.02.28_7eb8d182b.jpg" />
 
-    <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+	<!--font-awesome.min.css-->
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<!--linear icon css-->
+	<link rel="stylesheet" href="assets/css/linearicons.css">
 
-    <!--font-awesome.min.css-->
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+	<!--flaticon.css-->
+	<link rel="stylesheet" href="assets/css/flaticon.css">
 
-    <!--linear icon css-->
-    <link rel="stylesheet" href="assets/css/linearicons.css">
+	<!--animate.css-->
+	<link rel="stylesheet" href="assets/css/animate.css">
 
-    <!--flaticon.css-->
-    <link rel="stylesheet" href="assets/css/flaticon.css">
+	<!--owl.carousel.css-->
+	<link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
 
-    <!--animate.css-->
-    <link rel="stylesheet" href="assets/css/animate.css">
+	<!--bootstrap.min.css-->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
-    <!--owl.carousel.css-->
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+	<!-- bootsnav -->
+	<link rel="stylesheet" href="assets/css/bootsnav.css">
 
-    <!--bootstrap.min.css-->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<!--style.css-->
+	<link rel="stylesheet" href="assets/css/style.css">
 
-    <!-- bootsnav -->
-    <link rel="stylesheet" href="assets/css/bootsnav.css">
+	<!--responsive.css-->
+	<link rel="stylesheet" href="assets/css/responsive.css">
 
-    <!--style.css-->
-    <link rel="stylesheet" href="assets/css/style.css">
 
-    <!--responsive.css-->
-    <link rel="stylesheet" href="assets/css/responsive.css">
-
-    <!-- Custom style to fix header overlap -->
-    <style>
-        /* Fix the header-main content overlap */
-        header {
-            position: relative;
-            z-index: 1000;
-        }
-
-        main {
-            position: relative;
-            z-index: 1;
-            padding-top: 30px;
-            /* Add space between header and main content */
-        }
-
-        /* If the header has a fixed height, you can set a specific padding */
-        /* Adjust this value according to your header height */
-        .welcome-hero {
-            height: auto;
-            min-height: 70px;
-        }
-
-        /* Make sure the navbar stays on top */
-        .navbar-sticky {
-            position: relative;
-            z-index: 1001;
-        }
-
-        /* Contact section specific styling */
-        #contact-details {
-            padding: 60px 0;
-            background-color: #f5f5f5;
-        }
-
-        #contact-details h2 {
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        #contact-details ul {
-            list-style: none;
-            padding-left: 0;
-            margin-bottom: 30px;
-        }
-
-        #contact-details ul li {
-            margin-bottom: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-    </style>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body>
-    <div class="top-bar">
-        <div class="container">
-            <div class="left-info">
-                <div><i class="fas fa-map-marker-alt"></i><span>Ridge Ways, Kiambu Road.</span></div>
-                <div><i class="far fa-clock"></i><span>Mon - Fri : 09.00 AM - 09.00 PM</span></div>
-                <div><i class="fas fa-envelope"></i><span>LewisKipkemoi53@gmail.com</span></div>
-            </div>
-            <div class="right-info">
-                <div><i class="fas fa-phone-alt"></i><span>+254 791861308</span></div>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Header Section -->
-    <section id="home" class="welcome-hero">
+	<div class="top-bar">
+		<div class="container">
+			<div class="left-info">
+				<div><i class="fas fa-map-marker-alt"></i><span>Ridge Ways, Kiambu Road.</span></div>
+				<div><i class="far fa-clock"></i><span>Mon - Fri : 09.00 AM - 09.00 PM</span></div>
+				<div><i class="fas fa-envelope"></i><span>LewisKipkemoi53@gmail.com</span></div>
+			</div>
+			<div class="right-info">
+				<div><i class="fas fa-phone-alt"></i><span>+254 791861308</span></div>
+				<div class="social-icons">
+					<a href="#"><i class="fab fa-facebook-f"></i></a>
+					<a href="#"><i class="fab fa-twitter"></i></a>
+					<a href="#"><i class="fab fa-linkedin-in"></i></a>
+					<a href="#"><i class="fab fa-instagram"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Navigation -->
+	<section id="home" class="welcome-hero">
 
-        <!-- top-area Start -->
-        <div class="top-area">
-            <div class="header-area">
-                <!-- Start Navigation -->
-                <nav class="navbar navbar-expand-lg bg-white navbar-light shadow navbar-fixed p-0" id="mainNav">
-                    <div class="container">
-                        <!-- Start Header Navigation -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                data-target="#navbar-menu">
-                                <i class="fa fa-bars"></i>
-                            </button>
+		<!-- top-area Start -->
+		<div class="top-area">
+			<div class="header-area">
+				<!-- Start Navigation -->
+				<nav class="navbar navbar-expand-lg bg-white navbar-light shadow navbar-fixed p-0" id="mainNav">
+					<div class="container">
+						<!-- Start Header Navigation -->
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse"
+								data-target="#navbar-menu">
+								<i class="fa fa-bars"></i>
+							</button>
+						</div>
+
+						<a href="index.html" class="navbar-brand">
+							<img src="assets\logo\proclan2.svg" alt="Proclan Motors" class="logo-img" />
+						</a>
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse" id="navbar-menu">
+							<ul class="navbar-nav ms-auto p-4 p-lg-0" data-in="fadeInDown" data-out="fadeOutUp">
+								<li><a href="index.html" class="nav-item nav-link active">Home</a></li>
+								<li><a href="LocallyUsed.html" class="nav-item nav-link">Listings</a></li>
+								<li><a href="Contact.html" class="nav-item nav-link">Contact Us</a></li>
+								<li><a href="About.html" class="nav-item nav-link">About</a></li>
+								<a href="#" class="btn btn-primary d-none d-lg-inline-block py-4 px-lg-5">
+									Get A Quote <i class="fa fa-arrow-right ms-3"></i>
+								</a>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</div><!--/.header-area-->
+			<div class="clearfix"></div>
 
 
-                        </div>
-                        <!-- <div class="col-sm-6">
-							<div class="footer-social">
-								<a href="#"><i class="fa fa-facebook"></i></a>
-								<a href="#"><i class="fa fa-instagram"></i></a>
-								<a href="#"><i class="fa fa-linkedin"></i></a>
-								<a href="#"><i class="fa fa-pinterest-p"></i></a>
-								<a href="#"><i class="fa fa-behance"></i></a>
-							</div> -->
-                        <a href="index.html" class="navbar-brand">
-                            <img src="assets/logo/Proclan logo 2 [Recovered].svg" alt="Proclan Motors"
-                                class="logo-img" />
-                        </a>
+		</div><!-- /.top-area-->
+		<!-- top-area End -->
+	</section>
+	<!-- Contact Section Start -->
+	<div class="container-xxl py-5">
+		<div class="container">
+			<!-- Section Heading -->
+			<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+				<h6 class="text-primary text-uppercase">// Get In Touch //</h6>
+				<h1 class="mb-5">Contact Proclan Motors</h1>
+				<p class="text-muted">Looking for a vehicle or have questions? Reach out to us and we'll be happy to
+					help!</p>
+			</div>
+
+			<!-- Contact Info & Form -->
+			<div class="row g-4">
+				<!-- Contact Info Cards -->
+				<div class="col-12">
+					<div class="row gy-4">
+						<div class="col-md-4">
+							<div class="bg-light d-flex flex-column justify-content-center p-4 h-100">
+								<h5 class="text-uppercase text-dark">// Sales Inquiries //</h5>
+								<p class="m-0"><i
+										class="fa fa-envelope-open text-primary me-2"></i>sales@proclanmotors.com</p>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="bg-light d-flex flex-column justify-content-center p-4 h-100">
+								<h5 class="text-uppercase text-dark">// General Queries //</h5>
+								<p class="m-0"><i
+										class="fa fa-envelope-open text-primary me-2"></i>info@proclanmotors.com</p>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="bg-light d-flex flex-column justify-content-center p-4 h-100">
+								<h5 class="text-uppercase text-dark">// Technical Support //</h5>
+								<p class="m-0"><i
+										class="fa fa-envelope-open text-primary me-2"></i>support@proclanmotors.com</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Map -->
+				<div class="col-md-6 wow fadeIn" data-wow-delay="0.1s">
+    <iframe
+        class="position-relative rounded w-100 h-100"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15955.55123456789!2d36.83993!3d-1.22547!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f174d12345678%3A0xabcdef1234567890!2sRidgeways%20Mall!5e0!3m2!1sen!2ske!4v1623456789012!5m2!1sen!2ske"
+        frameborder="0"
+        style="min-height: 350px; border:0;"
+        allowfullscreen=""
+        aria-hidden="false"
+        tabindex="0"
+    ></iframe>
+</div>
 
 
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="navbar-menu">
+				<!-- Contact Form -->
+				<div class="col-md-6">
+					<div class="wow fadeInUp" data-wow-delay="0.2s">
+						<p class="mb-4">Got a question or looking for a specific car? Fill out the form below and our
+							team will get back to you as soon as possible.</p>
+						<form>
+							<div class="row g-3">
+								<div class="col-md-6">
+									<div class="form-floating">
+										<input type="text" class="form-control" id="name" placeholder="Your Name">
+										<label for="name">Your Name</label>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-floating">
+										<input type="email" class="form-control" id="email" placeholder="Your Email">
+										<label for="email">Your Email</label>
+									</div>
+								</div>
+								<div class="col-12">
+									<div class="form-floating">
+										<input type="text" class="form-control" id="subject" placeholder="Subject">
+										<label for="subject">Subject</label>
+									</div>
+								</div>
+								<div class="col-12">
+									<div class="form-floating">
+										<textarea class="form-control" placeholder="Your message here" id="message"
+											style="height: 120px"></textarea>
+										<label for="message">Message</label>
+									</div>
+								</div>
+								<div class="col-12">
+									<button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- Contact Section End -->
 
 
-                            <ul class="navbar-nav ms-auto p-4 p-lg-0" data-in="fadeInDown" data-out="fadeOutUp">
-                                <li><a href="index.html" class="nav-item nav-link active">Home</a></li>
-                                <li><a href="LocallyUsed.html" class="nav-item nav-link">Listings</a></li>
-                                <li><a href="Contact.html" class="nav-item nav-link">Contact Us</a></li>
-                                <li><a href="#blog" class="nav-item nav-link">Blog</a></li>
-                                <a href="#" class="btn btn-primary d-none d-lg-inline-block py-4 px-lg-5">
-                                    Get A Quote <i class="fa fa-arrow-right ms-3"></i>
-                                </a>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </div><!--/.header-area-->
-            <div class="clearfix"></div>
+	<!-- Footer -->
+	<footer id="contact" class="contact">
+		<div class="container">
+			<div class="footer-top">
+				<div class="row">
+					<div class="col-md-3 col-sm-6">
+						<div class="single-footer-widget">
+							<div class="footer-logo">
+								<a href="index.html">Proclan Motors</a>
+							</div>
+							<p>
+								At Proclan Motors, we're committed to bringing you the finest selection of vehicles,
+								exceptional service, and unparalleled customer satisfaction. Whether you're in the
+								market for a new car or need assistance with your vehicle, our team is here to ensure
+								your experience is nothing short of excellent.
+							</p>
+							<div class="footer-contact">
+								<p>Have questions or need more information? Don't hesitate to reach out!</p>
+								<p><strong>Email us:</strong> LewisKipkemoi53@gmail.com</p>
+								<p><strong>Call us:</strong> +254791861308</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-2 col-sm-6">
+						<div class="single-footer-widget">
+							<h2>about devloon</h2>
+							<ul>
+								<li><a href="#">about us</a></li>
+								<li><a href="#">career</a></li>
+								<li><a href="#">terms <span> of service</span></a></li>
+								<li><a href="#">privacy policy</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-3 col-xs-12">
+						<div class="single-footer-widget">
+							<h2>top brands</h2>
+							<div class="row">
+								<div class="col-md-7 col-xs-6">
+									<ul>
+										<li><a href="#">BMW</a></li>
+										<li><a href="#">lamborghini</a></li>
+										<li><a href="#">camaro</a></li>
+										<li><a href="#">audi</a></li>
+										<li><a href="#">infiniti</a></li>
+										<li><a href="#">nissan</a></li>
+									</ul>
+								</div>
+								<div class="col-md-5 col-xs-6">
+									<ul>
+										<li><a href="#">ferrari</a></li>
+										<li><a href="#">porsche</a></li>
+										<li><a href="#">land rover</a></li>
+										<li><a href="#">aston martin</a></li>
+										<li><a href="#">mersedes</a></li>
+										<li><a href="#">opel</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-offset-1 col-md-3 col-sm-6">
+						<div class="single-footer-widget">
+							<h2>news letter</h2>
+							<div class="footer-newsletter">
+								<p>
+									Subscribe to get latest news update and informations
+								</p>
+							</div>
+							<div class="hm-foot-email">
+								<div class="foot-email-box">
+									<input type="text" class="form-control" placeholder="Add Email">
+								</div><!--/.foot-email-box-->
+								<div class="foot-email-subscribe">
+									<span><i class="fa fa-arrow-right"></i></span>
+								</div><!--/.foot-email-icon-->
+							</div><!--/.hm-foot-email-->
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer-copyright">
+				<div class="row">
+					<div class="col-sm-6">
+						<p>
+							&copy; copyright.designed and developed by <a
+								href="https://www.themesine.com/">themesine</a>.
+						</p><!--/p-->
+					</div>
+					<div class="col-sm-6">
+						<div class="footer-social">
+							<a href="#"><i class="fa fa-facebook"></i></a>
+							<a href="#"><i class="fa fa-instagram"></i></a>
+							<a href="#"><i class="fa fa-linkedin"></i></a>
+							<a href="#"><i class="fa fa-pinterest-p"></i></a>
+							<a href="#"><i class="fa fa-behance"></i></a>
+						</div>
+					</div>
+				</div>
+			</div><!--/.footer-copyright-->
+		</div><!--/.container-->
 
-        </div><!-- /.top-area-->
-        <!-- top-area End -->
-        <!-- Main Content Section -->
-        <main>
-            <!-- Contact Section -->
-            <section id="contact-details" class="contact-details">
-                <!-- Features Start -->
-                <div class="container-xxl py-5">
-                    <div class="container">
-                        <div class="row g-4">
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                                <div class="d-flex py-5 px-4">
-                                    <i class="fa fa-car fa-3x text-primary flex-shrink-0"></i>
-                                    <div class="ps-4">
-                                        <h5 class="mb-3">Wide Car Selection</h5>
-                                        <p>Browse through a large collection of new and used cars for every budget and
-                                            need.</p>
-                                        <a class="text-secondary border-bottom" href="">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                                <div class="d-flex bg-light py-5 px-4">
-                                    <i class="fa fa-handshake fa-3x text-primary flex-shrink-0"></i>
-                                    <div class="ps-4">
-                                        <h5 class="mb-3">Trusted Dealers</h5>
-                                        <p>Work with verified, experienced dealers to ensure a smooth and honest
-                                            transaction.</p>
-                                        <a class="text-secondary border-bottom" href="">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                                <div class="d-flex py-5 px-4">
-                                    <i class="fa fa-tag fa-3x text-primary flex-shrink-0"></i>
-                                    <div class="ps-4">
-                                        <h5 class="mb-3">Affordable Prices</h5>
-                                        <p>Find the best value for your money with competitive pricing and flexible
-                                            financing.</p>
-                                        <a class="text-secondary border-bottom" href="">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+		<div id="scroll-Top">
+			<div class="return-to-top">
+				<i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title=""
+					data-original-title="Back to Top" aria-hidden="true"></i>
+			</div>
 
-                <!-- About Start -->
-                <div class="container-xxl py-5">
-                    <div class="container">
-                        <div class="row g-5">
-                            <div class="col-lg-6 pt-4" style="min-height: 400px;">
-                                <div class="position-relative h-100 wow fadeIn" data-wow-delay="0.1s">
-                                    <img class="position-absolute img-fluid w-100 h-100" src="assets\logo\Proclan logo 2 [Recovered].svg"
-                                        style="object-fit: cover;" alt="Cars">
-                                    <div class="position-absolute top-0 end-0 mt-n4 me-n4 py-4 px-5"
-                                        style="background: rgba(0, 0, 0, .08);">
-                                        <h1 class="display-4 text-white mb-0">5 <span class="fs-4">Years</span></h1>
-                                        <h4 class="text-white">In Car Sales</h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <h6 class="text-primary text-uppercase">// About Us //</h6>
-                                <h1 class="mb-4"><span class="text-primary">Proclan Motors</span> - Your Trusted Car
-                                    Marketplace</h1>
-                                <p class="mb-4">We connect buyers with the best selection of new and pre-owned vehicles
-                                    from verified sellers. Experience hassle-free car buying with financing options,
-                                    trusted dealerships, and reliable support.</p>
-                                <div class="row g-4 mb-3 pb-3">
-                                    <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
-                                        <div class="d-flex">
-                                            <div class="bg-light d-flex flex-shrink-0 align-items-center justify-content-center mt-1"
-                                                style="width: 45px; height: 45px;">
-                                                <span class="fw-bold text-secondary">01</span>
-                                            </div>
-                                            <div class="ps-3">
-                                                <h6>Certified Listings</h6>
-                                                <span>All vehicles are inspected and verified by our team for your peace
-                                                    of mind.</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 wow fadeIn" data-wow-delay="0.3s">
-                                        <div class="d-flex">
-                                            <div class="bg-light d-flex flex-shrink-0 align-items-center justify-content-center mt-1"
-                                                style="width: 45px; height: 45px;">
-                                                <span class="fw-bold text-secondary">02</span>
-                                            </div>
-                                            <div class="ps-3">
-                                                <h6>Easy Financing</h6>
-                                                <span>Flexible loan options available directly through our
-                                                    platform.</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 wow fadeIn" data-wow-delay="0.5s">
-                                        <div class="d-flex">
-                                            <div class="bg-light d-flex flex-shrink-0 align-items-center justify-content-center mt-1"
-                                                style="width: 45px; height: 45px;">
-                                                <span class="fw-bold text-secondary">03</span>
-                                            </div>
-                                            <div class="ps-3">
-                                                <h6>Customer Satisfaction</h6>
-                                                <span>Thousands of happy customers and growing every day.</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="" class="btn btn-primary py-3 px-5">Learn More<i
-                                        class="fa fa-arrow-right ms-3"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+		</div><!--/.scroll-Top-->
 
-                <!-- Stats Start -->
-                <div class="container-fluid fact bg-dark my-5 py-5">
-                    <div class="container">
-                        <div class="row g-4">
-                            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
-                                <i class="fa fa-calendar-check fa-2x text-white mb-3"></i>
-                                <h2 class="text-white mb-2" data-toggle="counter-up">15</h2>
-                                <p class="text-white mb-0">Years in Business</p>
-                            </div>
-                            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.3s">
-                                <i class="fa fa-car fa-2x text-white mb-3"></i>
-                                <h2 class="text-white mb-2" data-toggle="counter-up">5000</h2>
-                                <p class="text-white mb-0">Cars Sold</p>
-                            </div>
-                            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.5s">
-                                <i class="fa fa-smile fa-2x text-white mb-3"></i>
-                                <h2 class="text-white mb-2" data-toggle="counter-up">3500</h2>
-                                <p class="text-white mb-0">Happy Customers</p>
-                            </div>
-                            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s">
-                                <i class="fa fa-map-marker-alt fa-2x text-white mb-3"></i>
-                                <h2 class="text-white mb-2" data-toggle="counter-up">12</h2>
-                                <p class="text-white mb-0">Showrooms Nationwide</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- Contact Section End -->
-        </main>
-        <!-- End Main Content Section -->
+	</footer><!--/.contact-->
 
-        <!-- Footer Section -->
-        <footer id="contact" class="contact">
-            <div class="container">
-                <div class="footer-top">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6">
-                            <div class="single-footer-widget">
-                                <div class="footer-logo">
-                                    <a href="index.html">PROCLAN MOTORS</a>
-                                </div>
-                                <p>
-                                    At Proclan Motors, we're committed to bringing you the finest selection of vehicles,
-                                    exceptional service, and unparalleled customer satisfaction. Whether you're in the
-                                    market for a new car or need assistance with your vehicle, our team is here to
-                                    ensure your experience is nothing short of excellent.
-                                </p>
-                                <div class="footer-contact">
-                                    <p>Have questions or need more information? Don't hesitate to reach out!</p>
-                                    <p><strong>Email us:</strong> LewisKipkemoi53@gmail.com</p>
-                                    <p><strong>Call us:</strong> +254791861308</p>
-                                </div>
+	<div class="py-3 bg-dark text-center text-white-50" style="background-color: #111;">
+		<small>© 2025 Premium Auto Market. All Rights Reserved.</small>
+	</div>
 
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-sm-6">
-                            <div class="single-footer-widget">
-                                <h2>about devloon</h2>
-                                <ul>
-                                    <li><a href="#">about us</a></li>
-                                    <li><a href="#">career</a></li>
-                                    <li><a href="#">terms <span> of service</span></a></li>
-                                    <li><a href="#">privacy policy</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-xs-12">
-                            <div class="single-footer-widget">
-                                <h2>top brands</h2>
-                                <div class="row">
-                                    <div class="col-md-7 col-xs-6">
-                                        <ul>
-                                            <li><a href="#">BMW</a></li>
-                                            <li><a href="#">lamborghini</a></li>
-                                            <li><a href="#">camaro</a></li>
-                                            <li><a href="#">audi</a></li>
-                                            <li><a href="#">infiniti</a></li>
-                                            <li><a href="#">nissan</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-5 col-xs-6">
-                                        <ul>
-                                            <li><a href="#">ferrari</a></li>
-                                            <li><a href="#">porsche</a></li>
-                                            <li><a href="#">land rover</a></li>
-                                            <li><a href="#">aston martin</a></li>
-                                            <li><a href="#">mersedes</a></li>
-                                            <li><a href="#">opel</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-offset-1 col-md-3 col-sm-6">
-                            <div class="single-footer-widget">
-                                <h2>news letter</h2>
-                                <div class="footer-newsletter">
-                                    <p>
-                                        Subscribe to get latest news update and informations
-                                    </p>
-                                </div>
-                                <div class="hm-foot-email">
-                                    <div class="foot-email-box">
-                                        <input type="text" class="form-control" placeholder="Add Email">
-                                    </div><!--/.foot-email-box-->
-                                    <div class="foot-email-subscribe">
-                                        <span><i class="fa fa-arrow-right"></i></span>
-                                    </div><!--/.foot-email-icon-->
-                                </div><!--/.hm-foot-email-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="footer-copyright">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p>
-                                &copy; copyright.designed and developed by <a
-                                    href="https://www.themesine.com/">themesine</a>.
-                            </p><!--/p-->
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="footer-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                                <a href="#"><i class="fa fa-behance"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div><!--/.footer-copyright-->
-            </div><!--/.container-->
-
-            <div id="scroll-Top">
-                <div class="return-to-top">
-                    <i class="fa fa-angle-up" id="scroll-top" data-toggle="tooltip" data-placement="top" title=""
-                        data-original-title="Back to Top" aria-hidden="true"></i>
-                </div>
-            </div><!--/.scroll-Top-->
-        </footer>
-        <!-- End Footer Section -->
-
-        <!-- JS Scripts Section -->
-        <script src="assets/js/jquery.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/bootsnav.js"></script>
-        <script src="assets/js/owl.carousel.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/wow/wow.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/counterup/counterup.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/tempusdominus/js/moment.min.js"></script>
-        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-        <script src="assets\js\Script.js"></script> <!-- Adjust path if needed -->
-
+	<!-- Scripts -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+	<script src="assets/js/Script.js"></script>
 </body>
 
 </html>

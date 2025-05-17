@@ -793,3 +793,220 @@ function initApp() {
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', initApp);
+
+
+//search cars by make and model
+
+$(document).ready(function() {
+    // Define car models by make for the dynamic dropdown
+    const modelsByMake = {
+        'toyota': ['Camry', 'Corolla', 'RAV4', 'Highlander', 'Tacoma', 'Tundra', 'Prius', 'Prado'],
+        'honda': ['Accord', 'Civic', 'CR-V', 'Pilot', 'Odyssey', 'Fit', 'HR-V'],
+        'ford': ['F-150', 'Escape', 'Explorer', 'Mustang', 'Focus', 'Edge', 'Bronco'],
+        'chevrolet': ['Silverado', 'Equinox', 'Malibu', 'Tahoe', 'Traverse', 'Camaro', 'Suburban'],
+        'nissan': ['Altima', 'Rogue', 'Sentra', 'Pathfinder', 'Murano', 'Frontier', 'Maxima'],
+        'bmw': ['3 Series', '5 Series', 'X3', 'X5', '7 Series', 'i4', 'iX'],
+        'mercedes-benz': ['C-Class', 'E-Class', 'S-Class', 'GLC', 'GLE', 'A-Class', 'G-Wagon'],
+        'audi': ['A4', 'A6', 'Q5', 'Q7', 'A3', 'e-tron', 'R8'],
+        'volkswagen': ['Jetta', 'Passat', 'Tiguan', 'Atlas', 'Golf', 'ID.4', 'Taos'],
+        'hyundai': ['Elantra', 'Sonata', 'Tucson', 'Santa Fe', 'Kona', 'Palisade', 'Ioniq'],
+        'kia': ['Forte', 'Optima', 'Sorento', 'Sportage', 'Telluride', 'Soul', 'K5']
+    };
+    
+    // Update model dropdown when make changes
+    $('#make-select').change(function() {
+        const selectedMake = $(this).val();
+        const modelSelect = $('#model-select');
+        
+        // Clear existing options
+        modelSelect.empty();
+        modelSelect.append('<option value="default">model</option>');
+        
+        // If a specific make is selected, add its models
+        if (selectedMake !== 'default' && modelsByMake[selectedMake]) {
+            modelsByMake[selectedMake].forEach(model => {
+                modelSelect.append(`<option value="${model.toLowerCase()}">${model}</option>`);
+            });
+        }
+    });
+    
+    // Handle search button click
+    $('#search-button').click(function(e) {
+        e.preventDefault();
+        
+        // Show loading indicator
+        $('#loading-indicator').show();
+        $('#search-results-container').hide();
+        
+        // Collect search criteria
+        const make = $('#make-select').val();
+        const model = $('#model-select').val();
+        const price = $('#price-select').val();
+        
+        // Validate if all required fields are selected
+        if (make === 'default' || model === 'default' || price === 'default') {
+            alert('Please select make, model, and price range to search');
+            $('#loading-indicator').hide();
+            return;
+        }
+        console.log(`Searching for cars with Make: ${make}, Model: ${model}, Price: ${price}`);
+        
+        // Build the API URL using the new endpoint format
+        // http://localhost:8080/api/v1/cars/search-by-make-model/{make}/{model}/{price}
+        const apiUrl = `http://localhost:8080/api/v1/cars/search-by-make-model?make=${make}&model=${model}&price=${price}`;
+
+        
+        // Make fetch request to backend
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                displaySearchResults(data);
+                $('#loading-indicator').hide();
+            })
+            .catch(error => {
+                console.error('Error searching cars:', error);
+                alert('An error occurred while searching for cars. Please try again.');
+                $('#loading-indicator').hide();
+            });
+    });
+    
+    // Handle clear filters button
+    $('#clear-button').click(function() {
+        // Reset all dropdown selections
+        $('select').val('default');
+        
+        // Hide results container
+        $('#search-results-container').hide();
+    });
+    
+    // Function to display search results
+    function displaySearchResults(response) {
+        // Clear previous results
+        $('#search-results').empty();
+        
+        // Show results container
+        $('#search-results-container').show();
+        
+        if (response.entity && response.entity.length > 0) {
+            // Update result count
+            $('#result-count').text(response.entity.length);
+            
+            // Append each car to the results
+            response.entity.forEach(car => {
+                $('#search-results').append(`
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">${car.year || ''} ${car.make} ${car.model}</h5>
+                                <p class="card-text">
+                                    <strong>Price:</strong> ${typeof car.price === 'number' ? car.price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : car.price}
+                                </p>
+                                <button class="btn btn-primary view-details" data-id="${car.id}">View Details</button>
+                            </div>
+                        </div>
+                    </div>
+                `);
+            });
+        } else {
+            // Show no results message
+            $('#result-count').text('0');
+            $('#search-results').html(`
+                <div class="col-12">
+                    <div class="no-results">
+                        <h3>No cars found matching your criteria</h3>
+                        <p>Try adjusting your search filters for more results.</p>
+                    </div>
+                </div>
+            `);
+        }
+    }
+    
+    // Handle view details button click (delegate event)
+    $(document).on('click', '.view-details', function() {
+        const carId = $(this).data('id');
+        window.location.href = `/car-details/${carId}`;
+    });
+});
+function loadCars(carModel) {
+	// Clear everything outside the featured car section
+	const sectionsToClear = document.querySelectorAll('.main-content, .promotional-banner, .testimonial-section, .newsletter, .other-sections'); 
+	sectionsToClear.forEach(section => section.style.display = 'none');
+
+	// Target the featured cars container and clear it
+	const container = document.getElementById('featured-cars-container');
+	container.innerHTML = '<p style="text-align:center; font-weight:bold;">Loading...</p>';
+
+	// Format model safely for URL
+	const encodedModel = encodeURIComponent(carModel.toLowerCase());
+	const apiUrl = `http://localhost:8080/api/v1/cars/get-by-car/${encodedModel}?carModel=${encodedModel}`;
+
+	// Fetch car data
+	fetch(apiUrl)
+		.then(response => {
+			if (!response.ok) throw new Error("Server responded with an error.");
+			return response.json();
+		})
+		.then(data => {
+			container.innerHTML = ''; // Clear loading text
+			if (Array.isArray(data) && data.length > 0) {
+				data.forEach(car => {
+					const carHTML = `
+						<div class="col-lg-4 col-md-6 col-sm-12">
+							<div class="single-featured-cars">
+								<div class="featured-img-box">
+									<div class="featured-cars-img">
+										<img src="${car.imageUrl || 'assets/images/default-car.jpg'}" alt="${car.model}" />
+									</div>
+								</div>
+								<div class="featured-cars-txt">
+									<h2><a href="#">${car.make || 'Unknown'} ${car.model || ''}</a></h2>
+									<h3>KES ${car.price || '0'}</h3>
+									<p>
+										<strong>Year:</strong> ${car.year || 'N/A'}<br>
+										<strong>Transmission:</strong> ${car.transmission || 'N/A'}<br>
+										<strong>Fuel:</strong> ${car.fuelType || 'N/A'}
+									</p>
+								</div>
+							</div>
+						</div>
+					`;
+					container.innerHTML += carHTML;
+				});
+			} else {
+				container.innerHTML = `<div style="text-align:center; padding: 20px;">
+					<h3>No cars found for <strong>${carModel.toUpperCase()}</strong>.</h3>
+					<p>Please try a different brand.</p>
+				</div>`;
+			}
+		})
+		.catch(error => {
+			console.error('Fetch error:', error);
+			container.innerHTML = `<div style="text-align:center; padding: 20px;">
+				<h3>Failed to load cars for <strong>${carModel.toUpperCase()}</strong>.</h3>
+				<p>Server error or network issue. Please try again later.</p>
+			</div>`;
+		});
+}
+$('#search-button').click(function(e) {
+    e.preventDefault();
+
+    const make = $('#make-select').val();
+    const model = $('#model-select').val();
+    const price = $('#price-select').val();
+
+    if (make === 'default' || model === 'default' || price === 'default') {
+        alert('Please select make, model, and price range to search');
+        return;
+    }
+
+    // Redirect to locallyUsed.html with search parameters
+    const queryString = `make=${encodeURIComponent(make)}&model=${encodeURIComponent(model)}&price=${encodeURIComponent(price)}`;
+    window.location.href = `search.html?${queryString}`;
+});
+
+

@@ -804,6 +804,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #4e4ffa;}
 --------------------------------------*/
 .featured-cars{
     padding:112px 0 120px;
+     margin-top: 10px;
 }
 .featured-cars-content{padding-top:96px;}
 
@@ -1600,11 +1601,16 @@ nav.navbar.bootsnav .navbar-toggle i{color: #4e4ffa;}
     --text-color: #333;
     --light-gray: #eaeaea;
 }
+#car-details-page {
+    margin-top: 10px; /* Adjust as needed */
+}
+
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text-color);
     background-color: #f9f9f9;
+    padding-top: 250px;
 }
 
 .car-title {
@@ -1760,3 +1766,56 @@ body {
 .delay-3 { animation-delay: 0.3s; }
 .delay-4 { animation-delay: 0.4s; }
 .delay-5 { animation-delay: 0.5s; }
+.model-search-content {
+            background-color: #f8f9fa;
+            padding: 30px 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        .single-model-search {
+            margin-bottom: 20px;
+        }
+        .single-model-search h2 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .welcome-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .welcome-btn:hover {
+            background-color: #0069d9;
+        }
+        .card {
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        #search-results {
+            margin-top: 30px;
+        }
+        .search-result-title {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .no-results {
+            text-align: center;
+            padding: 30px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+        }
