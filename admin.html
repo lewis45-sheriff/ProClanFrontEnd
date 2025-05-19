@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProClan Admin Dashboard</title>
+    <link rel="stylesheet" href="assets\css\Admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body>
+    <!-- Loader Overlay -->
+    <div class="loader-overlay" id="loaderOverlay">
+        <div class="loader"></div>
+    </div>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">AutoAdmin</div>
+            <ul class="nav-menu">
+                <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
+                <li><a href="cars.html"><i class="fas fa-car"></i> <span>Cars</span></a></li>
+                <li><a href="add-car.html" class="active"><i class="fas fa-plus-circle"></i> <span>Add NewCar</span></a>
+                </li>
+                <li><a href="categories.html"><i class="fas fa-tags"></i> <span>Categories</span></a></li>
+                <li><a href="customers.html"><i class="fas fa-users"></i> <span>Customers</span></a></li>
+                <li><a href="orders.html"><i class="fas fa-clipboard-list"></i> <span>Orders</span></a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
+                <li><a href="Login.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1 class="page-title">Add New Car</h1>
+                <div class="user-info">
+                    <img src="#" alt="Admin User" id="userAvatar">
+                    <div>
+                        <div id="userName">John Admin</div>
+                        <small id="userRole">Administrator</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Status message area -->
+            <div id="statusMessageArea"></div>
+
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <i class="fas fa-car"></i>
+                    <div>
+                        <div class="stat-title">Total Cars</div>
+                        <div class="stat-value" id="totalCars">Loading...</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-eye"></i>
+                    <div>
+                        <div class="stat-title">Total Views</div>
+                        <div class="stat-value" id="totalViews">Loading...</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-shopping-cart"></i>
+                    <div>
+                        <div class="stat-title">Pending Orders</div>
+                        <div class="stat-value" id="pendingOrders">Loading...</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-dollar-sign"></i>
+                    <div>
+                        <div class="stat-title">Total Revenue</div>
+                        <div class="stat-value" id="totalRevenue">Loading...</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Add New Car</h2>
+                    <button class="btn btn-primary" id="saveCarBtn">Save Car</button>
+                </div>
+
+                <form id="addCarForm">
+                    <!-- CSRF Token - Will be dynamically set -->
+                    <!-- <input type="hidden" name="csrf_token" id="csrfToken"> -->
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="carMake">Make</label>
+                            <!-- <select class="form-control" id="carMake" name="carMake" required>
+                                <option value="">Select Make</option>
+                            </select> -->
+                            <input type="text" class="form-control" id="carMake" name="carMake"
+                                placeholder="Enter car make" />
+
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="carModel">Model</label>
+                            <input type="text" class="form-control" id="carModel" name="carModel"
+                                placeholder="e.g. Camry, Civic">
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="carYear">Year</label>
+                            <input type="number" class="form-control" id="carYear" name="carYear"
+                                placeholder="e.g. 2025" min="1900" max="2030">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="carPrice">Price ($)</label>
+                            <input type="number" class="form-control" id="carPrice" name="carPrice"
+                                placeholder="e.g. 25000" min="0" step="0.01">
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="carMileage">Mileage</label>
+                            <input type="number" class="form-control" id="carMileage" name="carMileage"
+                                placeholder="e.g. 15000" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="carFuelType">Fuel Type</label>
+                            <!-- <select class="form-control" id="carFuelType" name="carFuelType">
+                                <option value="">Select Fuel Type</option>
+                                 Will be populated dynamically 
+                            </select> -->
+                            <input type="text" class="form-control" id="carFuelType" name="carFuelType"
+                                placeholder="e.g. Petrol, Diesel, Electric" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="carTransmission">Transmission</label>
+                            <!-- <select class="form-control" id="carTransmission" name="carTransmission">
+                                <option value="">Select Transmission</option>
+                                 Will be populated dynamically 
+                            </select> -->
+                            <input type="text" class="form-control" id="carTransmission" name="carTransmission"
+                                placeholder="e.g. Automatic, Manual" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="carColor">Color</label>
+                            <input type="text" class="form-control" id="carColor" name="carColor"
+                                placeholder="e.g. Black, White, Silver" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label" for="carBodyType">Body Type</label>
+                            <!-- <select class="form-control" id="carBodyType" name="carBodyType">
+                                <option value="">Select Body Type</option>
+                                 Will be populated dynamically 
+                            </select> -->
+                            <input type="text" class="form-control" id="carBodyType" name="carBodyType"
+                                placeholder="e.g. Sedan, SUV, Hatchback" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="carStatus">Status</label>
+                            <!-- <select class="form-control" id="carStatus" name="carStatus">
+                                <option value="">Select Status</option>
+                                 Will be populated dynamically -->
+                            </select>
+                            <input type="text" class="form-control" id="carStatus" name="carStatus"
+                                placeholder="e.g. Available, Sold, Pending" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="carDescription">Description</label>
+                        <textarea class="form-control" id="carDescription" name="carDescription"
+                            placeholder="Detailed description of the vehicle..."></textarea>
+                        <span class="form-hint">Include key selling points, features, and condition information.</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Features</label>
+                        <div id="featuresContainer"
+                            style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px;">
+                            <!-- Will be populated dynamically -->
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="form-label" id="carImagesLabel">Car Images</label>
+                        <span class="form-hint">
+                            Upload at least one image of the vehicle. First image will be used as the main display
+                            image.
+                        </span>
+
+                        <div class="image-preview" id="imagePreview">
+                            <div class="preview-box" id="addImageBox">
+                                <span class="add-image">+</span>
+                            </div>
+                        </div>
+
+                        <input type="file" id="imageInput" accept="image/*" multiple style="display: none;">
+
+                        <div id="imageErrorContainer"></div>
+                    </div>
+
+                    <div class="form-group" style="margin-top: 30px;">
+                        <button type="submit" class="btn btn-primary" id="addCarForm" style="min-width: 150px;">Save
+                            Car</button>
+                        <button type="button" id="saveDraftBtn" class="btn btn-warning"
+                            style="min-width: 150px; margin-left: 10px;">Save as Draft</button>
+                        <button type="reset" id="resetFormBtn" class="btn btn-danger"
+                            style="min-width: 150px; margin-left: 10px;">Reset Form</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Recently Added Cars</h2>
+                    <a href="LocallyUsed.html" class="btn btn-sm btn-primary">View All</a>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Image</th>
+                                <th>Model</th>
+                                <th>Year</th>
+                                <th>Price</th>
+                                <th>Status</th>
+                                <th>Added Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentCarsTable">
+                            <tr>
+                                <td colspan="8" class="text-center">Loading recent cars...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination controls -->
+                <div class="text-center mt-3">
+                    <button id="prevButton" class="btn btn-secondary" disabled>Previous</button>
+                    <button id="nextButton" class="btn btn-primary">Next</button>
+                </div>
+
+            </div>
+
+            <div class="content-section">
+                <div class="section-header">
+                    <h2 class="section-title">Monthly Sales Overview</h2>
+                    <div class="chart-filters">
+                        <select id="yearFilter" class="form-control form-control-sm">
+                            <!-- Will be populated dynamically -->
+                        </select>
+                    </div>
+                </div>
+                <div class="chart-container" style="height: 300px;">
+                    <canvas id="monthlySalesChart"></canvas>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div>&copy; 2025 AutoAdmin. All rights reserved.</div>
+                <div>Version 2.3.1</div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Hidden file input for image upload -->
+    <input type="file" id="fileUpload" style="display: none;" accept="image/*" multiple>
+    <script src="assets\js\Index.js"></script>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.9.1/chart.min.js"></script>

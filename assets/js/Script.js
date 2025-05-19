@@ -24,6 +24,19 @@ async function fetchCars() {
         return getFallbackCars();
     }
 }
+async function fetchSearchCars(make, model, price) {
+    try {
+        const response = await fetch(`http://localhost:8080/api/v1/cars/search-by-make-model/${make}/${model}/${price}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch cars');
+        }
+        const data = await response.json();
+        return data.entity || [];
+    } catch (error) {
+        console.error('Error fetching cars:', error);
+        return getFallbackCars();
+    }
+}
 
 /**
  * Fetches specific car details by ID
@@ -386,8 +399,57 @@ async function initFeaturedCars() {
         secondRowCars.forEach(car => {
             secondRowContainer.appendChild(renderCarCard(car));
         });
+ 
     }
 }
+
+// search cars by make and model
+async function carSearch(make, model, price) {
+    const firstRowContainer = document.getElementById('searched-cars-container');
+    const secondRowContainer = document.getElementById('searched-cars-container-second');
+
+    if (!firstRowContainer || !secondRowContainer) return;
+
+    // Show loading message
+    firstRowContainer.innerHTML = `
+        <div class="col-12 text-center">
+            <p>Loading search results...</p>
+        </div>
+    `;
+    secondRowContainer.innerHTML = '';
+
+    const cars = await fetchSearchCars(make, model, price);
+
+    if (!cars || cars.length === 0) {
+        firstRowContainer.innerHTML = `
+            <div class="col-12 text-center">
+                <p>No cars found</p>
+            </div>
+        `;
+        return;
+    }
+
+    // Clear old content
+    firstRowContainer.innerHTML = '';
+    secondRowContainer.innerHTML = '';
+
+    // Split cars into two rows
+    const firstRowCars = cars.slice(0, 4);
+    const secondRowCars = cars.slice(4, 8);
+
+    // Render first row
+    firstRowCars.forEach(car => {
+        firstRowContainer.appendChild(renderCarCard(car));
+    });
+
+    // Render second row if any
+    if (secondRowCars.length > 0) {
+        secondRowCars.forEach(car => {
+            secondRowContainer.appendChild(renderCarCard(car));
+        });
+    }
+}
+
 
 /**
  * Initialize all car listings
@@ -796,9 +858,7 @@ document.addEventListener('DOMContentLoaded', initApp);
 
 
 //search cars by make and model
-
-$(document).ready(function() {
-    // Define car models by make for the dynamic dropdown
+$(document).ready(function () {
     const modelsByMake = {
         'toyota': ['Camry', 'Corolla', 'RAV4', 'Highlander', 'Tacoma', 'Tundra', 'Prius', 'Prado'],
         'honda': ['Accord', 'Civic', 'CR-V', 'Pilot', 'Odyssey', 'Fit', 'HR-V'],
@@ -812,56 +872,43 @@ $(document).ready(function() {
         'hyundai': ['Elantra', 'Sonata', 'Tucson', 'Santa Fe', 'Kona', 'Palisade', 'Ioniq'],
         'kia': ['Forte', 'Optima', 'Sorento', 'Sportage', 'Telluride', 'Soul', 'K5']
     };
-    
-    // Update model dropdown when make changes
-    $('#make-select').change(function() {
+
+    // Populate model dropdown
+    $('#make-select').change(function () {
         const selectedMake = $(this).val();
         const modelSelect = $('#model-select');
-        
-        // Clear existing options
+
         modelSelect.empty();
         modelSelect.append('<option value="default">model</option>');
-        
-        // If a specific make is selected, add its models
+
         if (selectedMake !== 'default' && modelsByMake[selectedMake]) {
             modelsByMake[selectedMake].forEach(model => {
                 modelSelect.append(`<option value="${model.toLowerCase()}">${model}</option>`);
             });
         }
     });
-    
-    // Handle search button click
-    $('#search-button').click(function(e) {
+
+    $('#search-button').click(function (e) {
         e.preventDefault();
-        
-        // Show loading indicator
+
         $('#loading-indicator').show();
-        $('#search-results-container').hide();
-        
-        // Collect search criteria
+        $('#searched-cars').hide();
+
         const make = $('#make-select').val();
         const model = $('#model-select').val();
         const price = $('#price-select').val();
-        
-        // Validate if all required fields are selected
+
         if (make === 'default' || model === 'default' || price === 'default') {
             alert('Please select make, model, and price range to search');
             $('#loading-indicator').hide();
             return;
         }
-        console.log(`Searching for cars with Make: ${make}, Model: ${model}, Price: ${price}`);
-        
-        // Build the API URL using the new endpoint format
-        // http://localhost:8080/api/v1/cars/search-by-make-model/{make}/{model}/{price}
+
         const apiUrl = `http://localhost:8080/api/v1/cars/search-by-make-model?make=${make}&model=${model}&price=${price}`;
 
-        
-        // Make fetch request to backend
         fetch(apiUrl)
             .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
                 return response.json();
             })
             .then(data => {
@@ -874,124 +921,123 @@ $(document).ready(function() {
                 $('#loading-indicator').hide();
             });
     });
-    
-    // Handle clear filters button
-    $('#clear-button').click(function() {
-        // Reset all dropdown selections
+
+    $('#clear-button').click(function () {
         $('select').val('default');
-        
-        // Hide results container
-        $('#search-results-container').hide();
+        $('#searched-cars').hide();
     });
-    
-    // Function to display search results
+
     function displaySearchResults(response) {
-        // Clear previous results
-        $('#search-results').empty();
-        
-        // Show results container
-        $('#search-results-container').show();
-        
+        const firstRow = $('#searched-cars-container');
+        const secondRow = $('#searched-cars-container-second');
+
+        firstRow.empty();
+        secondRow.empty();
+
+        $('#searched-cars').show();
+
         if (response.entity && response.entity.length > 0) {
-            // Update result count
-            $('#result-count').text(response.entity.length);
-            
-            // Append each car to the results
-            response.entity.forEach(car => {
-                $('#search-results').append(`
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">${car.year || ''} ${car.make} ${car.model}</h5>
-                                <p class="card-text">
-                                    <strong>Price:</strong> ${typeof car.price === 'number' ? car.price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) : car.price}
-                                </p>
-                                <button class="btn btn-primary view-details" data-id="${car.id}">View Details</button>
-                            </div>
-                        </div>
-                    </div>
-                `);
+            const firstRowCars = response.entity.slice(0, 4);
+            const secondRowCars = response.entity.slice(4, 8);
+
+            firstRowCars.forEach(car => {
+                firstRow.append(renderCarCard(car));
+            });
+
+            secondRowCars.forEach(car => {
+                secondRow.append(renderCarCard(car));
             });
         } else {
-            // Show no results message
-            $('#result-count').text('0');
-            $('#search-results').html(`
-                <div class="col-12">
-                    <div class="no-results">
-                        <h3>No cars found matching your criteria</h3>
-                        <p>Try adjusting your search filters for more results.</p>
-                    </div>
+            firstRow.html(`
+                <div class="col-12 text-center">
+                    <p>No cars found matching your criteria</p>
                 </div>
             `);
         }
     }
-    
-    // Handle view details button click (delegate event)
-    $(document).on('click', '.view-details', function() {
+
+    function renderCarCard(car) {
+        const priceFormatted = typeof car.price === 'number'
+            ? car.price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+            : car.price;
+
+        return `
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">${car.year || ''} ${car.make} ${car.model}</h5>
+                        <p class="card-text">
+                            <strong>Price:</strong> ${priceFormatted}
+                        </p>
+                        <button class="btn btn-primary view-details" data-id="${car.id}">View Details</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    $(document).on('click', '.view-details', function () {
         const carId = $(this).data('id');
         window.location.href = `/car-details/${carId}`;
     });
 });
-function loadCars(carModel) {
-	// Clear everything outside the featured car section
-	const sectionsToClear = document.querySelectorAll('.main-content, .promotional-banner, .testimonial-section, .newsletter, .other-sections'); 
-	sectionsToClear.forEach(section => section.style.display = 'none');
 
-	// Target the featured cars container and clear it
-	const container = document.getElementById('featured-cars-container');
-	container.innerHTML = '<p style="text-align:center; font-weight:bold;">Loading...</p>';
+$(document).ready(function () {
+    const modelsByMake = {
+        'toyota': ['Camry', 'Corolla', 'RAV4', 'Highlander', 'Tacoma', 'Tundra', 'Prius', 'Prado'],
+        'honda': ['Accord', 'Civic', 'CR-V', 'Pilot', 'Odyssey', 'Fit', 'HR-V'],
+        'ford': ['F-150', 'Escape', 'Explorer', 'Mustang', 'Focus', 'Edge', 'Bronco'],
+        'chevrolet': ['Silverado', 'Equinox', 'Malibu', 'Tahoe', 'Traverse', 'Camaro', 'Suburban'],
+        'nissan': ['Altima', 'Rogue', 'Sentra', 'Pathfinder', 'Murano', 'Frontier', 'Maxima'],
+        'bmw': ['3 Series', '5 Series', 'X3', 'X5', '7 Series', 'i4', 'iX'],
+        'mercedes-benz': ['C-Class', 'E-Class', 'S-Class', 'GLC', 'GLE', 'A-Class', 'G-Wagon'],
+        'audi': ['A4', 'A6', 'Q5', 'Q7', 'A3', 'e-tron', 'R8'],
+        'volkswagen': ['Jetta', 'Passat', 'Tiguan', 'Atlas', 'Golf', 'ID.4', 'Taos'],
+        'hyundai': ['Elantra', 'Sonata', 'Tucson', 'Santa Fe', 'Kona', 'Palisade', 'Ioniq'],
+        'kia': ['Forte', 'Optima', 'Sorento', 'Sportage', 'Telluride', 'Soul', 'K5']
+    };
 
-	// Format model safely for URL
-	const encodedModel = encodeURIComponent(carModel.toLowerCase());
-	const apiUrl = `http://localhost:8080/api/v1/cars/get-by-car/${encodedModel}?carModel=${encodedModel}`;
+    // Populate model dropdown
+    $('#make-select').change(function () {
+        const selectedMake = $(this).val();
+        const modelSelect = $('#model-select');
 
-	// Fetch car data
-	fetch(apiUrl)
-		.then(response => {
-			if (!response.ok) throw new Error("Server responded with an error.");
-			return response.json();
-		})
-		.then(data => {
-			container.innerHTML = ''; // Clear loading text
-			if (Array.isArray(data) && data.length > 0) {
-				data.forEach(car => {
-					const carHTML = `
-						<div class="col-lg-4 col-md-6 col-sm-12">
-							<div class="single-featured-cars">
-								<div class="featured-img-box">
-									<div class="featured-cars-img">
-										<img src="${car.imageUrl || 'assets/images/default-car.jpg'}" alt="${car.model}" />
-									</div>
-								</div>
-								<div class="featured-cars-txt">
-									<h2><a href="#">${car.make || 'Unknown'} ${car.model || ''}</a></h2>
-									<h3>KES ${car.price || '0'}</h3>
-									<p>
-										<strong>Year:</strong> ${car.year || 'N/A'}<br>
-										<strong>Transmission:</strong> ${car.transmission || 'N/A'}<br>
-										<strong>Fuel:</strong> ${car.fuelType || 'N/A'}
-									</p>
-								</div>
-							</div>
-						</div>
-					`;
-					container.innerHTML += carHTML;
-				});
-			} else {
-				container.innerHTML = `<div style="text-align:center; padding: 20px;">
-					<h3>No cars found for <strong>${carModel.toUpperCase()}</strong>.</h3>
-					<p>Please try a different brand.</p>
-				</div>`;
-			}
-		})
-		.catch(error => {
-			console.error('Fetch error:', error);
-			container.innerHTML = `<div style="text-align:center; padding: 20px;">
-				<h3>Failed to load cars for <strong>${carModel.toUpperCase()}</strong>.</h3>
-				<p>Server error or network issue. Please try again later.</p>
-			</div>`;
-		});
-}
+        modelSelect.empty().append('<option value="default">model</option>');
+
+        if (selectedMake !== 'default' && modelsByMake[selectedMake]) {
+            modelsByMake[selectedMake].forEach(model => {
+                modelSelect.append(`<option value="${model.toLowerCase()}">${model}</option>`);
+            });
+        }
+    });
+
+    // Clear selections
+    $('#clear-button').click(function () {
+        $('select').val('default');
+        $('#searched-cars').hide();
+    });
+
+    // Handle search button (redirect to search.html with parameters)
+    $('#search-button').click(function (e) {
+        e.preventDefault();
+
+        const make = $('#make-select').val();
+        const model = $('#model-select').val();
+        const price = $('#price-select').val();
+
+        if (make === 'default' || model === 'default' || price === 'default') {
+            alert('Please select make, model, and price range to search');
+            return;
+        }
+
+        const queryString = `make=${encodeURIComponent(make)}&model=${encodeURIComponent(model)}&price=${encodeURIComponent(price)}`;
+        window.location.href = `search.html?${queryString}`;
+    });
+
+    // --- search.html logic ---
+    
+});
+
 $('#search-button').click(function(e) {
     e.preventDefault();
 
@@ -1008,5 +1054,108 @@ $('#search-button').click(function(e) {
     const queryString = `make=${encodeURIComponent(make)}&model=${encodeURIComponent(model)}&price=${encodeURIComponent(price)}`;
     window.location.href = `search.html?${queryString}`;
 });
+$(document).ready(function () {
+    const params = new URLSearchParams(window.location.search);
+    const make = params.get('make');
+    const model = params.get('model');
+    const price = params.get('price');
 
+    if (!make || !model || !price) {
+        $('.searched-cars-content').html('<p class="text-danger p-3">Please provide make, model, and price in the search query.</p>');
+        return;
+    }
+
+    const apiUrl = `http://localhost:8080/api/v1/cars/search-by-make-model?make=${make}&model=${model}&price=${price}`;
+
+    fetch(apiUrl)
+        .then(res => res.json())
+        .then(data => {
+            if (data.entity && data.entity.length > 0) {
+                const container1 = document.getElementById('searched-cars-container');
+                const container2 = document.getElementById('searched-cars-container-second');
+
+                // Clear any existing content
+                container1.innerHTML = '';
+                container2.innerHTML = '';
+
+                data.entity.forEach((car, index) => {
+                    const carCard = renderCarCard(car);
+                    if (index < 4) {
+                        container1.appendChild(carCard);
+                    } else {
+                        container2.appendChild(carCard);
+                    }
+                });
+            } else {
+              $('.searched-cars-content').html(`
+    <div class="alert alert-warning d-flex align-items-center gap-2 shadow-sm p-3 rounded" role="alert">
+        <i class="bi bi-exclamation-triangle-fill fs-4 text-warning"></i>
+        <div class="fs-6">
+            No cars found matching your criteria. Try adjusting your search filters.
+        </div>
+    </div>
+`);
+
+            }
+        })
+        .catch(() => {
+           $('.searched-cars-content').html(`
+    <div class="alert alert-danger d-flex align-items-center gap-2 shadow-sm p-3 rounded" role="alert">
+        <i class="bi bi-x-circle-fill fs-4 text-danger"></i>
+        <div class="fs-6">
+            Error fetching search results. Please try again later or check your connection.
+        </div>
+    </div>
+`);
+
+        });
+});
+$(document).ready(function() {
+    // Remove any Bootstrap 5 event handlers from navbar toggler
+    $('.navbar-toggler').off('click');
+    
+    // Add proper Bootstrap 4 toggle functionality
+    $('.navbar-toggler').on('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $('#navbar-menu').toggleClass('show');
+    });
+    
+    // Optional: Close menu when clicking outside
+    $(document).on('click', function(e) {
+        if(!$(e.target).closest('#navbar-menu').length && 
+           !$(e.target).closest('.navbar-toggler').length) {
+            $('#navbar-menu.show').collapse('hide');
+        }
+    });
+});
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Bootstrap 5 components explicitly
+    var navbarToggler = document.querySelector('.navbar-toggle');
+    var navbarMenu = document.getElementById('navbar-menu');
+    
+    // Fix any potential issues with toggle functionality
+    if (navbarToggler && navbarMenu) {
+        // Clear any previous event listeners
+        navbarToggler.removeEventListener('click', toggleNav);
+        
+        // Add event listener with proper handling
+        navbarToggler.addEventListener('click', toggleNav);
+        
+        function toggleNav(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Use Bootstrap 5's collapse methods if available
+            try {
+                var bsCollapse = new bootstrap.Collapse(navbarMenu, {
+                    toggle: true
+                });
+            } catch (error) {
+                // Fallback toggle if Bootstrap 5 JS is not initialized properly
+                navbarMenu.classList.toggle('show');
+            }
+        }
+    }
+});
 
