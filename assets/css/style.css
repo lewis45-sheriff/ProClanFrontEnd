@@ -27,88 +27,121 @@ font-family: 'Rufina', serif;
 /*-------------------------------------
 		1.General css (Reset code)
 --------------------------------------*/
-*{
+*/* Reset and Base Styles */
+* {
     padding: 0;
     margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-*{
-	-webkit-box-sizing:border-box;
-	-moz-box-sizing:border-box;
-	-o-box-sizing:border-box;
-	-ms-box-sizing:border-box;
-	box-sizing:border-box;
+html, body {
+    height: 100%;
 }
-body{
-	font-family: 'Poppins', sans-serif;
-	font-size:16px;
-	color:#060606;
-    text-transform:initial;
-    max-width:1920px;
-    margin:0 auto;
-	overflow-x:hidden;
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    color: #060606;
+    text-transform: initial;
+    max-width: 1920px;
+    margin: 0 auto;
+    overflow-x: hidden;
     background-color: white;
+    padding-top: 120px; /* Combined height of both bars with some extra space */
 }
 
-a,a:hover,a:active,a:focus {
-	display:inline-block;
-	text-decoration:none;
-	color: #444a57;
-	font-size:20px;
-	padding:0;
+/* Links */
+a, a:hover, a:active, a:focus {
+    display: inline-block;
+    text-decoration: none;
+    color: #444a57;
+    font-size: 20px;
+    padding: 0;
     font-weight: 500;
     text-transform: capitalize;
 }
-h1,h2,h3,h4,h5,h6 { 
-	margin: 0;
-	color:#444a57;
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 { 
+    margin: 0;
+    color: #444a57;
     font-size: 20px;
     font-weight: 500;
     text-transform: capitalize;
 }
+
+/* Paragraphs */
 p {
-	margin: 0;
-	color:#818998;
-	font-size:16px;
+    margin: 0;
+    color: #818998;
+    font-size: 16px;
     line-height: 1.8;
     text-transform: initial;
 }
-img{border:none;max-width:100%; height:auto;}
-ul{
-	padding: 0;
+
+/* Images */
+img {
+    border: none;
+    max-width: 100%; 
+    height: auto;
+}
+
+/* Lists */
+ul {
+    padding: 0;
     margin: 0 auto;
     list-style: none;
 }
+
 ul li {
-	list-style: none;
+    list-style: none;
     display: inline-block;
-	
 }
-select,input,textarea,button,.form-control{box-shadow:none;outline:0!important;}
-button {background: transparent;border: 0;font-size: 16px;text-transform: capitalize;}
 
-html,body{height: 100%;}
+/* Form Elements */
+select, input, textarea, button, .form-control {
+    box-shadow: none;
+    outline: 0 !important;
+}
 
+button {
+    background: transparent;
+    border: 0;
+    font-size: 16px;
+    text-transform: capitalize;
+}
+
+/* Placeholder Transition */
 [placeholder]:focus::-webkit-input-placeholder {
-  -webkit-transition: opacity 0.3s 0.3s ease; 
-  -moz-transition: opacity 0.3s 0.3s ease; 
-  -ms-transition: opacity 0.3s 0.3s ease; 
-  -o-transition: opacity 0.3s 0.3s ease; 
-  transition: opacity 0.3s 0.3s ease; 
-  opacity: 0;
+    -webkit-transition: opacity 0.3s 0.3s ease; 
+    -moz-transition: opacity 0.3s 0.3s ease; 
+    -ms-transition: opacity 0.3s 0.3s ease; 
+    -o-transition: opacity 0.3s 0.3s ease; 
+    transition: opacity 0.3s 0.3s ease; 
+    opacity: 0;
 }
-.owl-carousel {z-index: 0;}
-/* section-header */
-.section-header{
+
+.owl-carousel {
+    z-index: 0;
+}
+
+/* Section Header */
+.section-header {
     position: relative;
     text-align: center;
 }
-.section-header h2{
+
+.section-header h2 {
     position: relative;
     font-size: 36px;
     font-weight: 500;
     padding-bottom: 35px;
 }
+
 .section-header h2:before {
     position: absolute;
     content: "";
@@ -119,67 +152,47 @@ html,body{height: 100%;}
     margin-left: -42px;
     background: #4e4ffa;
 }
-.section-header p{color: #444a57;text-transform: capitalize;margin-bottom:10px;}
-.section-header h2 span,.section-header p span{text-transform: lowercase;}
 
-/* section-header */
+.section-header p {
+    color: #444a57;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+}
 
-/*=============Style css=========*/
+.section-header h2 span, .section-header p span {
+    text-transform: lowercase;
+}
 
-
-/*-------------------------------------
-        2. Top-area
---------------------------------------*/
+/* Navigation */
 nav.navbar.bootsnav {
     background-color: white;
     border-bottom: white;
 }
-.wrap-sticky nav.navbar.bootsnav.sticked {background-color:#fcf7f7;box-shadow: 0 2px 5px rgba(248, 247, 247, 0.726);}
 
-/*.navbar-brand*/
-.navbar-header a.navbar-brand,.navbar-header a.navbar-brand:hover,.navbar-header a.navbar-brand:focus a.logo-img{
+.wrap-sticky nav.navbar.bootsnav.sticked {
+    background-color: #fcf7f7;
+    box-shadow: 0 2px 5px rgba(248, 247, 247, 0.726);
+}
+
+/* Navbar Brand */
+.navbar-header a.navbar-brand,
+.navbar-header a.navbar-brand:hover,
+.navbar-header a.navbar-brand:focus,
+.navbar-header a.logo-img {
     display: inline-block;
     color: #fff;
     font-size: 24px;
     letter-spacing: 3px;
     font-family: 'Rufina', serif;
     font-weight: 700;
-    padding: 45px 0px;
-
-    text-transform:uppercase;
+    padding: 45px 40px; /* <-- increased from 0px to 40px */
+    text-transform: uppercase;
 }
-.logo-img {
-    height: 250px; /* Adjust size as needed */
-    width: auto;
-    object-fit: contain;
-}
-.navbar-fixed {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 1030;
-    transition: all 0.3s ease;
-  }
-  
-  /* Add padding to body to prevent content from hiding behind fixed navbar */
-  body {
-    padding-top: 70px; /* Adjust this value based on your navbar height */
-  }
-  
-  /* Add shadow effect when scrolled */
-  .navbar-scrolled {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    background-color: #fff !important;
-  }
-  /* separation of the top bar and the nav bar */
-  body {
-    padding-top: 120px; /* Combined height of both bars with some extra space */
-  }
 
-  /* Top bar styles */
-  .top-bar {
-    background-color: #f8f9fa; /* Light gray background */
+
+/* Top Bar */
+.top-bar {
+    background-color: #f8f9fa;
     color: #333;
     padding: 8px 0;
     font-size: 14px;
@@ -187,185 +200,152 @@ nav.navbar.bootsnav {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1031; /* Higher than navbar */
+    z-index: 1031;
     border-bottom: 1px solid #e9ecef;
     transition: transform 0.3s ease-in-out;
-  }
-  
-  .top-bar.hidden {
-    transform: translateY(-100%); /* Slide up to hide */
-  }
-  
-  .top-bar .container {
+}
+
+.top-bar.hidden {
+    transform: translateY(-100%);
+}
+
+.top-bar .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  
-  .left-info, .right-info {
+}
+
+.left-info, .right-info {
     display: flex;
     align-items: center;
-  }
-  
-  .left-info div, .right-info div {
+}
+
+.left-info div, .right-info div {
     margin-right: 20px;
     display: flex;
     align-items: center;
-  }
-  
-  .left-info i, .right-info i {
+}
+
+.left-info i, .right-info i {
     margin-right: 8px;
-    color: #0d6efd; /* Primary blue color */
-  }
-  
-  .social-icons a {
+    color: #0d6efd;
+}
+
+.social-icons a {
     margin-left: 12px;
     color: #0d6efd;
     text-decoration: none;
-  }
-  
-  .social-icons a:hover {
+}
+
+.social-icons a:hover {
     color: #0b5ed7;
-  }
-  
-  /* Navbar styles */
-  .navbar-fixed {
+}
+
+/* Fixed Navbar */
+.navbar-fixed {
     position: fixed;
-    top: 100px; /* Height of top bar - adjust based on your top bar's height */
+    top: 100px;
     left: 0;
     right: 0;
+    padding: 45px 40px; /* <-- increased from 0px to 40px */
+
     z-index: 1030;
     transition: all 0.3s ease;
-  }
-  
-  .navbar-scrolled {
+}
+
+.navbar-scrolled {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     background-color: #fff !important;
-  }
-  
-  /* Logo styles */
-  .logo-img {
-    height: 250px; /* Make logo bigger */
+}
+
+/* Logo Styles */
+.logo-img {
+    height: 80px; 
     width: auto;
     max-width: 100%;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 992px) {
+    object-fit: contain;
+    transition: height 0.3s ease;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
     .left-info div, .right-info div {
-      margin-right: 10px;
-      font-size: 12px;
+        margin-right: 10px;
+        font-size: 12px;
     }
     
     .top-bar {
-      padding: 5px 0;
-      display: block;
+        padding: 5px 0;
+        display: block;
     }
     
     .top-bar .container {
-      display: flex;
-      flex-wrap: wrap;
+        display: flex;
+        flex-wrap: wrap;
     }
     
     .left-info span, .right-info span {
-      display: inline-block;
-      font-size: 12px;
-      padding-left: 3px;
+        display: inline-block;
+        font-size: 12px;
+        padding-left: 3px;
     }
     
     body {
-      padding-top: 110px;
+        padding-top: 110px;
     }
     
     .logo-img {
-      height: 200px; /* Slightly smaller on medium screens */
+        height: 75px;
+        align-items: right;
     }
-  }
-  
-  @media (max-width: 768px) {
-    .top-bar .container {
-      justify-content: space-between;
-    }
-    
-    .left-info, .right-info {
-      display: flex;
-      justify-content: center;
-    }
-    
-    .left-info div:not(:first-child), .right-info div:not(:first-child) {
-      display: none; /* Hide secondary info on very small screens */
-    }
-    
-    .left-info div:first-child, .right-info div:first-child {
-      margin-right: 0;
-      display: flex;
-    }
-    
-    .social-icons {
-      display: flex !important; /* Always show social icons */
-    }
-    
-    .navbar-fixed {
-      top: 40px; /* Adjust based on condensed top bar height */
-    }
-    
-    body {
-      padding-top: 100px;
-    }
-    
-    .logo-img {
-      height: 200px; /* Smaller on small screens */
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .top-bar {
-      font-size: 11px;
-    }
-    
-    .left-info i, .right-info i {
-      margin-right: 4px;
-    }
-    
-    .social-icons a {
-      margin-left: 8px;
-    }
-    
-    .logo-img {
-      height: 100px; /* Even smaller on very small screens */
-    }
-  }
-  /* Logo styles */
-.logo-img {
-  height:80px; 
-  width: auto;
-  max-width: 180%; /* Changed from 180% to prevent overflow */
-  object-fit: contain; /* Ensures logo maintains proportions */
-  transition: height 0.3s ease; /* Smooth transition when scrolling */
-}
-
-/* Responsive adjustments for logo */
-@media (max-width: 992px) {
-  .logo-img {
-      height: 250px; /* Slightly smaller on medium screens */
-      align-items: right;
-
-  }
 }
 
 @media (max-width: 768px) {
-  .logo-img {
-      height: 250px; /* Smaller on small screens */
-      align-items: center;
-  }
+    .top-bar .container {
+        justify-content: space-between;
+    }
+    
+    .left-info, .right-info {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .left-info div:not(:first-child), .right-info div:not(:first-child) {
+        display: none;
+    }
+    
+    .left-info div:first-child, .right-info div:first-child {
+        margin-right: 0;
+        display: flex;
+    }
+    
+    .social-icons {
+        display: flex !important;
+    }
+    
+    .logo-img {
+        height: 85px;
+        align-items: center;
+    }
 }
 
 @media (max-width: 576px) {
-  .logo-img {
-      height: 200px; /* Even smaller on very small screens */
-      align-items: center;
-
-  }
+    .top-bar {
+        font-size: 11px;
+    }
+    
+    .left-info i, .right-info i {
+        margin-right: 4px;
+    }
+    
+    .social-icons a {
+        margin-left: 8px;
+    }
+    
+    .logo-img {
+        height: 70px;
+        align-items: center;
+    }
 }
 
 
@@ -1602,7 +1582,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #4e4ffa;}
     --light-gray: #eaeaea;
 }
 #car-details-page {
-    margin-top: 10px; /* Adjust as needed */
+    margin-top: 100px; /* Adjust as needed */
 }
 
 
