@@ -13,7 +13,7 @@
  */
 async function fetchCars() {
     try {
-        const response = await fetch('http://localhost:8080/api/v1/cars/get-cars');
+        const response = await fetch('http://localhost:8000/api/cars/v1/my-cars');
         if (!response.ok) {
             throw new Error('Failed to fetch cars');
         }
@@ -26,7 +26,9 @@ async function fetchCars() {
 }
 async function fetchCarsByMake(make) {
     try {
-        const url = `http://localhost:8080/api/v1/cars/get-by-car/${make}?make=${encodeURIComponent(make)}`;
+        // const url = `http://localhost:8080/api/v1/cars/get-by-car/${make}?make=${encodeURIComponent(make)}`;
+        const url = `https://one.proclanmotors.co.ke/api/v1/cars/get-by-car/${make}?make=${encodeURIComponent(make)}`;
+
         const response = await fetch(url);
 
         if (!response.ok) {
@@ -43,7 +45,9 @@ async function fetchCarsByMake(make) {
 
 async function fetchSearchCars(make, model, price) {
     try {
-        const response = await fetch(`http://localhost:8080/api/v1/cars/search-by-make-model/${make}/${model}/${price}`);
+        // const response = await fetch(`http://localhost:8080/api/v1/cars/search-by-make-model/${make}/${model}/${price}`);
+        const response = await fetch(`https://one.proclanmotors.co.ke/api/v1/cars/search-by-make-model/${make}/${model}/${price}`);
+
         if (!response.ok) {
             throw new Error('Failed to fetch cars');
         }
@@ -62,7 +66,7 @@ async function fetchSearchCars(make, model, price) {
  */
 async function fetchCarById(carId) {
     try {
-        const response = await fetch(`http://localhost:8080/api/v1/cars/get-car/${carId}`);
+        const response = await fetch(`http://localhost:8000/api/cars/v1/${carId}`);
         if (!response.ok) {
             throw new Error('Failed to fetch car details');
         }
@@ -81,403 +85,403 @@ async function fetchCarById(carId) {
  * Returns fallback car data in case API fails
  * @returns {Array} Array of fallback car objects
  */
-function getFallbackCars() {
-    return [
-       {
-      "id": 1,
-      "make": "Toyota",
-      "model": "Land Cruiser V8",
-      "year": "2024",
-      "price": "12500000",
-      "mileage": "8000",
-      "fuelType": "Petrol",
-      "transmission": "Automatic",
-      "description": "Symbol of luxury and ruggedness with powerful V8 engine, spacious interior perfect for urban and off-road adventures. Highly regarded for durability and reliability.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1581540222194-0def2dda95b8?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=400&h=300&fit=crop" }
-      ]
-    },
-    {
-      "id": 2,
-      "make": "Toyota",
-      "model": "Harrier",
-      "year": "2023",
-      "price": "4200000",
-      "mileage": "15000",
-      "fuelType": "Petrol",
-      "transmission": "Automatic",
-      "description": "Stylish and practical SUV offering smooth, comfortable ride with spacious interior, advanced safety features, and fuel-efficient engine. Perfect for families.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop" }
-      ]
-    },
-    {
-      "id": 3,
-      "make": "Toyota",
-      "model": "Prado",
-      "year": "2024",
-      "price": "8500000",
-      "mileage": "12000",
-      "fuelType": "Diesel",
-      "transmission": "Automatic",
-      "description": "Rugged and versatile SUV with excellent off-road capabilities, powerful engine, advanced suspension system, and spacious interior for outdoor adventures.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1581540222194-0def2dda95b8?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=400&h=300&fit=crop" }
-      ]
-    },
-    {
-      "id": 4,
-      "make": "Toyota",
-      "model": "RAV4",
-      "year": "2023",
-      "price": "3800000",
-      "mileage": "18000",
-      "fuelType": "Petrol",
-      "transmission": "Automatic",
-      "description": "Compact SUV offering perfect blend of style, performance, and practicality with spacious interior, advanced safety features, and fuel-efficient engine.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop" }
-      ]
-    },
-    {
-      "id": 5,
-      "make": "Toyota",
-      "model": "Corolla Fielder",
-      "year": "2022",
-      "price": "2200000",
-      "mileage": "25000",
-      "fuelType": "Petrol",
-      "transmission": "Automatic",
-      "description": "Five-door station wagon version of the Corolla, renowned for fuel efficiency and durability. Popular choice among Kenyan drivers for reliability.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1494976688153-c2c3d4d1462f?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400&h=300&fit=crop" }
-      ]
-    },
-    {
-      "id": 6,
-      "make": "Toyota",
-      "model": "Hiace",
-      "year": "2023",
-      "price": "3500000",
-      "mileage": "20000",
-      "fuelType": "Diesel",
-      "transmission": "Manual",
-      "description": "Reliable and versatile van widely used for public transportation and commercial purposes. Features spacious interior, durable construction, and fuel efficiency.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1581540222194-0def2dda95b8?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=400&h=300&fit=crop" }
-      ]
-    },
-   
-    {
-      "id": 7,
-      "make": "Toyota",
-      "model": "Vitz",
-      "year": "2021",
-      "price": "1800000",
-      "mileage": "30000",
-      "fuelType": "Petrol",
-      "transmission": "Automatic",
-      "description": "One of the most popular cars among Kenyans for affordability, low fuel consumption, and reliability. Ideal for city driving and first-time car owners.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1494976688153-c2c3d4d1462f?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400&h=300&fit=crop" }
-      ]
-    },
-    {
-      "id": 8,
-      "make": "Toyota",
-      "model": "Aqua",
-      "year": "2022",
-      "price": "2000000",
-      "mileage": "22000",
-      "fuelType": "Hybrid",
-      "transmission": "Automatic",
-      "description": "Hybrid vehicle with exceptional fuel economy and environmental friendliness. Expected to see increased uptake in the Kenyan market for its efficiency.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1494976688153-c2c3d4d1462f?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400&h=300&fit=crop" }
-      ]
-    },
-    {
-      "id": 9,
-      "make": "Toyota",
-      "model": "Yaris Cross",
-      "year": "2023",
-      "price": "2800000",
-      "mileage": "16000",
-      "fuelType": "Petrol",
-      "transmission": "Automatic",
-      "description": "Compact crossover SUV combining the practicality of an SUV with fuel efficiency. Expected to see increased popularity in Kenya.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop" }
-      ]
-    },
-    {
-      "id": 10,
-      "make": "Toyota",
-      "model": "Corolla",
-      "year": "2022",
-      "price": "2500000",
-      "mileage": "20000",
-      "fuelType": "Petrol",
-      "transmission": "Automatic",
-      "description": "Consistently ranks among best-selling sedans in Kenya. Reputation for reliability, fuel efficiency, and affordability makes it popular choice.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1494976688153-c2c3d4d1462f?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400&h=300&fit=crop" }
-      ]
-    },
-    {
-      "id": 11,
-      "make": "Honda",
-      "model": "Fit",
-      "year": "2021",
-      "price": "1600000",
-      "mileage": "35000",
-      "fuelType": "Petrol",
-      "transmission": "Automatic",
-      "description": "Compact hatchback offering excellent fuel efficiency, practicality, and affordability. Features spacious interior and versatile seating arrangements.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1494976688153-c2c3d4d1462f?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400&h=300&fit=crop" }
-      ]
-    },
-    {
-      "id": 12,
-      "make": "Honda",
-      "model": "Vezel",
-      "year": "2023",
-      "price": "3200000",
-      "mileage": "14000",
-      "fuelType": "Hybrid",
-      "transmission": "Automatic",
-      "description": "Compact hybrid SUV with stylish design and excellent fuel economy. Expected to see increased uptake in the Kenyan market.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop" }
-      ]
-    },
-    {
-      "id": 13,
-      "make": "Honda",
-      "model": "Shuttle",
-      "year": "2022",
-      "price": "2300000",
-      "mileage": "26000",
-      "fuelType": "Hybrid",
-      "transmission": "Automatic",
-      "description": "Hybrid station wagon offering excellent fuel efficiency and practicality. Popular among families for its spacious interior and reliability.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1494976688153-c2c3d4d1462f?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400&h=300&fit=crop" }
-      ]
-    },
-    {
-      "id": 14,
-      "make": "Nissan",
-      "model": "X-Trail",
-      "year": "2023",
-      "price": "3600000",
-      "mileage": "17000",
-      "fuelType": "Petrol",
-      "transmission": "Automatic",
-      "description": "Stylish and practical SUV offering comfortable and refined driving experience. Features spacious interior, advanced safety features, and fuel efficiency.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop" }
-      ]
-    },
-    {
-      "id": 15,
-      "make": "Nissan",
-      "model": "Note",
-      "year": "2021",
-      "price": "1900000",
-      "mileage": "28000",
-      "fuelType": "Petrol",
-      "transmission": "Automatic",
-      "description": "Compact hatchback known for reliability and fuel efficiency. Popular choice for urban driving with spacious interior despite compact size.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1494976688153-c2c3d4d1462f?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400&h=300&fit=crop" }
-      ]
-    },
-    {
-      "id": 16,
-      "make": "Nissan",
-      "model": "Juke",
-      "year": "2022",
-      "price": "2700000",
-      "mileage": "21000",
-      "fuelType": "Petrol",
-      "transmission": "Automatic",
-      "description": "Distinctive compact crossover with bold styling and sporty performance. Appeals to younger buyers looking for unique design and functionality.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop" }
-      ]
-    },
-    {
-      "id": 17,
-      "make": "Subaru",
-      "model": "Forester",
-      "year": "2023",
-      "price": "4000000",
-      "mileage": "15000",
-      "fuelType": "Petrol",
-      "transmission": "Automatic",
-      "description": "Known for ruggedness and off-road capabilities with Symmetrical All-Wheel Drive system. Provides excellent traction and stability on all terrain types.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop" }
-      ]
-    },
-    {
-      "id": 18,
-      "make": "Subaru",
-      "model": "Outback",
-      "year": "2022",
-      "price": "4500000",
-      "mileage": "18000",
-      "fuelType": "Petrol",
-      "transmission": "Automatic",
-      "description": "Rugged wagon with SUV capabilities, perfect for adventure seekers. Features high ground clearance and all-wheel drive for various terrains.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop" }
-      ]
-    },
-    {
-      "id": 19,
-      "make": "Subaru",
-      "model": "Impreza",
-      "year": "2021",
-      "price": "2600000",
-      "mileage": "24000",
-      "fuelType": "Petrol",
-      "transmission": "Automatic",
-      "description": "Compact sedan with standard all-wheel drive and excellent safety ratings. Popular among young professionals for its performance and reliability.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1494976688153-c2c3d4d1462f?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400&h=300&fit=crop" }
-      ]
-    },
-    {
-      "id": 20,
-      "make": "Mazda",
-      "model": "CX-5",
-      "year": "2023",
-      "price": "3900000",
-      "mileage": "13000",
-      "fuelType": "Petrol",
-      "transmission": "Automatic",
-      "description": "Compact SUV combining style, performance, and affordability with KODO design language. Offers comfortable and refined driving experience.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop" }
-      ]
-    },
-    {
-      "id": 21,
-      "make": "Mazda",
-      "model": "Demio",
-      "year": "2021",
-      "price": "1700000",
-      "mileage": "32000",
-      "fuelType": "Petrol",
-      "transmission": "Automatic",
-      "description": "Compact hatchback with sporty design and excellent fuel economy. Popular among city dwellers for its maneuverability and efficiency.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1494976688153-c2c3d4d1462f?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400&h=300&fit=crop" }
-      ]
-    },
-    {
-      "id": 22,
-      "make": "Mazda",
-      "model": "Axela",
-      "year": "2022",
-      "price": "2400000",
-      "mileage": "19000",
-      "fuelType": "Petrol",
-      "transmission": "Automatic",
-      "description": "Stylish sedan with premium interior and smooth performance. Appeals to buyers seeking luxury feel at affordable price point.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1494976688153-c2c3d4d1462f?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400&h=300&fit=crop" }
-      ]
-    },
-    {
-      "id": 23,
-      "make": "Mercedes-Benz",
-      "model": "C-Class",
-      "year": "2023",
-      "price": "7500000",
-      "mileage": "10000",
-      "fuelType": "Petrol",
-      "transmission": "Automatic",
-      "description": "Luxury sedan offering perfect blend of style, performance, and comfort. Features luxurious interior, advanced technology, and powerful engine.",
-      "images": [
-        { "imageData": "https://images.unsplash.com/photo-1563720223185-11003d516935?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1617886322168-72b886573c35?w=400&h=300&fit=crop" },
-        { "imageData": "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=400&h=300&fit=crop" }
-      ]
-    },
+// function getFallbackCars() {
+//     return [
+//         {
+//             "id": 1,
+//             "make": "Toyota",
+//             "model": "Land Cruiser V8",
+//             "year": "2024",
+//             "price": "12500000",
+//             "mileage": "8000",
+//             "fuelType": "Petrol",
+//             "transmission": "Automatic",
+//             "description": "Symbol of luxury and ruggedness with powerful V8 engine, spacious interior perfect for urban and off-road adventures. Highly regarded for durability and reliability.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1581540222194-0def2dda95b8?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=400&h=300&fit=crop" }
+//             ]
+//         },
+//         {
+//             "id": 2,
+//             "make": "Toyota",
+//             "model": "Harrier",
+//             "year": "2023",
+//             "price": "4200000",
+//             "mileage": "15000",
+//             "fuelType": "Petrol",
+//             "transmission": "Automatic",
+//             "description": "Stylish and practical SUV offering smooth, comfortable ride with spacious interior, advanced safety features, and fuel-efficient engine. Perfect for families.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop" }
+//             ]
+//         },
+//         {
+//             "id": 3,
+//             "make": "Toyota",
+//             "model": "Prado",
+//             "year": "2024",
+//             "price": "8500000",
+//             "mileage": "12000",
+//             "fuelType": "Diesel",
+//             "transmission": "Automatic",
+//             "description": "Rugged and versatile SUV with excellent off-road capabilities, powerful engine, advanced suspension system, and spacious interior for outdoor adventures.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1581540222194-0def2dda95b8?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=400&h=300&fit=crop" }
+//             ]
+//         },
+//         {
+//             "id": 4,
+//             "make": "Toyota",
+//             "model": "RAV4",
+//             "year": "2023",
+//             "price": "3800000",
+//             "mileage": "18000",
+//             "fuelType": "Petrol",
+//             "transmission": "Automatic",
+//             "description": "Compact SUV offering perfect blend of style, performance, and practicality with spacious interior, advanced safety features, and fuel-efficient engine.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop" }
+//             ]
+//         },
+//         {
+//             "id": 5,
+//             "make": "Toyota",
+//             "model": "Corolla Fielder",
+//             "year": "2022",
+//             "price": "2200000",
+//             "mileage": "25000",
+//             "fuelType": "Petrol",
+//             "transmission": "Automatic",
+//             "description": "Five-door station wagon version of the Corolla, renowned for fuel efficiency and durability. Popular choice among Kenyan drivers for reliability.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1494976688153-c2c3d4d1462f?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400&h=300&fit=crop" }
+//             ]
+//         },
+//         {
+//             "id": 6,
+//             "make": "Toyota",
+//             "model": "Hiace",
+//             "year": "2023",
+//             "price": "3500000",
+//             "mileage": "20000",
+//             "fuelType": "Diesel",
+//             "transmission": "Manual",
+//             "description": "Reliable and versatile van widely used for public transportation and commercial purposes. Features spacious interior, durable construction, and fuel efficiency.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1581540222194-0def2dda95b8?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=400&h=300&fit=crop" }
+//             ]
+//         },
 
-    ];
-}
+//         {
+//             "id": 7,
+//             "make": "Toyota",
+//             "model": "Vitz",
+//             "year": "2021",
+//             "price": "1800000",
+//             "mileage": "30000",
+//             "fuelType": "Petrol",
+//             "transmission": "Automatic",
+//             "description": "One of the most popular cars among Kenyans for affordability, low fuel consumption, and reliability. Ideal for city driving and first-time car owners.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1494976688153-c2c3d4d1462f?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400&h=300&fit=crop" }
+//             ]
+//         },
+//         {
+//             "id": 8,
+//             "make": "Toyota",
+//             "model": "Aqua",
+//             "year": "2022",
+//             "price": "2000000",
+//             "mileage": "22000",
+//             "fuelType": "Hybrid",
+//             "transmission": "Automatic",
+//             "description": "Hybrid vehicle with exceptional fuel economy and environmental friendliness. Expected to see increased uptake in the Kenyan market for its efficiency.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1494976688153-c2c3d4d1462f?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400&h=300&fit=crop" }
+//             ]
+//         },
+//         {
+//             "id": 9,
+//             "make": "Toyota",
+//             "model": "Yaris Cross",
+//             "year": "2023",
+//             "price": "2800000",
+//             "mileage": "16000",
+//             "fuelType": "Petrol",
+//             "transmission": "Automatic",
+//             "description": "Compact crossover SUV combining the practicality of an SUV with fuel efficiency. Expected to see increased popularity in Kenya.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop" }
+//             ]
+//         },
+//         {
+//             "id": 10,
+//             "make": "Toyota",
+//             "model": "Corolla",
+//             "year": "2022",
+//             "price": "2500000",
+//             "mileage": "20000",
+//             "fuelType": "Petrol",
+//             "transmission": "Automatic",
+//             "description": "Consistently ranks among best-selling sedans in Kenya. Reputation for reliability, fuel efficiency, and affordability makes it popular choice.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1494976688153-c2c3d4d1462f?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400&h=300&fit=crop" }
+//             ]
+//         },
+//         {
+//             "id": 11,
+//             "make": "Honda",
+//             "model": "Fit",
+//             "year": "2021",
+//             "price": "1600000",
+//             "mileage": "35000",
+//             "fuelType": "Petrol",
+//             "transmission": "Automatic",
+//             "description": "Compact hatchback offering excellent fuel efficiency, practicality, and affordability. Features spacious interior and versatile seating arrangements.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1494976688153-c2c3d4d1462f?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400&h=300&fit=crop" }
+//             ]
+//         },
+//         {
+//             "id": 12,
+//             "make": "Honda",
+//             "model": "Vezel",
+//             "year": "2023",
+//             "price": "3200000",
+//             "mileage": "14000",
+//             "fuelType": "Hybrid",
+//             "transmission": "Automatic",
+//             "description": "Compact hybrid SUV with stylish design and excellent fuel economy. Expected to see increased uptake in the Kenyan market.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop" }
+//             ]
+//         },
+//         {
+//             "id": 13,
+//             "make": "Honda",
+//             "model": "Shuttle",
+//             "year": "2022",
+//             "price": "2300000",
+//             "mileage": "26000",
+//             "fuelType": "Hybrid",
+//             "transmission": "Automatic",
+//             "description": "Hybrid station wagon offering excellent fuel efficiency and practicality. Popular among families for its spacious interior and reliability.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1494976688153-c2c3d4d1462f?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400&h=300&fit=crop" }
+//             ]
+//         },
+//         {
+//             "id": 14,
+//             "make": "Nissan",
+//             "model": "X-Trail",
+//             "year": "2023",
+//             "price": "3600000",
+//             "mileage": "17000",
+//             "fuelType": "Petrol",
+//             "transmission": "Automatic",
+//             "description": "Stylish and practical SUV offering comfortable and refined driving experience. Features spacious interior, advanced safety features, and fuel efficiency.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop" }
+//             ]
+//         },
+//         {
+//             "id": 15,
+//             "make": "Nissan",
+//             "model": "Note",
+//             "year": "2021",
+//             "price": "1900000",
+//             "mileage": "28000",
+//             "fuelType": "Petrol",
+//             "transmission": "Automatic",
+//             "description": "Compact hatchback known for reliability and fuel efficiency. Popular choice for urban driving with spacious interior despite compact size.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1494976688153-c2c3d4d1462f?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400&h=300&fit=crop" }
+//             ]
+//         },
+//         {
+//             "id": 16,
+//             "make": "Nissan",
+//             "model": "Juke",
+//             "year": "2022",
+//             "price": "2700000",
+//             "mileage": "21000",
+//             "fuelType": "Petrol",
+//             "transmission": "Automatic",
+//             "description": "Distinctive compact crossover with bold styling and sporty performance. Appeals to younger buyers looking for unique design and functionality.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop" }
+//             ]
+//         },
+//         {
+//             "id": 17,
+//             "make": "Subaru",
+//             "model": "Forester",
+//             "year": "2023",
+//             "price": "4000000",
+//             "mileage": "15000",
+//             "fuelType": "Petrol",
+//             "transmission": "Automatic",
+//             "description": "Known for ruggedness and off-road capabilities with Symmetrical All-Wheel Drive system. Provides excellent traction and stability on all terrain types.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop" }
+//             ]
+//         },
+//         {
+//             "id": 18,
+//             "make": "Subaru",
+//             "model": "Outback",
+//             "year": "2022",
+//             "price": "4500000",
+//             "mileage": "18000",
+//             "fuelType": "Petrol",
+//             "transmission": "Automatic",
+//             "description": "Rugged wagon with SUV capabilities, perfect for adventure seekers. Features high ground clearance and all-wheel drive for various terrains.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop" }
+//             ]
+//         },
+//         {
+//             "id": 19,
+//             "make": "Subaru",
+//             "model": "Impreza",
+//             "year": "2021",
+//             "price": "2600000",
+//             "mileage": "24000",
+//             "fuelType": "Petrol",
+//             "transmission": "Automatic",
+//             "description": "Compact sedan with standard all-wheel drive and excellent safety ratings. Popular among young professionals for its performance and reliability.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1494976688153-c2c3d4d1462f?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400&h=300&fit=crop" }
+//             ]
+//         },
+//         {
+//             "id": 20,
+//             "make": "Mazda",
+//             "model": "CX-5",
+//             "year": "2023",
+//             "price": "3900000",
+//             "mileage": "13000",
+//             "fuelType": "Petrol",
+//             "transmission": "Automatic",
+//             "description": "Compact SUV combining style, performance, and affordability with KODO design language. Offers comfortable and refined driving experience.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop" }
+//             ]
+//         },
+//         {
+//             "id": 21,
+//             "make": "Mazda",
+//             "model": "Demio",
+//             "year": "2021",
+//             "price": "1700000",
+//             "mileage": "32000",
+//             "fuelType": "Petrol",
+//             "transmission": "Automatic",
+//             "description": "Compact hatchback with sporty design and excellent fuel economy. Popular among city dwellers for its maneuverability and efficiency.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1494976688153-c2c3d4d1462f?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400&h=300&fit=crop" }
+//             ]
+//         },
+//         {
+//             "id": 22,
+//             "make": "Mazda",
+//             "model": "Axela",
+//             "year": "2022",
+//             "price": "2400000",
+//             "mileage": "19000",
+//             "fuelType": "Petrol",
+//             "transmission": "Automatic",
+//             "description": "Stylish sedan with premium interior and smooth performance. Appeals to buyers seeking luxury feel at affordable price point.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1494976688153-c2c3d4d1462f?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1502877338535-766e1452684a?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=400&h=300&fit=crop" }
+//             ]
+//         },
+//         {
+//             "id": 23,
+//             "make": "Mercedes-Benz",
+//             "model": "C-Class",
+//             "year": "2023",
+//             "price": "7500000",
+//             "mileage": "10000",
+//             "fuelType": "Petrol",
+//             "transmission": "Automatic",
+//             "description": "Luxury sedan offering perfect blend of style, performance, and comfort. Features luxurious interior, advanced technology, and powerful engine.",
+//             "images": [
+//                 { "imageData": "https://images.unsplash.com/photo-1563720223185-11003d516935?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1617886322168-72b886573c35?w=400&h=300&fit=crop" },
+//                 { "imageData": "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=400&h=300&fit=crop" }
+//             ]
+//         },
+
+//     ];
+// }
 
 /**
  * Fetches year data for dropdown
@@ -546,15 +550,16 @@ function renderCarCard(car) {
 
     // Create image element with smooth loading
     const imgElement = document.createElement('img');
-    imgElement.src = carImage;
+    imgElement.src = car.images[0].image_data; // Use the Base64 data URL directly
     imgElement.alt = `${car.make} ${car.model}`;
     imgElement.className = 'w-100 h-100';
     imgElement.style.cssText = `
-        object-fit: cover;
-        transition: transform 0.3s ease;
-        filter: contrast(1.05) saturate(0.9);
-    `;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    filter: contrast(1.05) saturate(0.9);
+`;
     carsImgDiv.appendChild(imgElement);
+
 
     // Create minimalist specs overlay
     const specsOverlay = document.createElement('div');
@@ -684,9 +689,9 @@ function renderCarCard(car) {
     txtDiv.appendChild(detailsBtn);
 
     // Create subtle favorite button
-   const favBtn = document.createElement('button');
-favBtn.className = 'btn btn-outline-primary position-absolute';
-favBtn.style.cssText = `
+    const favBtn = document.createElement('button');
+    favBtn.className = 'btn btn-outline-primary position-absolute';
+    favBtn.style.cssText = `
     top: 12px;
     right: 12px;
     width: 40px;
@@ -702,30 +707,30 @@ favBtn.style.cssText = `
     justify-content: center;
 `;
 
-favBtn.innerHTML = `<i class="bi bi-heart" style="font-size: 18px; color: #6c757d;"></i>`;
+    favBtn.innerHTML = `<i class="bi bi-heart" style="font-size: 18px; color: #6c757d;"></i>`;
 
-favBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    e.stopPropagation();
+    favBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
 
-    const icon = this.querySelector('i');
+        const icon = this.querySelector('i');
 
-    if (icon.classList.contains('bi-heart')) {
-        icon.classList.replace('bi-heart', 'bi-heart-fill');
-        this.classList.replace('btn-outline-primary', 'btn-danger');
-        this.style.color = '#dc3545';         // button color (if icon inherits)
-        icon.style.color = '#dc3545';         // explicitly set icon color to red
-        showNotification('Car saved to favorites!');
-    } else {
-        icon.classList.replace('bi-heart-fill', 'bi-heart');
-        this.classList.replace('btn-danger', 'btn-outline-primary');
-        this.style.color = '#6c757d';         // button color gray
-        icon.style.color = '#6c757d';         // explicitly set icon color gray
-        showNotification('Car removed from favorites');
-    }
-});
+        if (icon.classList.contains('bi-heart')) {
+            icon.classList.replace('bi-heart', 'bi-heart-fill');
+            this.classList.replace('btn-outline-primary', 'btn-danger');
+            this.style.color = '#dc3545';         // button color (if icon inherits)
+            icon.style.color = '#dc3545';         // explicitly set icon color to red
+            showNotification('Car saved to favorites!');
+        } else {
+            icon.classList.replace('bi-heart-fill', 'bi-heart');
+            this.classList.replace('btn-danger', 'btn-outline-primary');
+            this.style.color = '#6c757d';         // button color gray
+            icon.style.color = '#6c757d';         // explicitly set icon color gray
+            showNotification('Car removed from favorites');
+        }
+    });
 
-imgBoxDiv.appendChild(favBtn);
+    imgBoxDiv.appendChild(favBtn);
 
 
     // Add featured badge if needed
@@ -737,7 +742,7 @@ imgBoxDiv.appendChild(favBtn);
             left: 12px;
             z-index: 2;
         `;
-        
+
         const badge = document.createElement('span');
         badge.style.cssText = `
             background: #212529;
@@ -749,7 +754,7 @@ imgBoxDiv.appendChild(favBtn);
             letter-spacing: 0.5px;
         `;
         badge.textContent = 'FEATURED';
-        
+
         featuredBadge.appendChild(badge);
         imgBoxDiv.appendChild(featuredBadge);
     }
@@ -779,7 +784,7 @@ imgBoxDiv.appendChild(favBtn);
     });
 
     return colDiv;
-    
+
 }
 // =========================================
 // UI Component Functions
@@ -1247,11 +1252,11 @@ function displayCarDetails(car) {
     // Update vehicle specifications
     updateSpecValue('Year', car.year);
     updateSpecValue('Mileage', `${car.mileage} km`);
-    updateSpecValue('Fuel Type', car.fuelType);
+    updateSpecValue('Fuel Type', car.fuel_type || 'Not specified');
     updateSpecValue('Transmission', car.transmission);
     updateSpecValue('Color', car.color || 'Not specified');
     updateSpecValue('Seats', car.seats || 'Not specified');
-    updateSpecValue('Engine Size', car.engineSize || 'Not specified');
+    updateSpecValue('Engine Size', car.engine_size || 'Not specified');
 
     // Update car description
     const carDescription = document.querySelector('.car-description');
@@ -1273,181 +1278,180 @@ function renderFeatures(car) {
     featuresContainer.innerHTML = '';
 
     // Map some common feature names to icons
-   const iconMap = {
-    // Sunroof & Roof Features
-    'Sunroof': 'bi-brightness-high',
-    'Panoramic Sunroof': 'bi-sun',
-    
-    // Seating Features
-    'Leather Seats': 'bi-person-arms-up',
-    'Heated Seats': 'bi-thermometer-sun',
-    'Cooled/Ventilated Seats': 'bi-snow2',
-    'Power Adjustable Seats': 'bi-arrows-move',
-    'Memory Seats': 'bi-memory',
-    'Massage Seats': 'bi-heart-pulse',
-    'Third Row Seating': 'bi-people',
-    'Captain\'s Chairs': 'bi-person-chair',
-    'Fold-Flat Rear Seats': 'bi-arrows-collapse',
-    
-    // Lighting & Ambiance
-    'Ambient Lighting': 'bi-lightbulb',
-    'LED Headlights': 'bi-lightbulb-fill',
-    'Adaptive Headlights': 'bi-eye',
-    'Daytime Running Lights': 'bi-circle',
-    'Fog Lights': 'bi-cloud-fog',
-    
-    // Climate Control
-    'Automatic Climate Control': 'bi-thermometer-half',
-    'Dual Zone Climate Control': 'bi-thermometer',
-    
-    // Engine & Start Features
-    'Remote Engine Start': 'bi-power',
-    'Keyless Entry': 'bi-key',
-    'Push Button Start': 'bi-circle-fill',
-    
-    // Windows & Mirrors
-    'Power Windows': 'bi-window',
-    'Power Adjustable Mirrors': 'bi-arrow-left-right',
-    'Heated Side Mirrors': 'bi-thermometer-sun',
-    'Auto-Dimming Mirrors': 'bi-moon',
-    'Frameless Windows': 'bi-window-stack',
-    
-    // Tailgate Features
-    'Power Tailgate': 'bi-box-arrow-up',
-    'Hands-Free Power Tailgate': 'bi-hand-index',
-    'Soft-Close Doors': 'bi-door-closed',
-    
-    // Connectivity & Entertainment
-    'Bluetooth Connectivity': 'bi-bluetooth',
-    'Android Auto': 'bi-android2',
-    'Apple CarPlay': 'bi-apple',
-    'Wireless Phone Charging': 'bi-phone-vibrate',
-    'USB Ports': 'bi-usb-drive',
-    'Wi-Fi Hotspot': 'bi-wifi',
-    'Satellite Radio': 'bi-broadcast',
-    '12V Power Outlets': 'bi-plug',
-    'Power Inverter': 'bi-lightning-charge',
-    
-    // Navigation & Display
-    'GPS Navigation System': 'bi-geo-alt',
-    'Touchscreen Display': 'bi-tablet',
-    'Digital Instrument Cluster': 'bi-speedometer2',
-    'Head-Up Display': 'bi-display',
-    'Augmented Reality Display': 'bi-eyeglasses',
-    
-    // Audio Systems
-    'Premium Audio System': 'bi-music-note-beamed',
-    'Bose Audio System': 'bi-speaker',
-    'Harman Kardon Audio System': 'bi-boombox',
-    'Multi-Zone Audio': 'bi-volume-up',
-    'Rear Seat Entertainment System': 'bi-tv',
-    
-    // Voice & AI
-    'Voice Control': 'bi-mic',
-    'AI Voice Assistant': 'bi-robot',
-    
-    // Safety - Cameras & Monitoring
-    'Backup Camera': 'bi-camera-video',
-    '360-Degree Surround View Camera': 'bi-camera-reels',
-    'Blind Spot Monitoring': 'bi-eye-slash',
-    'Night Vision': 'bi-moon-stars',
-    'Driver Drowsiness Detection': 'bi-alarm',
-    'Traffic Sign Recognition': 'bi-sign-stop',
-    'Rear Cross Traffic Alert': 'bi-arrow-left-right',
-    
-    // Safety - Collision & Lane
-    'Lane Departure Warning': 'bi-exclamation-triangle',
-    'Lane Keeping Assist': 'bi-arrow-up',
-    'Forward Collision Warning': 'bi-shield-exclamation',
-    'Automatic Emergency Braking': 'bi-shield-check',
-    'Adaptive Cruise Control': 'bi-speedometer',
-    
-    // Safety - Parking & Assistance
-    'Parking Sensors': 'bi-radar',
-    'Automatic Parking Assist': 'bi-p-square',
-    
-    // Safety - Airbags & Systems
-    'Multiple Airbags': 'bi-shield-fill-plus',
-    'Anti-Lock Braking System (ABS)': 'bi-shield-check',
-    'Electronic Stability Control': 'bi-arrow-clockwise',
-    'Traction Control System': 'bi-grip-horizontal',
-    'Tire Pressure Monitoring System': 'bi-speedometer2',
-    
-    // Security
-    'Security Alarm System': 'bi-shield-lock',
-    'Remote Vehicle Monitoring': 'bi-phone',
-    'Biometric Access': 'bi-fingerprint',
-    
-    // Drive Systems
-    'All-Wheel Drive': 'bi-truck',
-    'Four-Wheel Drive': 'bi-4-square',
-    'Sport Drive Mode': 'bi-lightning',
-    'Eco Drive Mode': 'bi-tree',
-    'Paddle Shifters': 'bi-gear-wide-connected',
-    'Launch Control': 'bi-rocket-takeoff',
-    
-    // Suspension & Performance
-    'Active Suspension': 'bi-arrow-up-down',
-    'Air Suspension': 'bi-cloud-arrow-up',
-    'Limited Slip Differential': 'bi-gear-wide',
-    'Performance Exhaust System': 'bi-cloud-plus',
-    
-    // Engine Types
-    'Turbocharged Engine': 'bi-tornado',
-    'Hybrid Powertrain': 'bi-battery-half',
-    'Electric Motor': 'bi-lightning-charge-fill',
-    'Regenerative Braking': 'bi-arrow-repeat',
-    
-    // Exterior Features
-    'Roof Rails': 'bi-calendar3-week',
-    'Running Boards': 'bi-calendar2-week',
-    'Tonneau Cover': 'bi-box',
-    'Bed Liner': 'bi-bucket',
-    'Towing Package': 'bi-link-45deg',
-    'Alloy Wheels': 'bi-circle',
-    'Chrome Trim': 'bi-gem',
-    'Paint Protection Film': 'bi-shield-fill',
-    'Window Tinting': 'bi-window-sidebar',
-    
-    // Storage & Organization
-    'Cargo Organizer': 'bi-box-seam',
-    'All-Weather Floor Mats': 'bi-grid-3x3-gap',
-    'Cargo Net': 'bi-grid',
-    'Cooled Storage Compartment': 'bi-snow3',
-    'Emergency Tool Kit': 'bi-tools',
-    'Full-Size Spare Tire': 'bi-circle-square',
-    
-    // Interior Trim & Luxury
-    'Wood Interior Trim': 'bi-tree-fill',
-    'Carbon Fiber Trim': 'bi-diamond',
-    'Premium Interior Package': 'bi-star-fill',
-    'Premium Leather Package': 'bi-award',
-    'Alcantara Interior': 'bi-stars',
-    
-    // Steering & Controls
-    'Heated Steering Wheel': 'bi-thermometer-sun',
-    'Power Adjustable Steering Column': 'bi-arrow-up-down',
-    'Gesture Control': 'bi-hand-index-thumb',
-    
-    // Weather & Convenience
-    'Automatic Rain-Sensing Wipers': 'bi-cloud-rain',
-    
-    // Trailer & Cargo
-    'Trailer Hitch': 'bi-link',
-    'Roof Rack System': 'bi-layout-three-columns',
-    
-    // Autonomous & Advanced
-    'Semi-Autonomous Driving': 'bi-robot',
-    'Autopilot System': 'bi-airplane',
-    'Over-the-Air Software Updates': 'bi-cloud-download',
-    
-    // Default fallback
-    'default': 'bi-check-circle'
-};
+    const iconMap = {
+        // Sunroof & Roof Features
+        'Sunroof': 'bi-brightness-high',
+        'Panoramic Sunroof': 'bi-sun',
+
+        // Seating Features
+        'Leather Seats': 'bi-person-arms-up',
+        'Heated Seats': 'bi-thermometer-sun',
+        'Cooled/Ventilated Seats': 'bi-snow2',
+        'Power Adjustable Seats': 'bi-arrows-move',
+        'Memory Seats': 'bi-memory',
+        'Massage Seats': 'bi-heart-pulse',
+        'Third Row Seating': 'bi-people',
+        'Captain\'s Chairs': 'bi-person-chair',
+        'Fold-Flat Rear Seats': 'bi-arrows-collapse',
+
+        // Lighting & Ambiance
+        'Ambient Lighting': 'bi-lightbulb',
+        'LED Headlights': 'bi-lightbulb-fill',
+        'Adaptive Headlights': 'bi-eye',
+        'Daytime Running Lights': 'bi-circle',
+        'Fog Lights': 'bi-cloud-fog',
+
+        // Climate Control
+        'Automatic Climate Control': 'bi-thermometer-half',
+        'Dual Zone Climate Control': 'bi-thermometer',
+
+        // Engine & Start Features
+        'Remote Engine Start': 'bi-power',
+        'Keyless Entry': 'bi-key',
+        'Push Button Start': 'bi-circle-fill',
+
+        // Windows & Mirrors
+        'Power Windows': 'bi-window',
+        'Power Adjustable Mirrors': 'bi-arrow-left-right',
+        'Heated Side Mirrors': 'bi-thermometer-sun',
+        'Auto-Dimming Mirrors': 'bi-moon',
+        'Frameless Windows': 'bi-window-stack',
+
+        // Tailgate Features
+        'Power Tailgate': 'bi-box-arrow-up',
+        'Hands-Free Power Tailgate': 'bi-hand-index',
+        'Soft-Close Doors': 'bi-door-closed',
+
+        // Connectivity & Entertainment
+        'Bluetooth Connectivity': 'bi-bluetooth',
+        'Android Auto': 'bi-android2',
+        'Apple CarPlay': 'bi-apple',
+        'Wireless Phone Charging': 'bi-phone-vibrate',
+        'USB Ports': 'bi-usb-drive',
+        'Wi-Fi Hotspot': 'bi-wifi',
+        'Satellite Radio': 'bi-broadcast',
+        '12V Power Outlets': 'bi-plug',
+        'Power Inverter': 'bi-lightning-charge',
+
+        // Navigation & Display
+        'GPS Navigation System': 'bi-geo-alt',
+        'Touchscreen Display': 'bi-tablet',
+        'Digital Instrument Cluster': 'bi-speedometer2',
+        'Head-Up Display': 'bi-display',
+        'Augmented Reality Display': 'bi-eyeglasses',
+
+        // Audio Systems
+        'Premium Audio System': 'bi-music-note-beamed',
+        'Bose Audio System': 'bi-speaker',
+        'Harman Kardon Audio System': 'bi-boombox',
+        'Multi-Zone Audio': 'bi-volume-up',
+        'Rear Seat Entertainment System': 'bi-tv',
+
+        // Voice & AI
+        'Voice Control': 'bi-mic',
+        'AI Voice Assistant': 'bi-robot',
+
+        // Safety - Cameras & Monitoring
+        'Backup Camera': 'bi-camera-video',
+        '360-Degree Surround View Camera': 'bi-camera-reels',
+        'Blind Spot Monitoring': 'bi-eye-slash',
+        'Night Vision': 'bi-moon-stars',
+        'Driver Drowsiness Detection': 'bi-alarm',
+        'Traffic Sign Recognition': 'bi-sign-stop',
+        'Rear Cross Traffic Alert': 'bi-arrow-left-right',
+
+        // Safety - Collision & Lane
+        'Lane Departure Warning': 'bi-exclamation-triangle',
+        'Lane Keeping Assist': 'bi-arrow-up',
+        'Forward Collision Warning': 'bi-shield-exclamation',
+        'Automatic Emergency Braking': 'bi-shield-check',
+        'Adaptive Cruise Control': 'bi-speedometer',
+
+        // Safety - Parking & Assistance
+        'Parking Sensors': 'bi-radar',
+        'Automatic Parking Assist': 'bi-p-square',
+
+        // Safety - Airbags & Systems
+        'Multiple Airbags': 'bi-shield-fill-plus',
+        'Anti-Lock Braking System (ABS)': 'bi-shield-check',
+        'Electronic Stability Control': 'bi-arrow-clockwise',
+        'Traction Control System': 'bi-grip-horizontal',
+        'Tire Pressure Monitoring System': 'bi-speedometer2',
+
+        // Security
+        'Security Alarm System': 'bi-shield-lock',
+        'Remote Vehicle Monitoring': 'bi-phone',
+        'Biometric Access': 'bi-fingerprint',
+
+        // Drive Systems
+        'All-Wheel Drive': 'bi-truck',
+        'Four-Wheel Drive': 'bi-4-square',
+        'Sport Drive Mode': 'bi-lightning',
+        'Eco Drive Mode': 'bi-tree',
+        'Paddle Shifters': 'bi-gear-wide-connected',
+        'Launch Control': 'bi-rocket-takeoff',
+
+        // Suspension & Performance
+        'Active Suspension': 'bi-arrow-up-down',
+        'Air Suspension': 'bi-cloud-arrow-up',
+        'Limited Slip Differential': 'bi-gear-wide',
+        'Performance Exhaust System': 'bi-cloud-plus',
+
+        // Engine Types
+        'Turbocharged Engine': 'bi-tornado',
+        'Hybrid Powertrain': 'bi-battery-half',
+        'Electric Motor': 'bi-lightning-charge-fill',
+        'Regenerative Braking': 'bi-arrow-repeat',
+
+        // Exterior Features
+        'Roof Rails': 'bi-calendar3-week',
+        'Running Boards': 'bi-calendar2-week',
+        'Tonneau Cover': 'bi-box',
+        'Bed Liner': 'bi-bucket',
+        'Towing Package': 'bi-link-45deg',
+        'Alloy Wheels': 'bi-circle',
+        'Chrome Trim': 'bi-gem',
+        'Paint Protection Film': 'bi-shield-fill',
+        'Window Tinting': 'bi-window-sidebar',
+
+        // Storage & Organization
+        'Cargo Organizer': 'bi-box-seam',
+        'All-Weather Floor Mats': 'bi-grid-3x3-gap',
+        'Cargo Net': 'bi-grid',
+        'Cooled Storage Compartment': 'bi-snow3',
+        'Emergency Tool Kit': 'bi-tools',
+        'Full-Size Spare Tire': 'bi-circle-square',
+
+        // Interior Trim & Luxury
+        'Wood Interior Trim': 'bi-tree-fill',
+        'Carbon Fiber Trim': 'bi-diamond',
+        'Premium Interior Package': 'bi-star-fill',
+        'Premium Leather Package': 'bi-award',
+        'Alcantara Interior': 'bi-stars',
+
+        // Steering & Controls
+        'Heated Steering Wheel': 'bi-thermometer-sun',
+        'Power Adjustable Steering Column': 'bi-arrow-up-down',
+        'Gesture Control': 'bi-hand-index-thumb',
+
+        // Weather & Convenience
+        'Automatic Rain-Sensing Wipers': 'bi-cloud-rain',
+
+        // Trailer & Cargo
+        'Trailer Hitch': 'bi-link',
+        'Roof Rack System': 'bi-layout-three-columns',
+
+        // Autonomous & Advanced
+        'Semi-Autonomous Driving': 'bi-robot',
+        'Autopilot System': 'bi-airplane',
+        'Over-the-Air Software Updates': 'bi-cloud-download',
+
+        // Default fallback
+        'default': 'bi-check-circle'
+    };
 
     if (car.features && car.features.length > 0) {
-        car.features.forEach(feature => {
-            const featureName = feature.featureName;
+        car.features.forEach(featureName => {
             const iconClass = iconMap[featureName] || 'bi-check-circle'; // Default icon
 
             const span = document.createElement('span');
@@ -1459,6 +1463,7 @@ function renderFeatures(car) {
     } else {
         featuresContainer.innerHTML = '<span class="text-muted">No features listed.</span>';
     }
+
 }
 
 /**
@@ -1488,21 +1493,22 @@ function updateCarImages(car) {
     if (car.images && car.images.length > 0) {
         // Update main image
         const mainImage = document.getElementById('mainImage');
-        if (mainImage && car.images[0].imageData) {
-            mainImage.src = car.images[0].imageData;
+        if (mainImage && car.images[0].image_data) {
+            mainImage.src = car.images[0].image_data;
             mainImage.alt = `${car.make} ${car.model}`;
         }
 
         // Update gallery images
         const galleryImages = document.querySelectorAll('.gallery-img');
         for (let i = 0; i < galleryImages.length && i < car.images.length; i++) {
-            if (car.images[i].imageData) {
-                galleryImages[i].src = car.images[i].imageData;
+            if (car.images[i].image_data) {
+                galleryImages[i].src = car.images[i].image_data;
                 galleryImages[i].alt = `${car.make} ${car.model} View ${i + 1}`;
             }
         }
     }
 }
+
 
 /**
  * Initialize image gallery functionality
@@ -1545,7 +1551,7 @@ async function loadSimilarCars() {
         }
 
         // Step 1: Fetch car details using carId
-        const carDetailsResponse = await fetch(`http://localhost:8080/api/v1/cars/get-car/${carId}`);
+        const carDetailsResponse = await fetch(`http://localhost:8000/api/cars/v1/${carId}`);
         if (!carDetailsResponse.ok) {
             throw new Error(`Failed to fetch car details for ID: ${carId}`);
         }
@@ -2052,7 +2058,9 @@ function initSearchResults() {
     showSearchLoading();
 
     // Build API URL
-    const apiUrl = `http://localhost:8080/api/v1/cars/search-by-make-model?make=${encodeURIComponent(make)}&model=${encodeURIComponent(model)}&price=${encodeURIComponent(price)}`;
+    // const apiUrl = `http://localhost:8080/api/v1/cars/search-by-make-model?make=${encodeURIComponent(make)}&model=${encodeURIComponent(model)}&price=${encodeURIComponent(price)}`;
+    const apiUrl = `http://localhost:8000/api/cars/v1/search-by-make-model/${make}/${model}/${price}`;
+
     console.log("API URL: ", apiUrl);
 
     fetch(apiUrl)
@@ -2076,7 +2084,7 @@ function initSearchResults() {
 
 function handleSearchResults(data) {
     console.log("API Response:", data);
-    
+
     const cars = data.entity || data;
 
     if (!cars) {
@@ -2100,10 +2108,10 @@ function handleSearchResults(data) {
 function displaySearchResults(cars) {
     console.log("displaySearchResults called with:", cars);
     console.log("Number of cars to display:", cars.length);
-    
+
     // First, restore the container structure if it was replaced
     restoreContainerStructure();
-    
+
     const container1 = document.getElementById('searched-cars-container');
     const container2 = document.getElementById('searched-cars-container-second');
 
@@ -2122,10 +2130,10 @@ function displaySearchResults(cars) {
 
     cars.forEach((car, index) => {
         console.log(`Processing car ${index + 1}:`, car.make, car.model);
-        
+
         try {
             const carCard = renderCarCard(car);
-            
+
             if (index < 4) {
                 container1.appendChild(carCard);
                 console.log(`Car ${index + 1} added to first container`);
@@ -2138,14 +2146,14 @@ function displaySearchResults(cars) {
             console.error("Problem car data:", car);
         }
     });
-    
+
     console.log(`Display complete: ${cars.length} cars processed`);
 }
 
 // NEW: Function to restore container structure
 function restoreContainerStructure() {
     const searchContent = $('.searched-cars-content');
-    
+
     // Check if containers are missing
     if (!document.getElementById('searched-cars-container')) {
         console.log("Restoring container structure...");
@@ -2168,10 +2176,10 @@ function showSearchLoading() {
     // Clear containers but keep them in DOM
     const container1 = document.getElementById('searched-cars-container');
     const container2 = document.getElementById('searched-cars-container-second');
-    
+
     if (container1) container1.innerHTML = '';
     if (container2) container2.innerHTML = '';
-    
+
     // Add loading message to first container
     if (container1) {
         container1.innerHTML = `
@@ -2188,13 +2196,13 @@ function showSearchLoading() {
 // FIXED: Show no results without removing containers
 function displayNoResults() {
     restoreContainerStructure();
-    
+
     const container1 = document.getElementById('searched-cars-container');
     const container2 = document.getElementById('searched-cars-container-second');
-    
+
     if (container1) container1.innerHTML = '';
     if (container2) container2.innerHTML = '';
-    
+
     if (container1) {
         container1.innerHTML = `
             <div class="col-12">
@@ -2212,13 +2220,13 @@ function displayNoResults() {
 // FIXED: Show error without removing containers
 function displaySearchError(message) {
     restoreContainerStructure();
-    
+
     const container1 = document.getElementById('searched-cars-container');
     const container2 = document.getElementById('searched-cars-container-second');
-    
+
     if (container1) container1.innerHTML = '';
     if (container2) container2.innerHTML = '';
-    
+
     if (container1) {
         container1.innerHTML = `
             <div class="col-12">
@@ -2241,12 +2249,12 @@ function hideSearchLoading() {
 // Add the missing formatCurrency function
 // function formatCurrency(amount) {
 //     const numAmount = typeof amount === 'string' ? parseFloat(amount) : amount;
-    
+
 //     if (isNaN(numAmount)) {
 //         console.warn("Invalid price amount:", amount);
 //         return 'KES 0';
 //     }
-    
+
 //     return 'KES ' + numAmount.toLocaleString('en-US', {
 //         minimumFractionDigits: 0,
 //         maximumFractionDigits: 0

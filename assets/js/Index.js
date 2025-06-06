@@ -6,8 +6,9 @@
 // Global Configuration
 const CONFIG = {
   API_BASE_URL: 'https://your-api-endpoint.com/api',
-  LOCAL_API_URL: 'http://localhost:8080/api/v1',
-  CARS_API_URL: 'http://localhost:8080/api/v1/cars',
+  LOCAL_API_URL: 'http://localhost:8000/api/auth/v1',
+  CARS_API_URL: 'http://localhost:8000/api/cars/v1',
+  CAR_FEATURES: 'http://localhost:8000/api/cars/v1/car-features/',
   REDIRECT_DELAY: 1500
 };
 
@@ -39,7 +40,7 @@ const AuthModule = (() => {
    */
   const handleLogin = async (username, password, rememberMe = false) => {
     try {
-      const response = await fetch(`${CONFIG.LOCAL_API_URL}/auth/login`, {
+      const response = await fetch(`${CONFIG.LOCAL_API_URL}/login/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -170,30 +171,30 @@ const ImageHandlerModule = (() => {
    * @param {HTMLElement} addButton - Button to add more images
    */
   const handleImageSelection = (event, previewContainer, addButton) => {
-  const newFiles = Array.from(event.target.files);
+    const newFiles = Array.from(event.target.files);
 
-  if (newFiles.length > 0) {
-    console.log(`Number of images selected: ${newFiles.length}`);
+    if (newFiles.length > 0) {
+      console.log(`Number of images selected: ${newFiles.length}`);
 
-    // Append new files to global list
-    selectedFiles = [...selectedFiles, ...newFiles];
+      // Append new files to global list
+      selectedFiles = [...selectedFiles, ...newFiles];
 
-    newFiles.forEach(file => {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        const previewBox = createImagePreview(e.target.result);
-        previewContainer.insertBefore(previewBox, addButton);
-      };
-      reader.readAsDataURL(file);
-    });
-  } else {
-    console.log("No images selected.");
-  }
-};
+      newFiles.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const previewBox = createImagePreview(e.target.result);
+          previewContainer.insertBefore(previewBox, addButton);
+        };
+        reader.readAsDataURL(file);
+      });
+    } else {
+      console.log("No images selected.");
+    }
+  };
 
 
 
-  
+
 
   /**
    * Creates an image preview element
@@ -281,10 +282,10 @@ const CarModule = (() => {
     const formData = new FormData(form);
     const files = imageInput.files;
 
-   if (selectedFiles.length === 0) {
-  showNotification('Please select at least one image.', 'error');
-  return;
-}
+    if (selectedFiles.length === 0) {
+      showNotification('Please select at least one image.', 'error');
+      return;
+    }
 
 
     try {
@@ -294,7 +295,7 @@ const CarModule = (() => {
       document.body.appendChild(loadingIndicator);
 
       // Convert images to base64
-const base64Images = await ImageHandlerModule.convertFilesToBase64(selectedFiles);
+      const base64Images = await ImageHandlerModule.convertFilesToBase64(selectedFiles);
       const getSelectedFeatures = () => {
         const selected = [];
         document.querySelectorAll('input[name="features[]"]:checked').forEach(checkbox => {
@@ -319,7 +320,8 @@ const base64Images = await ImageHandlerModule.convertFilesToBase64(selectedFiles
         bodyType: formData.get("carBodyType"),
         status: formData.get("carStatus"),
         description: formData.get("carDescription"),
-        images: base64Images
+        images_data: base64Images,
+        engine_size: formData.get("engineCapacity")
       };
       console.log('Payload:', payload);
       console.log('Selected features:', getSelectedFeatures());
@@ -335,6 +337,8 @@ const base64Images = await ImageHandlerModule.convertFilesToBase64(selectedFiles
         },
         body: JSON.stringify(payload)
       });
+
+
 
       document.body.removeChild(loadingIndicator);
 
@@ -364,52 +368,52 @@ const base64Images = await ImageHandlerModule.convertFilesToBase64(selectedFiles
    * Fetches and displays car features
    */
   document.addEventListener('DOMContentLoaded', () => {
-    const loadCarFeatures = async () => {
-      const featuresContainer = document.getElementById('featuresContainer');
-      if (!featuresContainer) {
-        console.error('No featuresContainer found');
-        return;
-      }
+  const loadCarFeatures = async () => {
+    const featuresContainer = document.getElementById('featuresContainer');
+    if (!featuresContainer) {
+      console.error('No featuresContainer found');
+      return;
+    }
 
-      try {
-        const response = await fetch(`${CONFIG.CARS_API_URL}/get-car-feature`);
-        if (!response.ok) throw new Error('Failed to fetch features');
+    try {
+      const response = await fetch(`${CONFIG.CAR_FEATURES}`);
+      if (!response.ok) throw new Error('Failed to fetch features');
 
-        const data = await response.json();
-        const features = data.entity || []; // <-- THIS LINE FIXED
-        console.log('Fetched features:', features);
+      const data = await response.json();
+      const features = data.entity || []; // Flat array of strings
 
-        featuresContainer.innerHTML = ''; // Clear container first
+      console.log('Fetched features:', features);
 
-        features.forEach(feature => {
-          const label = document.createElement('label');
-          label.classList.add(
-            'flex', 'items-center', 'space-x-2',
-            'bg-gray-100', 'border', 'border-gray-300',
-            'p-4', 'rounded-md', 'cursor-pointer'
-          );
+      featuresContainer.innerHTML = ''; // Clear existing items
 
-          const checkbox = document.createElement('input');
-          checkbox.type = 'checkbox';
-          checkbox.name = 'features[]';
-          checkbox.value = feature;
+      features.forEach(feature => {
+        const label = document.createElement('label');
+        label.classList.add(
+          'flex', 'items-center', 'space-x-2',
+          'bg-gray-100', 'border', 'border-gray-300',
+          'p-4', 'rounded-md', 'cursor-pointer'
+        );
 
-          const span = document.createElement('span');
-          span.textContent = feature;
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.name = 'features[]';
+        checkbox.value = feature; // feature is a string
 
-          label.appendChild(checkbox);
-          label.appendChild(span);
-          featuresContainer.appendChild(label);
-        });
-      } catch (error) {
-        console.error('Error fetching features:', error);
-        featuresContainer.innerHTML = '<p class="text-red-500">Failed to load features</p>';
-      }
-    };
+        const span = document.createElement('span');
+        span.textContent = feature; // show feature name
 
-    loadCarFeatures();
-  });
+        label.appendChild(checkbox);
+        label.appendChild(span);
+        featuresContainer.appendChild(label);
+      });
+    } catch (error) {
+      console.error('Error fetching features:', error);
+      featuresContainer.innerHTML = '<p class="text-red-500">Failed to load features</p>';
+    }
+  };
 
+  loadCarFeatures();
+});
 
 
   return {
@@ -508,9 +512,10 @@ function showNotification(message, type = 'info') {
 // fetch car features from the API and display them in the table
 document.addEventListener('DOMContentLoaded', function () {
   const tableBody = document.getElementById('recentCarsTable');
-  const baseUrl = 'http://localhost:8080/api/v1/cars';
+  const baseUrl = 'http://localhost:8000/api/cars/v1/my-cars';
+  const baseUrl1 = 'http://localhost:8000/api/cars/v1/';
 
-  fetch(baseUrl + '/get-cars')
+  fetch(baseUrl)
     .then(response => response.json())
     .then(data => {
       tableBody.innerHTML = '';
@@ -525,18 +530,20 @@ document.addEventListener('DOMContentLoaded', function () {
           // Image cell
           const imgCell = document.createElement('td');
           const img = document.createElement('img');
-          if (car.images && car.images.length > 0) {
-            // Assuming `car.images[0].imageData` contains base64 data with prefix like "data:image/jpeg;base64,..."
-            img.src = car.images[0].imageData;
+
+          if (car.primary_image) {
+            // car.primary_image is a base64 string with data URI prefix
+            img.src = car.primary_image;
             img.alt = 'Car Image';
-            img.style.width = '100px'; // Adjust width as needed
-            img.style.height = 'auto'; // Maintain aspect ratio
+            img.style.width = '100px';   // adjust size as needed
+            img.style.height = 'auto';   // maintain aspect ratio
             imgCell.appendChild(img);
           } else {
             imgCell.textContent = 'No image';
           }
-          imgCell.appendChild(img);
+
           row.appendChild(imgCell);
+          ;
 
           // Model cell
           const modelCell = document.createElement('td');
@@ -667,7 +674,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const carId = urlParams.get('carId');
 
   if (carId) {
-    fetch(`${baseUrl}/get-car/${carId}`)
+    fetch(`${baseUrl1}${carId}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -705,8 +712,8 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('detailTransmission').textContent = car.transmission || 'N/A';
         document.getElementById('detailCondition').textContent = car.condition || 'N/A';
         document.getElementById('detailYear').textContent = car.year || 'N/A';
-        document.getElementById('detailFuel').textContent = car.fuelType || 'N/A';
-        document.getElementById('detailEngine').textContent = car.engineSize || 'N/A';
+        document.getElementById('detailFuel').textContent = car.fuel_type || 'N/A';
+        document.getElementById('detailEngine').textContent = car.engine_size || 'N/A';
         document.getElementById('detailMileage').textContent = car.mileage ? `${car.mileage.toLocaleString()} km` : 'N/A';
         document.getElementById('detailDoors').textContent = car.doors || 'N/A';
         document.getElementById('detailStatus').textContent = car.status || '--';
@@ -721,18 +728,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Handle features
         const featuresContainer = document.getElementById('carFeatures');
+
         if (car.features && car.features.length > 0) {
           featuresContainer.innerHTML = '';
           car.features.forEach(feature => {
             const featureItem = document.createElement('div');
             featureItem.className = 'feature-item';
-            featureItem.textContent = feature.featureName; // <-- fixed here
+            featureItem.textContent = feature; // <- Use the string directly
             featuresContainer.appendChild(featureItem);
           });
         } else {
           featuresContainer.innerHTML = '<div class="feature-item">No features available</div>';
         }
+
         console.log('Car features:', car.features);
+
 
 
         // Handle image
@@ -773,7 +783,7 @@ document.addEventListener('DOMContentLoaded', function () {
           mainImageDisplay.className = 'car-main-image';
 
           const mainImage = document.createElement('img');
-          mainImage.src = imagesArray[0].imageData; // First image as default
+          mainImage.src = imagesArray[0].image_data; // ✅ fixed
           mainImage.alt = 'Car Main Image';
           mainImage.className = 'main-car-image';
 
@@ -788,7 +798,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
           // Create thumbnails
           imagesArray.forEach((image, index) => {
-            if (image.imageData) {
+            if (images.image_data) {
               const thumbnail = document.createElement('div');
               thumbnail.className = 'car-thumbnail';
               if (index === 0) {
@@ -796,13 +806,13 @@ document.addEventListener('DOMContentLoaded', function () {
               }
 
               const thumbImg = document.createElement('img');
-              thumbImg.src = image.imageData;
+              thumbImg.src = image.image_data;
               thumbImg.alt = `Car Image ${index + 1}`;
               thumbImg.dataset.imageId = image.id;
 
               // Click event to switch main image
               thumbnail.addEventListener('click', () => {
-                mainImage.src = image.imageData;
+                mainImage.src = image.image_data;
 
                 // Update active thumbnail
                 document.querySelectorAll('.car-thumbnail').forEach(thumb => {
@@ -821,7 +831,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Function to fetch and process images
         function fetchCarImages(carId) {
-          fetch(`http://localhost:8080/api/v1/cars/${carId}/images`)
+      
+          fetch(`http://localhost:8000/api/cars/v1//cars/${carId}/images`)
             .then(response => response.json())
             .then(data => {
               if (data.statusCode === 200 && data.entity && data.entity.images) {
@@ -1039,7 +1050,7 @@ document.addEventListener('DOMContentLoaded', function () {
 //rendering car count
 async function fetchCarCount() {
   try {
-    const response = await fetch('http://localhost:8080/api/v1/cars/get-car-count'); // Replace with your actual endpoint
+    const response = await fetch('http://localhost:3001/api/v1/cars/get-car-count'); // Replace with your actual endpoint
     const data = await response.json();
 
     if (response.ok && data.statusCode === 200) {
