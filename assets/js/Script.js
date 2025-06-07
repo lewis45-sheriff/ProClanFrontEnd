@@ -13,7 +13,7 @@
  */
 async function fetchCars() {
     try {
-        const response = await fetch('http://localhost:8000/api/cars/v1/my-cars');
+        const response = await fetch('https://one.proclanmotors.co.ke/api/cars/v1/my-cars');
         if (!response.ok) {
             throw new Error('Failed to fetch cars');
         }
@@ -27,7 +27,7 @@ async function fetchCars() {
 async function fetchCarsByMake(make) {
     try {
         // const url = `http://localhost:8080/api/v1/cars/get-by-car/${make}?make=${encodeURIComponent(make)}`;
-        const url = `https://one.proclanmotors.co.ke/api/v1/cars/get-by-car/${make}?make=${encodeURIComponent(make)}`;
+        const url = `https://one.proclanmotors.co.ke/api/cars/v1/search-by-make/${make}?make=${encodeURIComponent(make)}`;
 
         const response = await fetch(url);
 
@@ -46,7 +46,7 @@ async function fetchCarsByMake(make) {
 async function fetchSearchCars(make, model, price) {
     try {
         // const response = await fetch(`http://localhost:8080/api/v1/cars/search-by-make-model/${make}/${model}/${price}`);
-        const response = await fetch(`https://one.proclanmotors.co.ke/api/v1/cars/search-by-make-model/${make}/${model}/${price}`);
+        const response = await fetch(`https://one.proclanmotors.co.ke/api/cars/v1/search-by-make-model/${make}/${model}/${price}`);
 
         if (!response.ok) {
             throw new Error('Failed to fetch cars');
@@ -66,7 +66,7 @@ async function fetchSearchCars(make, model, price) {
  */
 async function fetchCarById(carId) {
     try {
-        const response = await fetch(`http://localhost:8000/api/cars/v1/${carId}`);
+        const response = await fetch(`https://one.proclanmotors.co.ke/api/cars/v1/${carId}`);
         if (!response.ok) {
             throw new Error('Failed to fetch car details');
         }
@@ -1196,15 +1196,16 @@ async function initCarDetailsPage() {
 
         function formatCarForWhatsApp(car) {
             const features = car.features && car.features.length > 0
-                ? car.features.map(f => `- ${f.featureName}`).join('\n')
+                ? car.features.map(f => `- ${f}`).join('\n') // Adjusted to match string array
                 : 'No features listed.';
 
             const imageUrl = car.imageUrl || ''; // Make sure this is a full URL to the image
 
-            return `*${car.make} ${car.model}*\n` +
+            return `Hi, I'm interested in this car. Can you tell me more about it?\n\n` + // Inquiry message
+                `*${car.make} ${car.model}*\n` +
                 `Year: ${car.year}\n` +
                 `Transmission: ${car.transmission || 'N/A'}\n` +
-                `Fuel Type: ${car.fuelType || 'N/A'}\n` +
+                `Fuel Type: ${car.fuel_type || 'N/A'}\n` +
                 `Mileage: ${car.mileage || 'N/A'} km\n` +
                 `Color: ${car.color || 'N/A'}\n` +
                 `Price: ${car.price || 'N/A'}\n\n` +
@@ -1551,7 +1552,7 @@ async function loadSimilarCars() {
         }
 
         // Step 1: Fetch car details using carId
-        const carDetailsResponse = await fetch(`http://localhost:8000/api/cars/v1/${carId}`);
+        const carDetailsResponse = await fetch(`https://one.proclanmotors.co.ke/api/cars/v1/${carId}`);
         if (!carDetailsResponse.ok) {
             throw new Error(`Failed to fetch car details for ID: ${carId}`);
         }
@@ -1559,6 +1560,7 @@ async function loadSimilarCars() {
         const carDetails = await carDetailsResponse.json();
         const make = carDetails.entity?.make;
         console.log('Fetched car details:', make);
+        console.log('Fetched car details:', carId);
 
         if (!make) {
             console.warn('Car make not found in the fetched car details.');
@@ -2059,7 +2061,7 @@ function initSearchResults() {
 
     // Build API URL
     // const apiUrl = `http://localhost:8080/api/v1/cars/search-by-make-model?make=${encodeURIComponent(make)}&model=${encodeURIComponent(model)}&price=${encodeURIComponent(price)}`;
-    const apiUrl = `http://localhost:8000/api/cars/v1/search-by-make-model/${make}/${model}/${price}`;
+    const apiUrl = `https://one.proclanmotors.co.ke/api/cars/v1/search-by-make-model/${make}/${model}/${price}`;
 
     console.log("API URL: ", apiUrl);
 

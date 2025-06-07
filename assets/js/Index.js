@@ -6,9 +6,9 @@
 // Global Configuration
 const CONFIG = {
   API_BASE_URL: 'https://your-api-endpoint.com/api',
-  LOCAL_API_URL: 'http://localhost:8000/api/auth/v1',
-  CARS_API_URL: 'http://localhost:8000/api/cars/v1',
-  CAR_FEATURES: 'http://localhost:8000/api/cars/v1/car-features/',
+  LOCAL_API_URL: 'https://one.proclanmotors.co.ke/api/auth/v1',
+  CARS_API_URL: 'https://one.proclanmotors.co.ke/api/cars/v1',
+  CAR_FEATURES: 'https://one.proclanmotors.co.ke/api/cars/v1/car-features/',
   REDIRECT_DELAY: 1500
 };
 
@@ -512,8 +512,8 @@ function showNotification(message, type = 'info') {
 // fetch car features from the API and display them in the table
 document.addEventListener('DOMContentLoaded', function () {
   const tableBody = document.getElementById('recentCarsTable');
-  const baseUrl = 'http://localhost:8000/api/cars/v1/my-cars';
-  const baseUrl1 = 'http://localhost:8000/api/cars/v1/';
+  const baseUrl = 'https://one.proclanmotors.co.ke/api/cars/v1/my-cars';
+  const baseUrl1 = 'https://one.proclanmotors.co.ke/api/cars/v1/';
 
   fetch(baseUrl)
     .then(response => response.json())
@@ -947,7 +947,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function handleDelete(car) {
     showPopupConfirmation(car, (confirmDelete) => {
       if (confirmDelete) {
-        fetch(`${baseUrl}/delete/${car.id}`, {
+        fetch(`${baseUrl1}/delete/${car.id}`, {
           method: 'DELETE',
         })
           .then(response => {
