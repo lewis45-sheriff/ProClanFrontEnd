@@ -2333,4 +2333,63 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+// Car search method that fetches data from API and displays results
+async function loadCars(make) {
+    try {
+        // Show loading indicator
+        showLoadingIndicator();
+        
+        // Fetch data from API
+        const response = await fetch(`https://one.proclanmotors.co.ke/api/cars/v1/search-by-make/${make}/`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        // Hide loading indicator
+        hideLoadingIndicator();
+        
+        // Display results
+        displaySearchResults(data, make);
+        
+    } catch (error) {
+        console.error('Error fetching car data:', error);
+        hideLoadingIndicator();
+        displayErrorMessage('Failed to load cars. Please try again.');
+    }
+}
+
+// Function to show loading indicator
+function showLoadingIndicator() {
+    const loadingHtml = `
+        <div id="loading-indicator" class="text-center">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            <p>Loading cars...</p>
+        </div>
+    `;
+    document.getElementById('search-results').innerHTML = loadingHtml;
+}
+
+// Function to hide loading indicator
+function hideLoadingIndicator() {
+    const loadingElement = document.getElementById('loading-indicator');
+    if (loadingElement) {
+        loadingElement.remove();
+    }
+}
+
+// Function to display error message
+function displayErrorMessage(message) {
+    const errorHtml = `
+        <div class="alert alert-danger" role="alert">
+            ${message}
+        </div>
+    `;
+    document.getElementById('search-results').innerHTML = errorHtml;
+}
+
 
