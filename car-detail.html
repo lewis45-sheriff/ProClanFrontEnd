@@ -2,139 +2,478 @@
 <html lang="en">
 
 <head>
-    <!-- meta data -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-    <!--font-family-->
-    <link
-        href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css?family=Rufina:400,700" rel="stylesheet">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-
-    <!-- title of site -->
-    <title>Proclan Motors</title>
-
-    <!-- For favicon png -->
-    <link rel="shortcut icon" type="image/icon"
-        href="assets\logo\WhatsApp Image 2025-04-29 at 11.02.28_7eb8d182b.jpg" />
-
-    <!--font-awesome.min.css-->
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
-    <!--linear icon css-->
-    <link rel="stylesheet" href="assets/css/linearicons.css">
-
-    <!--flaticon.css-->
-    <link rel="stylesheet" href="assets/css/flaticon.css">
-
-    <!--animate.css-->
-    <link rel="stylesheet" href="assets/css/animate.css">
-
-    <!--owl.carousel.css-->
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
-
-    <!--bootstrap.min.css-->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-
-    <!-- bootsnav -->
-    <link rel="stylesheet" href="assets/css/bootsnav.css">
-
-    <!--style.css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
+    
+    <title>Car Details - Proclan Motors</title>
+    <link rel="shortcut icon" type="image/icon" href="assets/logo/PROCLAN MOTORS LOGO.svg" />
 
-    <!--responsive.css-->
-    <link rel="stylesheet" href="assets/css/responsive.css">
-
-
+    <style>
+        /* Enhanced Car Details Page Styles */
+        
+        /* Page Layout */
+        /* #car-details-page {
+            margin-top: 100px;
+        } */
+/*         
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+            padding-top: 250px;
+        } */
+        
+        /* Breadcrumb Styling */
+        .breadcrumb {
+            background: transparent;
+            padding: 0;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        
+        .breadcrumb-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .breadcrumb-item a:hover {
+            color: var(--primary-dark);
+        }
+        
+        .breadcrumb-item.active {
+            color: var(--accent-color);
+        }
+        
+        /* Main Image and Gallery */
+        .main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            transition: transform 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .main-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .gallery-img {
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .gallery-img:hover {
+            border-color: #1e73be;
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(30, 115, 190, 0.3);
+        }
+        
+        /* Car Title and Description */
+        .car-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e73be;
+            margin-bottom: 20px;
+            font-family: 'Rufina', serif;
+            border-bottom: 2px solid #ff6b35;
+            padding-bottom: 10px;
+        }
+        
+        .car-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 30px;
+            margin-top: 20px;
+        }
+        
+        /* Car Price */
+        .car-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ff6b35;
+            margin: 0;
+        }
+        
+        /* Section Headings */
+        .section-heading {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #ff6b35;
+            border-radius: 2px;
+        }
+        
+        /* Features Container */
+        #features-container {
+            gap: 15px;
+        }
+        
+        .feature-badge {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 2px solid #e2e8f0;
+            color: #333;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+            margin-right: 10px;
+        }
+        
+        .feature-badge:hover {
+            background: linear-gradient(135deg, #1e73be, #ff6b35);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(30, 115, 190, 0.3);
+        }
+        
+        .feature-badge i {
+            font-size: 1rem;
+            color: #1e73be;
+            margin-right: 6px;
+        }
+        
+        .feature-badge:hover i {
+            color: white;
+        }
+        
+        /* Contact Box */
+        .contact-box {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 30px;
+            position: sticky;
+            top: 120px;
+        }
+        
+        .contact-box h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .contact-box h5 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+        }
+        
+        .contact-box p {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .contact-box p i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+            color: #1e73be;
+        }
+        
+        .contact-box p a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-box p a:hover {
+            color: #1e73be;
+        }
+        
+        .contact-box .btn {
+            padding: 15px 25px;
+            font-weight: 600;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-box .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .contact-box .btn-primary {
+            background: linear-gradient(135deg, #1e73be, #ff6b35);
+            border: none;
+        }
+        
+        .contact-box .btn-outline-primary {
+            border: 2px solid #1e73be;
+            color: #1e73be;
+            background: transparent;
+        }
+        
+        .contact-box .btn-outline-primary:hover {
+            background: #1e73be;
+            color: white;
+        }
+        
+        /* Car Specifications */
+        .car-specs {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e2e8f0;
+        }
+        
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+        
+        .spec-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .spec-item:hover {
+            background: rgba(30, 115, 190, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 0 -15px;
+        }
+        
+        .spec-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #1e73be, #ff6b35);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+        
+        .spec-label {
+            font-size: 0.9rem;
+            color: #777;
+            margin: 0;
+            font-weight: 500;
+            margin-bottom: 0;
+        }
+        
+        .spec-value {
+            font-size: 1.1rem;
+            color: #333;
+            margin: 0;
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+        
+        /* Save Button States */
+        #saveButton.saved {
+            background: linear-gradient(135deg, #1e73be, #ff6b35);
+            color: white;
+            border-color: #1e73be;
+        }
+        
+        #saveButton.saved i {
+            color: white;
+        }
+        
+        /* Enhanced Animation Classes */
+        .animated {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .delay-1 {
+            animation-delay: 0.1s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.2s;
+        }
+        
+        .delay-3 {
+            animation-delay: 0.3s;
+        }
+        
+        .delay-4 {
+            animation-delay: 0.4s;
+        }
+        
+        .delay-5 {
+            animation-delay: 0.5s;
+        }
+        
+        /* Location Map */
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .contact-box {
+                position: static;
+            }
+            
+            .car-title {
+                font-size: 2rem;
+            }
+            
+            .car-price {
+                font-size: 1.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding-top: 180px;
+            }
+            
+            .main-image {
+                height: 300px;
+            }
+            
+            .gallery-img {
+                height: 80px;
+            }
+            
+            .car-title {
+                font-size: 1.8rem;
+            }
+            
+            .section-heading {
+                font-size: 1.5rem;
+            }
+            
+            .contact-box,
+            .car-specs {
+                padding: 20px;
+            }
+            
+            .spec-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .spec-item:hover {
+                margin: 0;
+                padding: 15px 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Top Bar -->
     <div class="top-bar">
         <div class="container">
             <div class="left-info">
-                <div><i class="fas fa-map-marker-alt"></i><span>Milestone Business Center, Kiambu Road,
-                        Ridgeways.</span>
-                </div>
+                <div><i class="fas fa-map-marker-alt"></i><span>Milestone Business Center, Kiambu Road, Ridgeways.</span></div>
                 <div><i class="far fa-clock"></i><span>Mon - Sat : 06.00 AM - 07.00 PM</span></div>
-                <div><i class="fas fa-phone-alt"></i><span>0742832511
-                    </span></div>
+                <div><i class="fas fa-phone-alt"></i><span>0742832511</span></div>
             </div>
-            <!-- <div class="right-info">
-				
-				<div class="social-icons">
-					<a href="#"><i class="fab fa-facebook-f"></i></a>
-					<a href="#"><i class="fab fa-twitter"></i></a>
-					<a href="#"><i class="fab fa-linkedin-in"></i></a>
-					<a href="#"><i class="fab fa-instagram"></i></a>
-				</div>
-			</div> -->
         </div>
     </div>
+
     <!-- Navigation -->
-    <section id="home" class="welcome-hero">
+    <nav class="navbar navbar-expand-lg" id="mainNav">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <img src="assets/logo/PROCLAN MOTORS LOGO.3.svg" alt="Proclan Motors" class="logo-img" />
+            </a>
 
-        <!-- top-area Start -->
-        <div class="top-area">
-            <div class="header-area">
-                <!-- Start Navigation -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+                <i class="fa fa-bars"></i>
+            </button>
 
-
-                <!-- Start Navigation -->
-                <nav class="navbar navbar-expand-lg bg-white navbar-light shadow navbar-fixed p-0 navbar-xl"
-                    id="mainNav">
-                    <div class="container">
-                        <!-- Start Header Navigation -->
-                        <a href="index.html" class="navbar-brand">
-                            <img src="assets\logo\PLOCLAN MOTORS LOGO.svg" alt="Proclan Motors" class="logo-img" />
-                        </a>
-
-                        <!-- Bootstrap 5 toggle button -->
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                            <i class="fa fa-bars"></i>
-                        </button>
-
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="navbar-menu">
-                            <ul class="navbar-nav ms-auto p-4 p-lg-0" data-in="fadeInDown" data-out="fadeOutUp">
-                                <li><a href="index.html" class="nav-item nav-link active">Home</a></li>
-                                <li><a href="LocallyUsed.html" class="nav-item nav-link">Listings</a></li>
-                                <li><a href="Contact.html" class="nav-item nav-link">Contact Us</a></li>
-                                <li><a href="About.html" class="nav-item nav-link">About</a></li>
-                            </ul>
-                            <a href="Login.html" target="_blank"
-                                class="btn btn-primary d-none d-lg-inline-block py-4 px-lg-5"
-                                title="Login to your account">
-                                Login <i class="fa fa-arrow-right ms-3"></i>
-                            </a>
-                        </div>
-                    </div>
-                </nav>
-                <!-- End Navigation -->
-            </div><!--/.header-area-->
-            <div class="clearfix"></div>
-
-        </div><!-- /.top-area-->
-        <!-- top-area End -->
-    </section>
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="LocallyUsed.html" class="nav-link">Listings</a></li>
+                    <li class="nav-item"><a href="Contact.html" class="nav-link">Contact Us</a></li>
+                    <li class="nav-item"><a href="About.html" class="nav-link">About</a></li>
+                </ul>
+                <a href="Login.html" class="btn btn-primary d-none d-lg-inline-block">
+                    Login <i class="fa fa-arrow-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
 
     <!-- Breadcrumb -->
-    <div class="bg-light py-2">
+    <div class="bg-light py-3">
         <div class="container">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="LocallyUsed.html">Cars</a></li>
+                    <li class="breadcrumb-item"><a href="index.html"><i class="bi bi-house-door me-1"></i>Home</a></li>
+                    <li class="breadcrumb-item"><a href="LocallyUsed.html"><i class="bi bi-car-front me-1"></i>Cars</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Car Details</li>
                 </ol>
             </nav>
@@ -144,114 +483,105 @@
     <!-- Main Content -->
     <div class="container py-5" id="car-details-page">
         <div class="row mb-5">
+            <!-- Left Column - Car Details -->
             <div class="col-lg-8">
                 <!-- Main Image -->
-                <img src="/api/placeholder/800/400" class="img-fluid main-image" alt="Car Image" id="mainImage">
+                <div class="position-relative">
+                    <img src="https://via.placeholder.com/800x400?text=Loading+Car+Image" class="img-fluid main-image" alt="Car Image" id="mainImage">
+                    <div class="position-absolute top-0 end-0 m-3">
+                        <span class="badge bg-success fs-6 px-3 py-2">
+                            <i class="bi bi-check-circle me-1"></i>Certified
+                        </span>
+                    </div>
+                </div>
 
                 <!-- Image Gallery -->
-                <div class="row mt-3 g-3">
+                <div class="row mt-4 g-3">
                     <div class="col-3">
-                        <img src="/api/placeholder/300/200" class="img-fluid gallery-img w-100" alt="Car Front"
-                            onclick="changeMainImage(this.src)">
+                        <img src="https://via.placeholder.com/300x200?text=Front+View" class="img-fluid gallery-img w-100" alt="Car Front" onclick="changeMainImage(this.src)">
                     </div>
                     <div class="col-3">
-                        <img src="/api/placeholder/300/200" class="img-fluid gallery-img w-100" alt="Car Interior"
-                            onclick="changeMainImage(this.src)">
+                        <img src="https://via.placeholder.com/300x200?text=Interior" class="img-fluid gallery-img w-100" alt="Car Interior" onclick="changeMainImage(this.src)">
                     </div>
                     <div class="col-3">
-                        <img src="/api/placeholder/300/200" class="img-fluid gallery-img w-100" alt="Car Side"
-                            onclick="changeMainImage(this.src)">
+                        <img src="https://via.placeholder.com/300x200?text=Side+View" class="img-fluid gallery-img w-100" alt="Car Side" onclick="changeMainImage(this.src)">
                     </div>
                     <div class="col-3">
-                        <img src="/api/placeholder/300/200" class="img-fluid gallery-img w-100" alt="Car Rear"
-                            onclick="changeMainImage(this.src)">
+                        <img src="https://via.placeholder.com/300x200?text=Rear+View" class="img-fluid gallery-img w-100" alt="Car Rear" onclick="changeMainImage(this.src)">
                     </div>
                 </div>
 
                 <!-- Car Info -->
-                <div class="mt-5">
+                <div class="mt-5 animated delay-1">
                     <h1 class="car-title">Loading Car Details...</h1>
                     <p class="car-description">
-                        Loading description...
+                        <i class="bi bi-info-circle text-primary me-2"></i>
+                        Loading detailed description and information about this vehicle...
                     </p>
                 </div>
 
                 <!-- Features -->
-                <div class="mt-5">
-                    <h3 class="section-heading">Features & Equipment</h3>
-                    <div class="d-flex flex-wrap animated delay-1" id="features-container">
-                        <!-- <span class="feature-badge"><i class="bi bi-shield-check"></i> ABS Brakes</span>
-                        <span class="feature-badge"><i class="bi bi-camera-video"></i> Reverse Camera</span>
-                        <span class="feature-badge"><i class="bi bi-gear"></i> 4WD</span>
-                        <span class="feature-badge"><i class="bi bi-snow"></i> Climate Control</span>
-                        <span class="feature-badge"><i class="bi bi-music-note-beamed"></i> Premium Sound</span>
-                        <span class="feature-badge"><i class="bi bi-umbrella"></i> Sunroof</span>
-                        <span class="feature-badge"><i class="bi bi-speedometer2"></i> Cruise Control</span>
-                        <span class="feature-badge"><i class="bi bi-person"></i> Leather Seats</span>
-                        <span class="feature-badge"><i class="bi bi-tv"></i> Navigation System</span>
-                        <span class="feature-badge"><i class="bi bi-bluetooth"></i> Bluetooth</span>
-                        <span class="feature-badge"><i class="bi bi-usb"></i> USB Ports</span>
-                        <span class="feature-badge"><i class="bi bi-alarm"></i> Parking Sensors</span> -->
+                <div class="mt-5 animated delay-2">
+                    <h3 class="section-heading">
+                        <i class="bi bi-star me-2"></i>Features & Equipment
+                    </h3>
+                    <div class="d-flex flex-wrap" id="features-container">
+                        <!-- Features will be loaded dynamically -->
+                        <span class="feature-badge"><i class="bi bi-shield-check"></i> Loading features...</span>
                     </div>
                 </div>
 
-
-                <!-- Vehicle Description -->
-                <div class="mt-5">
-
-                    <div class="row g-5 align-items-start">
-                        <!-- Map Block (Left) -->
-
-
-
-                        <!-- Contact Info Block (Right) -->
-                        <!-- <div class="col-md-6 wow fadeIn" data-wow-delay="0.2s">
-                            <div class="bg-white shadow-lg rounded p-4 text-center border">
-                                <h5 class="text-uppercase mb-3 fw-bold">Call Us On:</h5>
-                                <p class="fs-5 fw-semibold text-dark mb-1">+254 722 876 102</p>
-                                <p class="fs-5 fw-semibold text-dark mb-3">+254 702 121 121</p>
-
-                                <hr class="my-4" />
-
-                                <p class="fw-semibold fs-6 mb-0">OR</p>
-                                <p class="fw-normal">Text</p>
-                                <p class="fs-4 fw-bold text-danger d-inline">CAR</p><span
-                                    class="fs-4 fw-bold text-primary">SOKO</span>
-                                <p class="mt-2 mb-0">to</p>
-                                <p class="display-5 fw-bold text-dark">20360</p>
-                            </div>
-                        </div> -->
+                <!-- Location -->
+                <div class="mt-5 animated delay-3">
+                    <h3 class="section-heading">
+                        <i class="bi bi-geo-alt me-2"></i>Our Location
+                    </h3>
+                    <div class="map-container">
+                        <iframe class="w-100 rounded" 
+                            src="https://www.google.com/maps?q=-1.2298056,36.84125&z=17&output=embed" 
+                            frameborder="0" 
+                            style="min-height: 400px; border:0;" 
+                            allowfullscreen 
+                            aria-hidden="false" 
+                            tabindex="0">
+                        </iframe>
                     </div>
-
                 </div>
-
             </div>
 
+            <!-- Right Column - Price and Specs -->
             <div class="col-lg-4">
                 <!-- Price and Actions -->
-                <div class="contact-box mb-4 animated delay-1">
-                    <h2 class="car-price mb-4">Loading price...</h2>
-                    <div class="d-grid gap-2">
+                <div class="contact-box mb-4 animated delay-1" id="priceActionsBox">
+                    <div class="text-center mb-4">
+                        <h2 class="car-price mb-2">Loading price...</h2>
+                        <p class="text-muted mb-0">
+                            <i class="bi bi-shield-check text-success me-1"></i>Price negotiable
+                        </p>
+                    </div>
+                    
+                    <div class="d-grid gap-3">
                         <a href="tel:0742832511" style="text-decoration: none;">
                             <button class="btn btn-primary w-100">
-                                <i class="bi bi-telephone"></i> Call Seller
+                                <i class="bi bi-telephone-fill me-2"></i> Call Now
                             </button>
                         </a>
                         <a id="whatsappButton" target="_blank" style="text-decoration: none;">
                             <button class="btn btn-outline-primary w-100">
-                                <i class="bi bi-chat-text"></i> Send Message
+                                <i class="bi bi-whatsapp me-2"></i> WhatsApp
                             </button>
                         </a>
                         <button class="btn btn-outline-primary w-100" id="saveButton">
-                            <i class="bi bi-heart"></i> <span>Save This Car</span>
+                            <i class="bi bi-heart me-2"></i> <span>Save This Car</span>
                         </button>
                     </div>
-
                 </div>
 
                 <!-- Vehicle Specs -->
                 <div class="car-specs mb-4 animated delay-2">
-                    <h4 class="section-heading">Vehicle Specifications</h4>
+                    <h4 class="section-heading">
+                        <i class="bi bi-gear me-2"></i>Specifications
+                    </h4>
 
                     <div class="spec-item">
                         <div class="spec-icon">
@@ -285,7 +615,7 @@
 
                     <div class="spec-item">
                         <div class="spec-icon">
-                            <i class="bi bi-gear"></i>
+                            <i class="bi bi-gear-fill"></i>
                         </div>
                         <div>
                             <p class="spec-label">Transmission</p>
@@ -326,181 +656,157 @@
 
                 <!-- Seller Information -->
                 <div class="contact-box animated delay-3">
-                    <h4 class="section-heading">Seller Information</h4>
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="bg-light rounded-circle p-2 me-3">
-                            <i class="bi bi-person-circle fs-3 text-primary"></i>
+                    <h4 class="section-heading">
+                        <i class="bi bi-person-badge me-2"></i>Dealer Info
+                    </h4>
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="bg-primary bg-gradient rounded-circle p-3 me-3">
+                            <i class="bi bi-building text-white fs-4"></i>
                         </div>
                         <div>
-                            <h5 class="mb-0">Proclan Motors</h5>
-                            <p class="text-muted mb-0">Verified Dealer</p>
+                            <h5 class="mb-1">Proclan Motors</h5>
+                            <p class="text-success mb-0">
+                                <i class="bi bi-patch-check-fill me-1"></i>Verified Dealer
+                            </p>
                         </div>
                     </div>
-                    <p>
-                        <i class="bi bi-geo-alt text-primary me-2"></i>
-                        Milestone Business Center, Kiambu Road, Ridgeways
-                    </p>
-                    <p>
-                        <i class="bi bi-telephone text-primary me-2"></i>
-                        <a href="tel:0742832511" class="text-decoration-none text-dark">0742 832 511</a>
-                    </p>
-
-                    <p>
-                        <i class="bi bi-envelope text-primary me-2"></i>
-                        <a href="mailto:info@proclanmotors.co.ke?subject=Inquiry%20from%20Website&body=Hello%2C%20I%20am%20interested%20in%20your%20vehicles.%20Please%20get%20back%20to%20me."
-                            class="text-decoration-none text-dark">
-                            info@proclanmotors.co.ke
-                        </a>
-                    </p>
-
-                    <p>
-                        <i class="bi bi-clock text-primary me-2"></i>
-                        6 a.m. to 7 p.m.
-                    </p>
+                    
+                    <div class="contact-info">
+                        <p>
+                            <i class="bi bi-geo-alt-fill"></i>
+                            Milestone Business Center, Kiambu Road, Ridgeways
+                        </p>
+                        <p>
+                            <i class="bi bi-telephone-fill"></i>
+                            <a href="tel:0742832511">0742 832 511</a>
+                        </p>
+                        <p>
+                            <i class="bi bi-envelope-fill"></i>
+                            <a href="mailto:info@proclanmotors.co.ke?subject=Car%20Inquiry">
+                                info@proclanmotors.co.ke
+                            </a>
+                        </p>
+                        <p>
+                            <i class="bi bi-clock-fill"></i>
+                            Mon - Sat: 6:00 AM - 7:00 PM
+                        </p>
+                    </div>
                 </div>
-
-            </div>
-            <div class="mt-5">
-                <h3 class="section-heading">Location</h3>
-                <div class="col-12 col-md-10 mx-auto wow fadeIn" data-wow-delay="0.1s">
-                    <iframe class="position-relative rounded w-100"
-                        src="https://www.google.com/maps?q=-1.2298056,36.84125&z=17&output=embed" frameborder="0"
-                        style="min-height: 500px; border:0;" allowfullscreen aria-hidden="false" tabindex="0">
-                    </iframe>
-                </div>
-
             </div>
         </div>
 
-
         <!-- Similar Cars -->
-        <div class="mt-5">
-            <h3 class="section-heading mb-4">Similar Vehicles</h3>
-            <div class="row" id="similarCars"></div>
+        <div class="mt-5 animated delay-4">
+            <h3 class="section-heading mb-4">
+                <i class="bi bi-collection me-2"></i>Similar Vehicles
+            </h3>
+            <div class="row" id="similarCars">
+                <!-- Similar cars will be loaded dynamically -->
+                <div class="col-12 text-center py-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading similar vehicles...</span>
+                    </div>
+                    <p class="mt-3 text-muted">Loading similar vehicles...</p>
+                </div>
+            </div>
         </div>
     </div>
 
-
     <!-- Footer -->
-    <footer id="contact" class="contact">
+    <footer class="footer">
         <div class="container">
-            <div class="footer-top">
-                <div class="row">
-                    <div class="col-md-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <div class="footer-logo">
-                                <a href="index.html">Proclan Motors</a>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-widget">
+                        <h2>Proclan Motors</h2>
+                        <p>At Proclan Motors, we're committed to bringing you the finest selection of vehicles, exceptional service, and unparalleled customer satisfaction.</p>
+                        <div class="mt-4">
+                            <p><strong>Email:</strong> info@proclanmotors.co.ke</p>
+                            <p><strong>Phone:</strong> +254742832511</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="footer-widget">
+                        <h2>About</h2>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Career</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="footer-widget">
+                        <h2>Top Brands</h2>
+                        <div class="row">
+                            <div class="col-6">
+                                <ul>
+                                    <li><a href="#">Toyota</a></li>
+                                    <li><a href="#">Nissan</a></li>
+                                    <li><a href="#">Mazda</a></li>
+                                    <li><a href="#">Subaru</a></li>
+                                    <li><a href="#">Honda</a></li>
+                                    <li><a href="#">Mitsubishi</a></li>
+                                </ul>
                             </div>
-                            <p>
-                                At Proclan Motors, we're committed to bringing you the finest selection of vehicles,
-                                exceptional service, and unparalleled customer satisfaction. Whether you're in the
-                                market for a new car or need assistance with your vehicle, our team is here to ensure
-                                your experience is nothing short of excellent.
-                            </p>
-                            <div class="footer-contact">
-                                <p>Have questions or need more information? Don't hesitate to reach out!</p>
-                                <p><strong>Email us:</strong> info@proclanmotors.co.ke</p>
-                                <p><strong>Call us:</strong> +254742832511</p>
+                            <div class="col-6">
+                                <ul>
+                                    <li><a href="#">Volkswagen</a></li>
+                                    <li><a href="#">Suzuki</a></li>
+                                    <li><a href="#">Isuzu</a></li>
+                                    <li><a href="#">Hyundai</a></li>
+                                    <li><a href="#">Kia</a></li>
+                                    <li><a href="#">Land Rover</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-2 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h2>about devloon</h2>
-                            <ul>
-                                <li><a href="#">about us</a></li>
-                                <li><a href="#">career</a></li>
-                                <li><a href="#">terms <span> of service</span></a></li>
-                                <li><a href="#">privacy policy</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-xs-12">
-                        <div class="single-footer-widget">
-                            <h2>top brands</h2>
-                            <div class="row">
-                                <div class="col-md-7 col-xs-6">
-                                    <ul>
-                                        <li><a href="#" onclick="loadCars('toyota')">Toyota</a></li>
-                                        <li><a href="#" onclick="loadCars('nissan')">Nissan</a></li>
-                                        <li><a href="#" onclick="loadCars('mazda')">Mazda</a></li>
-                                        <li><a href="#" onclick="loadCars('subaru')">Subaru</a></li>
-                                        <li><a href="#" onclick="loadCars('honda')">Honda</a></li>
-                                        <li><a href="#" onclick="loadCars('mitsubishi')">Mitsubishi</a></li>
-                                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <div class="footer-widget">
+                        <h2>Newsletter</h2>
+                        <div class="footer-newsletter">
+                            <p>Subscribe to get latest news updates and information</p>
+                            <div class="footer-email-box">
+                                <input type="email" placeholder="Enter your email">
+                                <div class="footer-email-subscribe">
+                                    <i class="fa fa-arrow-right"></i>
                                 </div>
-                                <div class="col-md-5 col-xs-6">
-                                    <ul>
-                                        <li><a href="#" onclick="loadCars('volkswagen')">Volkswagen</a></li>
-                                        <li><a href="#" onclick="loadCars('suzuki')">Suzuki</a></li>
-                                        <li><a href="#" onclick="loadCars('isuzu')">Isuzu</a></li>
-                                        <li><a href="#" onclick="loadCars('hyundai')">Hyundai</a></li>
-                                        <li><a href="#" onclick="loadCars('kia')">Kia</a></li>
-                                        <li><a href="#" onclick="loadCars('land rover')">Land Rover</a></li>
-                                    </ul>
-                                </div>
                             </div>
-
-                        </div>
-                    </div>
-                    <div class="col-md-offset-1 col-md-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h2>news letter</h2>
-                            <div class="footer-newsletter">
-                                <p>
-                                    Subscribe to get latest news update and informations
-                                </p>
-                            </div>
-                            <div class="hm-foot-email">
-                                <div class="foot-email-box">
-                                    <input type="text" class="form-control" placeholder="Add Email">
-                                </div><!--/.foot-email-box-->
-                                <div class="foot-email-subscribe">
-                                    <span><i class="fa fa-arrow-right"></i></span>
-                                </div><!--/.foot-email-icon-->
-                            </div><!--/.hm-foot-email-->
                         </div>
                     </div>
                 </div>
             </div>
             <div class="footer-copyright">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <p>
-                            &copy; copyright.designed and developed by <a
-                                href="https://www.proclanmotors.co.ke/">Proclan Motors</a>.
-                        </p><!--/p-->
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p>&copy; 2025 Proclan Motors. All rights reserved.</p>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="footer-social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                            <a href="#"><i class="fa fa-behance"></i></a>
+                    <div class="col-md-6">
+                        <div class="footer-social text-md-end">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                            <a href="#"><i class="fab fa-behance"></i></a>
                         </div>
                     </div>
                 </div>
-            </div><!--/.footer-copyright-->
-        </div><!--/.container-->
-
-        <div id="scroll-Top">
-            <div class="return-to-top">
-                <i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title=""
-                    data-original-title="Back to Top" aria-hidden="true"></i>
             </div>
+        </div>
+    </footer>
 
-        </div><!--/.scroll-Top-->
-
-    </footer><!--/.contact-->
-
-    <div class="py-3 bg-dark text-center text-white-50" style="background-color: #111;">
-        <small>© 2025 Premium Auto Market. All Rights Reserved.</small>
+    <!-- Scroll to Top -->
+    <div id="scroll-Top">
+        <div class="return-to-top">
+            <i class="fa fa-angle-up"></i>
+        </div>
     </div>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/Script.js"></script>
-</body>
+    	<script src="assets/js/Script.js"></script>
 
-</html>
+    

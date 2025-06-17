@@ -1050,7 +1050,7 @@ document.addEventListener('DOMContentLoaded', function () {
 //rendering car count
 async function fetchCarCount() {
   try {
-    const response = await fetch('http://localhost:3001/api/v1/cars/get-car-count'); // Replace with your actual endpoint
+    const response = await fetch('https://one.proclanmotors.co.ke/api/cars/v1/car-count'); // Replace with your actual endpoint
     const data = await response.json();
 
     if (response.ok && data.statusCode === 200) {

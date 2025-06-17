@@ -4,46 +4,13 @@
 <head>
     <!-- meta data -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-    <!--font-family-->
-    <link
-        href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css?family=Rufina:400,700" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
-
-    <!-- title of site -->
-    <title>Proclan Motors</title>
-
-    <!-- For favicon png -->
-    <link rel="shortcut icon" type="image/icon" href="assets\logo\PLOCLAN MOTORS LOGO.svg" />
-
-    <!--font-awesome.min.css-->
-    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
-
-    <!--linear icon css-->
-    <link rel="stylesheet" href="assets/css/linearicons.css">
-
-    <!--flaticon.css-->
-    <link rel="stylesheet" href="assets/css/flaticon.css">
-
-    <!--animate.css-->
-    <link rel="stylesheet" href="assets/css/animate.css">
-
-    <!--owl.carousel.css-->
-    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
-
-    <!--bootstrap.min.css-->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-
-    <!-- bootsnav -->
-    <link rel="stylesheet" href="assets/css/bootsnav.css">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&display=swap" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!--style.css-->
     <link rel="stylesheet" href="assets/css/style.css">
@@ -116,79 +83,39 @@
 
 <body>
     <!-- Header Section -->
-    <div class="top-bar">
-        <div class="container">
-            <div class="left-info">
-                <div><i class="fas fa-map-marker-alt"></i><span>Milestone Business Center, Kiambu Road,
-                        Ridgeways.</span>
-                </div>
-                <div><i class="far fa-clock"></i><span>Mon - Sat : 06.00 AM - 07.00 PM</span></div>
-                <div><i class="fas fa-phone-alt"></i><span>0742832511
-                    </span></div>
+   <div class="top-bar">
+		<div class="container">
+			<div class="left-info">
+				<div><i class="fas fa-map-marker-alt"></i><span>Milestone Business Center, Kiambu Road, Ridgeways.</span></div>
+				<div><i class="far fa-clock"></i><span>Mon - Sat : 06.00 AM - 07.00 PM</span></div>
+				<div><i class="fas fa-phone-alt"></i><span>0742832511</span></div>
+			</div>
+		</div>
+	</div>
 
-            </div>
-            <!-- <div class="right-info">
-				
-				<div class="social-icons">
-					<a href="#"><i class="fab fa-facebook-f"></i></a>
-					<a href="#"><i class="fab fa-twitter"></i></a>
-					<a href="#"><i class="fab fa-linkedin-in"></i></a>
-					<a href="#"><i class="fab fa-instagram"></i></a>
-				</div>
-			</div> -->
-        </div>
-    </div>
-    <!-- Top Bar End -->
+	<nav class="navbar navbar-expand-lg" id="mainNav">
+		<div class="container">
+			<a href="index.html" class="navbar-brand">
+				<img src="assets\logo\PROCLAN MOTORS LOGO.3.svg" alt="Proclan Motors" class="logo-img" />
+			</a>
 
-    <section id="home" class="welcome-hero">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+				<i class="fa fa-bars"></i>
+			</button>
 
-        <!-- top-area Start -->
-        <div class="top-area">
-            <div class="header-area">
-                <!-- Start Navigation -->
-
-
-                <!-- Start Navigation -->
-                <nav class="navbar navbar-expand-lg bg-white navbar-light shadow navbar-fixed p-0 navbar-xl"
-                    id="mainNav">
-                    <div class="container">
-                        <!-- Start Header Navigation -->
-                        <a href="index.html" class="navbar-brand">
-                            <img src="assets\logo\PLOCLAN MOTORS LOGO.svg" alt="Proclan Motors" class="logo-img" />
-                        </a>
-
-                        <!-- Bootstrap 5 toggle button -->
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                            <i class="fa fa-bars"></i>
-                        </button>
-
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="navbar-menu">
-                            <ul class="navbar-nav ms-auto p-4 p-lg-0" data-in="fadeInDown" data-out="fadeOutUp">
-                                <li><a href="index.html" class="nav-item nav-link active">Home</a></li>
-                                <li><a href="LocallyUsed.html" class="nav-item nav-link">Listings</a></li>
-                                <li><a href="Contact.html" class="nav-item nav-link">Contact Us</a></li>
-                                <li><a href="About.html" class="nav-item nav-link">About</a></li>
-                            </ul>
-                            <a href="Login.html" target="_blank"
-                                class="btn btn-primary d-none d-lg-inline-block py-4 px-lg-5"
-                                title="Login to your account">
-                                Login <i class="fa fa-arrow-right ms-3"></i>
-                            </a>
-                        </div>
-                    </div>
-                </nav>
-                <!-- End Navigation -->
-            </div><!--/.header-area-->
-            <div class="clearfix"></div>
-
-        </div><!-- /.top-area-->
-        <!-- top-area End -->
-        <!-- End Header Section -->
-
-        <!--/.service-->
-
-    </section>
+			<div class="collapse navbar-collapse" id="navbar-menu">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+					<li class="nav-item"><a href="LocallyUsed.html" class="nav-link">Listings</a></li>
+					<li class="nav-item"><a href="Contact.html" class="nav-link active">Contact Us</a></li>
+					<li class="nav-item"><a href="About.html" class="nav-link">About</a></li>
+				</ul>
+				<a href="Login.html" class="btn btn-primary d-none d-lg-inline-block">
+					Login <i class="fa fa-arrow-right ms-2"></i>
+				</a>
+			</div>
+		</div>
+	</nav>
     <!--service end-->
 
 
@@ -214,121 +141,96 @@
     <!--  -->
     <!-- End Main Content -->
 
-    <!-- Footer Section -->
-    <footer id="contact" class="contact">
-        <div class="container">
-            <div class="footer-top">
-                <div class="row">
-                    <div class="col-md-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <div class="footer-logo">
-                                <a href="index.html">PROCLAN MOTORS</a>
-                            </div>
-                            <p>
-                                At Proclan Motors, we're committed to bringing you the finest selection of vehicles,
-                                exceptional service, and unparalleled customer satisfaction. Whether you're in the
-                                market for a new car or need assistance with your vehicle, our team is here to ensure
-                                your experience is nothing short of excellent.
-                            </p>
-                            <div class="footer-contact">
-                                <p>Have questions or need more information? Don't hesitate to reach out!</p>
-                                <p><strong>Email us:</strong> <a
-                                        href="mailto:info@proclanmotors.co.ke">info@proclanmotors.co.ke</a></p>
-                                <p><strong>Call us:</strong> <a href="tel:0742832511">0742832511</a></p>
-                                <p><strong>Location:</strong> Milestone Business Center, Kiambu Road, Ridgeways</p>
-                                <p><strong>Working Hours:</strong> 6 a.m. to 7 p.m.</p>
-                            </div>
+    <footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<div class="footer-widget">
+						<h2>Proclan Motors</h2>
+						<p>At Proclan Motors, we're committed to bringing you the finest selection of vehicles, exceptional service, and unparalleled customer satisfaction.</p>
+						<div class="mt-4">
+							<p><strong>Email:</strong> info@proclanmotors.co.ke</p>
+							<p><strong>Phone:</strong> +254742832511</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="footer-widget">
+						<h2>About</h2>
+						<ul>
+							<li><a href="#">About Us</a></li>
+							<li><a href="#">Career</a></li>
+							<li><a href="#">Terms of Service</a></li>
+							<li><a href="#">Privacy Policy</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="footer-widget">
+						<h2>Top Brands</h2>
+						<div class="row">
+							<div class="col-6">
+								<ul>
+									<li><a href="#">Toyota</a></li>
+									<li><a href="#">Nissan</a></li>
+									<li><a href="#">Mazda</a></li>
+									<li><a href="#">Subaru</a></li>
+									<li><a href="#">Honda</a></li>
+									<li><a href="#">Mitsubishi</a></li>
+								</ul>
+							</div>
+							<div class="col-6">
+								<ul>
+									<li><a href="#">Volkswagen</a></li>
+									<li><a href="#">Suzuki</a></li>
+									<li><a href="#">Isuzu</a></li>
+									<li><a href="#">Hyundai</a></li>
+									<li><a href="#">Kia</a></li>
+									<li><a href="#">Land Rover</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="footer-widget">
+						<h2>Newsletter</h2>
+						<div class="footer-newsletter">
+							<p>Subscribe to get latest news updates and information</p>
+							<div class="footer-email-box">
+								<input type="email" placeholder="Enter your email">
+								<div class="footer-email-subscribe">
+									<i class="fa fa-arrow-right"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer-copyright">
+				<div class="row align-items-center">
+					<div class="col-md-6">
+						<p>&copy; 2025 Proclan Motors. All rights reserved.</p>
+					</div>
+					<div class="col-md-6">
+						<div class="footer-social text-md-end">
+							<a href="#"><i class="fab fa-facebook-f"></i></a>
+							<a href="#"><i class="fab fa-instagram"></i></a>
+							<a href="#"><i class="fab fa-linkedin-in"></i></a>
+							<a href="#"><i class="fab fa-pinterest-p"></i></a>
+							<a href="#"><i class="fab fa-behance"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
 
-                        </div>
-                    </div>
-                    <div class="col-md-2 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h2>about Procan Motors</h2>
-                            <ul>
-                                <li><a href="#">about us</a></li>
-                                <li><a href="#">career</a></li>
-                                <li><a href="#">terms <span> of service</span></a></li>
-                                <li><a href="#">privacy policy</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-xs-12">
-                        <div class="single-footer-widget">
-                            <h2>top brands</h2>
-                            <div class="row">
-                                <div class="col-md-7 col-xs-6">
-                                    <ul>
-                                        <li><a href="#" onclick="loadCars('toyota')">Toyota</a></li>
-                                        <li><a href="#" onclick="loadCars('nissan')">Nissan</a></li>
-                                        <li><a href="#" onclick="loadCars('mazda')">Mazda</a></li>
-                                        <li><a href="#" onclick="loadCars('subaru')">Subaru</a></li>
-                                        <li><a href="#" onclick="loadCars('honda')">Honda</a></li>
-                                        <li><a href="#" onclick="loadCars('mitsubishi')">Mitsubishi</a></li>
-                                    </ul>
-                                </div>
-                                <div class="col-md-5 col-xs-6">
-                                    <ul>
-                                        <li><a href="#" onclick="loadCars('volkswagen')">Volkswagen</a></li>
-                                        <li><a href="#" onclick="loadCars('suzuki')">Suzuki</a></li>
-                                        <li><a href="#" onclick="loadCars('isuzu')">Isuzu</a></li>
-                                        <li><a href="#" onclick="loadCars('hyundai')">Hyundai</a></li>
-                                        <li><a href="#" onclick="loadCars('kia')">Kia</a></li>
-                                        <li><a href="#" onclick="loadCars('land rover')">Land Rover</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                    <div class="col-md-offset-1 col-md-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h2>news letter</h2>
-                            <div class="footer-newsletter">
-                                <p>
-                                    Subscribe to get latest news update and informations
-                                </p>
-                            </div>
-                            <div class="hm-foot-email">
-                                <div class="foot-email-box">
-                                    <input type="text" class="form-control" placeholder="Add Email">
-                                </div><!--/.foot-email-box-->
-                                <div class="foot-email-subscribe">
-                                    <span><i class="fa fa-arrow-right"></i></span>
-                                </div><!--/.foot-email-icon-->
-                            </div><!--/.hm-foot-email-->
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-copyright">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <p>
-                            &copy; copyright.designed and developed by <a href="proclanmotors.co.ke">Proclan
-                                Motors</a>.
-                        </p><!--/p-->
-                    </div>
-                    <div class="right-info">
-
-                        <div class="social-icons">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div><!--/.footer-copyright-->
-        </div><!--/.container-->
-
-        <div id="scroll-Top">
-            <div class="return-to-top">
-                <i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title=""
-                    data-original-title="Back to Top" aria-hidden="true"></i>
-            </div>
-        </div><!--/.scroll-Top-->
-    </footer>
+	<div id="scroll-Top">
+		<div class="return-to-top">
+			<i class="fa fa-angle-up"></i>
+		</div>
+	</div>
     <!-- End Footer Section -->
 
     <!-- Include all js compiled plugins (below), or include individual files as needed -->
