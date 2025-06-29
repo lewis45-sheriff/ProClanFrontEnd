@@ -4,14 +4,15 @@
 <head>
     <!-- meta data -->
     <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&display=swap" rel="stylesheet">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-	
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <!--style.css-->
     <link rel="stylesheet" href="assets/css/style.css">
 
@@ -40,63 +41,88 @@
                 <div><i class="fas fa-phone-alt"></i><span> 0742832511</span></div>
 
             </div>
-            <!-- <div class="right-info">
-				
-				<div class="social-icons">
-					<a href="#"><i class="fab fa-facebook-f"></i></a>
-					<a href="#"><i class="fab fa-twitter"></i></a>
-					<a href="#"><i class="fab fa-linkedin-in"></i></a>
-					<a href="#"><i class="fab fa-instagram"></i></a>
+           <div class="right-info">
+					<div class="social-icons">
+						<a href="https://facebook.com" target="_blank" title="Facebook"><i
+								class="fab fa-facebook-f"></i></a>
+						<a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+					
+						<a href="https://instagram.com" target="_blank" title="Instagram"><i
+								class="fab fa-instagram"></i></a>
+						<a href="https://tiktok.com" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+					</div>
 				</div>
-			</div> -->
-        </div>
     </div>
+    <div class="chat-bot-container">
+	<div class="chat-launcher">
+		<span class="chat-description">Live Chat</span>
+		<button class="chat-toggle" id="chatToggle">
+			<i class="fas fa-comments"></i>
+		</button>
+	</div>
+
+	<div class="chat-box" id="chatBox">
+		<div class="chat-header">
+			Proclan Motors Support
+			<button class="close-chat" id="closeChat">&times;</button>
+		</div>
+		<div class="chat-body">
+			<p><strong>Hello! How can I help you today?</p>
+		</div>
+		<div class="chat-footer">
+			<input type="text" placeholder="Type a message..." />
+			<button><i class="fas fa-paper-plane"></i></button>
+		</div>
+	</div>
+</div>
     <!-- Header Section -->
-   
-
-        <!-- top-area Start -->
-        <div class="top-area">
-            <div class="header-area">
-                <!-- Start Navigation -->
 
 
-                <!-- Start Navigation -->
-                <nav class="navbar navbar-expand-lg bg-white navbar-light shadow navbar-fixed p-0 navbar-xl"
-                    id="mainNav">
-                    <div class="container">
-                        <!-- Start Header Navigation -->
-                        <a href="index.html" class="navbar-brand">
-                            <img src="assets\logo\PROCLAN MOTORS LOGO.3.svg" alt="Proclan Motors" class="logo-img" />
+    <!-- top-area Start -->
+    <div class="top-area">
+        <div class="header-area">
+            <!-- Start Navigation -->
+
+
+            <!-- Start Navigation -->
+            <nav class="navbar navbar-expand-lg bg-white navbar-light shadow navbar-fixed p-0 navbar-xl" id="mainNav">
+                <div class="container">
+                    <!-- Start Header Navigation -->
+                    <a href="index.html" class="navbar-brand">
+                        <img src="assets\logo\PROCLAN MOTORS LOGO NEW-1_page-0001c.jpg" alt="Proclan Motors"
+                            class="logo-img" />
+                    </a>
+
+                    <!-- Bootstrap 5 toggle button -->
+
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbar-menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="navbar-menu">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                            <li class="nav-item"><a href="LocallyUsed.html" class="nav-link">Listings</a></li>
+                            <li class="nav-item"><a href="Contact.html" class="nav-link">Contact Us</a></li>
+                            <li class="nav-item"><a href="About.html" class="nav-link">About Us</a></li>
+                            <li class="nav-item"><a href="https://www.qisjp.co.uk/verify-mileage.php"
+                                    class="nav-link ">Verify Milage</a></li>
+                        </ul>
+                        <a href="Login.html" target="_blank" class="btn custom-login-btn" title="Login to your account">
+                            Login <i class="fa fa-arrow-right ms-2"></i>
                         </a>
-
-                        <!-- Bootstrap 5 toggle button -->
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                            <i class="fa fa-bars"></i>
-                        </button>
-
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="navbar-menu">
-                            <ul class="navbar-nav ms-auto p-4 p-lg-0" data-in="fadeInDown" data-out="fadeOutUp">
-                                <li><a href="index.html" class="nav-item nav-link active">Home</a></li>
-                                <li><a href="LocallyUsed.html" class="nav-item nav-link">Listings</a></li>
-                                <li><a href="Contact.html" class="nav-item nav-link">Contact Us</a></li>
-                                <li><a href="About.html" class="nav-item nav-link">About</a></li>
-                            </ul>
-                            <a href="Login.html" target="_blank"
-                                class="btn btn-primary d-none d-lg-inline-block py-4 px-lg-5"
-                                title="Login to your account">
-                                Login <i class="fa fa-arrow-right ms-3"></i>
-                            </a>
-                        </div>
                     </div>
-                </nav>
-                <!-- End Navigation -->
-            </div><!--/.header-area-->
-            <div class="clearfix"></div>
+                </div>
+            </nav>
+            <!-- End Navigation -->
+        </div><!--/.header-area-->
+        <div class="clearfix"></div>
 
-        </div><!-- /.top-area-->
-        <!-- top-area End -->
-        <!-- Main Content Section -->
+    </div><!-- /.top-area-->
+    <!-- top-area End -->
+    <!-- Main Content Section -->
 
     </section>
     <section id="searched-cars" class="searched-cars">
@@ -118,124 +144,125 @@
                 </div>
             </div><!--/.searched-cars-content-->
         </div><!--/.container-->
-    <!--/.searched-cars-->
+        <!--/.searched-cars-->
 
 
 
-    <!-- End Main Content Section -->
+        <!-- End Main Content Section -->
 
-    <!-- Footer Section -->
-   <footer class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4">
-					<div class="footer-widget">
-						<h2>Proclan Motors</h2>
-						<p>At Proclan Motors, we're committed to bringing you the finest selection of vehicles, exceptional service, and unparalleled customer satisfaction.</p>
-						<div class="mt-4">
-							<p><strong>Email:</strong> info@proclanmotors.co.ke</p>
-							<p><strong>Phone:</strong> +254742832511</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-2">
-					<div class="footer-widget">
-						<h2>About</h2>
-						<ul>
-							<li><a href="#">About Us</a></li>
-							<li><a href="#">Career</a></li>
-							<li><a href="#">Terms of Service</a></li>
-							<li><a href="#">Privacy Policy</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="footer-widget">
-						<h2>Top Brands</h2>
-						<div class="row">
-							<div class="col-6">
-								<ul>
-									<li><a href="#">Toyota</a></li>
-									<li><a href="#">Nissan</a></li>
-									<li><a href="#">Mazda</a></li>
-									<li><a href="#">Subaru</a></li>
-									<li><a href="#">Honda</a></li>
-									<li><a href="#">Mitsubishi</a></li>
-								</ul>
-							</div>
-							<div class="col-6">
-								<ul>
-									<li><a href="#">Volkswagen</a></li>
-									<li><a href="#">Suzuki</a></li>
-									<li><a href="#">Isuzu</a></li>
-									<li><a href="#">Hyundai</a></li>
-									<li><a href="#">Kia</a></li>
-									<li><a href="#">Land Rover</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="footer-widget">
-						<h2>Newsletter</h2>
-						<div class="footer-newsletter">
-							<p>Subscribe to get latest news updates and information</p>
-							<div class="footer-email-box">
-								<input type="email" placeholder="Enter your email">
-								<div class="footer-email-subscribe">
-									<i class="fa fa-arrow-right"></i>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="footer-copyright">
-				<div class="row align-items-center">
-					<div class="col-md-6">
-						<p>&copy; 2025 Proclan Motors. All rights reserved.</p>
-					</div>
-					<div class="col-md-6">
-						<div class="footer-social text-md-end">
-							<a href="#"><i class="fab fa-facebook-f"></i></a>
-							<a href="#"><i class="fab fa-instagram"></i></a>
-							<a href="#"><i class="fab fa-linkedin-in"></i></a>
-							<a href="#"><i class="fab fa-pinterest-p"></i></a>
-							<a href="#"><i class="fab fa-behance"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+        <!-- Footer Section -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="footer-widget">
+                            <h2>Proclan Motors</h2>
+                            <p>At Proclan Motors, we're committed to bringing you the finest selection of vehicles,
+                                exceptional service, and unparalleled customer satisfaction.</p>
+                            <div class="mt-4">
+                                <p><strong>Email:</strong> info@proclanmotors.co.ke</p>
+                                <p><strong>Phone:</strong> +254742832511</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="footer-widget">
+                            <h2>About</h2>
+                            <ul>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Career</a></li>
+                                <li><a href="#">Terms of Service</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="footer-widget">
+                            <h2>Top Brands</h2>
+                            <div class="row">
+                                <div class="col-6">
+                                    <ul>
+                                        <li><a href="#">Toyota</a></li>
+                                        <li><a href="#">Nissan</a></li>
+                                        <li><a href="#">Mazda</a></li>
+                                        <li><a href="#">Subaru</a></li>
+                                        <li><a href="#">Honda</a></li>
+                                        <li><a href="#">Mitsubishi</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-6">
+                                    <ul>
+                                        <li><a href="#">Volkswagen</a></li>
+                                        <li><a href="#">Suzuki</a></li>
+                                        <li><a href="#">Isuzu</a></li>
+                                        <li><a href="#">Hyundai</a></li>
+                                        <li><a href="#">Kia</a></li>
+                                        <li><a href="#">Land Rover</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="footer-widget">
+                            <h2>Newsletter</h2>
+                            <div class="footer-newsletter">
+                                <p>Subscribe to get latest news updates and information</p>
+                                <div class="footer-email-box">
+                                    <input type="email" placeholder="Enter your email">
+                                    <div class="footer-email-subscribe">
+                                        <i class="fa fa-arrow-right"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-copyright">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <p>&copy; 2025 Proclan Motors. All rights reserved.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="footer-social text-md-end">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                                <a href="#"><i class="fab fa-behance"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
-	<div id="scroll-Top">
-		<div class="return-to-top">
-			<i class="fa fa-angle-up"></i>
-		</div>
-	</div>
-    <!-- End Footer Section -->
+        <div id="scroll-Top">
+            <div class="return-to-top">
+                <i class="fa fa-angle-up"></i>
+            </div>
+        </div>
+        <!-- End Footer Section -->
 
-    <!-- JS Scripts Section -->
-    <script src="assets/js/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/bootsnav.js"></script>
-    <script src="assets/js/owl.carousel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="assets\js\Script.js"></script> <!-- Adjust path if needed -->
+        <!-- JS Scripts Section -->
+        <script src="assets/js/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/bootsnav.js"></script>
+        <script src="assets/js/owl.carousel.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/counterup/counterup.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="lib/tempusdominus/js/moment.min.js"></script>
+        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <script src="assets\js\Script.js"></script> <!-- Adjust path if needed -->
 
 </body>
 

@@ -4,123 +4,24 @@
 <head>
     <!-- meta data -->
     <meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&display=swap" rel="stylesheet">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!--style.css-->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
 
     <!--responsive.css-->
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
-    <!-- Custom style to fix header overlap -->
-    <style>
-        /* Fix the header-main content overlap */
-        header {
-            position: relative;
-            z-index: 1000;
-        }
 
-        main {
-            position: relative;
-            z-index: 1;
-            padding-top: 30px;
-            /* Add space between header and main content */
-        }
 
-        /* If the header has a fixed height, you can set a specific padding */
-        /* Adjust this value according to your header height */
-        .welcome-hero {
-            height: auto;
-            min-height: 70px;
-        }
-
-        /* Make sure the navbar stays on top */
-        .navbar-sticky {
-            position: relative;
-            z-index: 1001;
-        }
-
-        /* Contact section specific styling */
-        #contact-details {
-            padding: 60px 0;
-            background-color: #f5f5f5;
-        }
-
-        #contact-details h2 {
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        #contact-details ul {
-            list-style: none;
-            padding-left: 0;
-            margin-bottom: 30px;
-        }
-
-        #contact-details ul li {
-            margin-bottom: 10px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .page-header {
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 400px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .page-header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background: rgba(0, 0, 0, 0.5);
-            /* Dark overlay for better text contrast */
-            z-index: 1;
-        }
-
-        .page-header-inner {
-            position: relative;
-            z-index: 2;
-        }
-
-        .page-header h1 {
-            font-weight: 700;
-            font-size: 3rem;
-            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
-        }
-
-        .breadcrumb {
-            background: transparent;
-            padding: 0;
-            margin-bottom: 0;
-        }
-
-        .breadcrumb-item a {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-
-        .breadcrumb-item.active {
-            color: #ffc107;
-            /* or any accent color you prefer */
-        }
-    </style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -133,299 +34,337 @@
 
 <body>
     <div class="top-bar">
-		<div class="container">
-			<div class="left-info">
-				<div><i class="fas fa-map-marker-alt"></i><span>Milestone Business Center, Kiambu Road, Ridgeways.</span></div>
-				<div><i class="far fa-clock"></i><span>Mon - Sat : 06.00 AM - 07.00 PM</span></div>
-				<div><i class="fas fa-phone-alt"></i><span>0742832511</span></div>
-			</div>
-		</div>
-	</div>
+        <div class="container">
+            <div class="left-info">
+                <div><i class="fas fa-map-marker-alt"></i><span>Milestone Business Center, Kiambu Road,
+                        Ridgeways.</span></div>
+                <div><i class="far fa-clock"></i><span>Mon - Sat : 06.00 AM - 07.00 PM</span></div>
+                <div><i class="fas fa-phone-alt"></i><span>0742832511</span></div>
+            </div>
+            <div class="right-info">
+                <div class="social-icons">
+                    <a href="https://facebook.com" target="_blank" title="Facebook"><i
+                            class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
 
-	<nav class="navbar navbar-expand-lg" id="mainNav">
-		<div class="container">
-			<a href="index.html" class="navbar-brand">
-				<img src="assets\logo\PROCLAN MOTORS LOGO.3.svg" alt="Proclan Motors" class="logo-img" />
-			</a>
+                    <a href="https://instagram.com" target="_blank" title="Instagram"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://tiktok.com" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="chat-bot-container">
+        <div class="chat-launcher">
+            <span class="chat-description">Live Chat</span>
+            <button class="chat-toggle" id="chatToggle">
+                <i class="fas fa-comments"></i>
+            </button>
+        </div>
 
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
-				<i class="fa fa-bars"></i>
-			</button>
+        <div class="chat-box" id="chatBox">
+            <div class="chat-header">
+                Proclan Motors Support
+                <button class="close-chat" id="closeChat">&times;</button>
+            </div>
+            <div class="chat-body">
+                <p><strong>Hello! How can I help you today?</p>
+            </div>
+            <div class="chat-footer">
+                <input type="text" placeholder="Type a message..." />
+                <button><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
 
-			<div class="collapse navbar-collapse" id="navbar-menu">
-				<ul class="navbar-nav ms-auto">
-					<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="LocallyUsed.html" class="nav-link">Listings</a></li>
-					<li class="nav-item"><a href="Contact.html" class="nav-link active">Contact Us</a></li>
-					<li class="nav-item"><a href="About.html" class="nav-link">About</a></li>
-				</ul>
-				<a href="Login.html" class="btn btn-primary d-none d-lg-inline-block">
-					Login <i class="fa fa-arrow-right ms-2"></i>
-				</a>
-			</div>
-		</div>
-	</nav>
-        </div><!-- /.top-area-->
-        <!-- top-area End -->
-        <!-- Main Content Section -->
-        <main>
-            <!-- Contact Section -->
-            <section id="contact-details" class="contact-details">
-                <!-- Features Start -->
-                <div class="container-xxl py-5">
-                    <div class="container">
-                        <div class="row g-4">
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                                <div class="d-flex py-5 px-4">
-                                    <i class="fa fa-car fa-3x text-primary flex-shrink-0"></i>
-                                    <div class="ps-4">
-                                        <h5 class="mb-3">Wide Car Selection</h5>
-                                        <p>Browse through a large collection of new and used cars for every budget and
-                                            need.</p>
-                                        <a class="text-secondary border-bottom" href="">Read More</a>
-                                    </div>
+
+    <nav class="navbar navbar-expand-lg" id="mainNav">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <img src="assets\logo\PROCLAN MOTORS LOGO NEW-1_page-0001c.jpg" alt="Proclan Motors" class="logo-img" />
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+                <i class="fa fa-bars"></i>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="LocallyUsed.html" class="nav-link">Listings</a></li>
+                    <li class="nav-item"><a href="Contact.html" class="nav-link">Contact Us</a></li>
+                    <li class="nav-item"><a href="About.html" class="nav-link">About Us</a></li>
+                    <li class="nav-item"><a href="https://www.qisjp.co.uk/verify-mileage.php" class="nav-link ">Verify
+                            Milage</a></li>
+                </ul>
+                <a href="Login.html" target="_blank" class="btn custom-login-btn" title="Login to your account">
+                    Login <i class="fa fa-arrow-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+    </div><!-- /.top-area-->
+    <!-- top-area End -->
+    <!-- Main Content Section -->
+    <main>
+        <!-- Contact Section -->
+        <section id="contact-details" class="contact-details">
+            <!-- Features Start -->
+            <div class="container-xxl py-5">
+                <div class="container">
+                    <div class="row g-4">
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="d-flex py-5 px-4">
+                                <i class="fa fa-car fa-3x text-primary flex-shrink-0"></i>
+                                <div class="ps-4">
+                                    <h5 class="mb-3">Wide Car Selection</h5>
+                                    <p>Browse through a large collection of new and used cars for every budget and
+                                        need.</p>
+                                    <a class="text-secondary border-bottom" href="">Read More</a>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                                <div class="d-flex bg-light py-5 px-4">
-                                    <i class="fa fa-handshake fa-3x text-primary flex-shrink-0"></i>
-                                    <div class="ps-4">
-                                        <h5 class="mb-3">Trusted Dealers</h5>
-                                        <p>Work with verified, experienced dealers to ensure a smooth and honest
-                                            transaction.</p>
-                                        <a class="text-secondary border-bottom" href="">Read More</a>
-                                    </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                            <div class="d-flex bg-light py-5 px-4">
+                                <i class="fa fa-handshake fa-3x text-primary flex-shrink-0"></i>
+                                <div class="ps-4">
+                                    <h5 class="mb-3">Trusted Dealers</h5>
+                                    <p>Work with verified, experienced dealers to ensure a smooth and honest
+                                        transaction.</p>
+                                    <a class="text-secondary border-bottom" href="">Read More</a>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                                <div class="d-flex py-5 px-4">
-                                    <i class="fa fa-tag fa-3x text-primary flex-shrink-0"></i>
-                                    <div class="ps-4">
-                                        <h5 class="mb-3">Affordable Prices</h5>
-                                        <p>Find the best value for your money with competitive pricing and flexible
-                                            financing.</p>
-                                        <a class="text-secondary border-bottom" href="">Read More</a>
-                                    </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                            <div class="d-flex py-5 px-4">
+                                <i class="fa fa-tag fa-3x text-primary flex-shrink-0"></i>
+                                <div class="ps-4">
+                                    <h5 class="mb-3">Affordable Prices</h5>
+                                    <p>Find the best value for your money with competitive pricing and flexible
+                                        financing.</p>
+                                    <a class="text-secondary border-bottom" href="">Read More</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- About Start -->
-                <div class="container-xxl py-5">
-                    <div class="container">
-                        <div class="row g-5">
-                            <div class="col-lg-6 pt-4" style="min-height: 400px;">
-                                <div class="position-relative h-100 wow fadeIn" data-wow-delay="0.1s">
-                                    <img class="position-absolute img-fluid w-100 h-100"
-                                        src="assets\logo\Proclan logo 2 [Recovered].svg" style="object-fit: cover;"
-                                        alt="Cars">
-                                    <div class="position-absolute top-0 end-0 mt-n4 me-n4 py-4 px-5"
-                                        style="background: rgba(0, 0, 0, .08);">
-                                        <h1 class="display-4 text-white mb-0">5 <span class="fs-4">Years</span></h1>
-                                        <h4 class="text-white">In Car Sales</h4>
+            <!-- About Start -->
+            <div class="container-xxl py-5">
+                <div class="container">
+                    <div class="row g-5">
+                        <div class="col-lg-6 pt-4" style="min-height: 400px;">
+                            <div class="position-relative h-100 wow fadeIn" data-wow-delay="0.1s">
+                                <img class="position-absolute img-fluid w-100 h-100"
+                                    src="assets\logo\Proclan logo 2 [Recovered].svg" style="object-fit: cover;"
+                                    alt="Cars">
+                                <div class="position-absolute top-0 end-0 mt-n4 me-n4 py-4 px-5"
+                                    style="background: rgba(0, 0, 0, .08);">
+                                    <h1 class="display-4 text-white mb-0">5 <span class="fs-4">Years</span></h1>
+                                    <h4 class="text-white">In Car Sales</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <h6 class="text-primary text-uppercase">// About Us //</h6>
+                            <h1 class="mb-4"><span class="text-primary">Proclan Motors</span> - Your Trusted Car
+                                Marketplace</h1>
+                            <p class="mb-4">We connect buyers with the best selection of new and pre-owned vehicles
+                                from verified sellers. Experience hassle-free car buying with financing options,
+                                trusted dealerships, and reliable support.</p>
+                            <div class="row g-4 mb-3 pb-3">
+                                <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
+                                    <div class="d-flex">
+                                        <div class="bg-light d-flex flex-shrink-0 align-items-center justify-content-center mt-1"
+                                            style="width: 45px; height: 45px;">
+                                            <span class="fw-bold text-secondary">01</span>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>Certified Listings</h6>
+                                            <span>All vehicles are inspected and verified by our team for your peace
+                                                of mind.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 wow fadeIn" data-wow-delay="0.3s">
+                                    <div class="d-flex">
+                                        <div class="bg-light d-flex flex-shrink-0 align-items-center justify-content-center mt-1"
+                                            style="width: 45px; height: 45px;">
+                                            <span class="fw-bold text-secondary">02</span>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>Easy Financing</h6>
+                                            <span>Flexible loan options available directly through our
+                                                platform.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 wow fadeIn" data-wow-delay="0.5s">
+                                    <div class="d-flex">
+                                        <div class="bg-light d-flex flex-shrink-0 align-items-center justify-content-center mt-1"
+                                            style="width: 45px; height: 45px;">
+                                            <span class="fw-bold text-secondary">03</span>
+                                        </div>
+                                        <div class="ps-3">
+                                            <h6>Customer Satisfaction</h6>
+                                            <span>Thousands of happy customers and growing every day.</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6">
-                                <h6 class="text-primary text-uppercase">// About Us //</h6>
-                                <h1 class="mb-4"><span class="text-primary">Proclan Motors</span> - Your Trusted Car
-                                    Marketplace</h1>
-                                <p class="mb-4">We connect buyers with the best selection of new and pre-owned vehicles
-                                    from verified sellers. Experience hassle-free car buying with financing options,
-                                    trusted dealerships, and reliable support.</p>
-                                <div class="row g-4 mb-3 pb-3">
-                                    <div class="col-12 wow fadeIn" data-wow-delay="0.1s">
-                                        <div class="d-flex">
-                                            <div class="bg-light d-flex flex-shrink-0 align-items-center justify-content-center mt-1"
-                                                style="width: 45px; height: 45px;">
-                                                <span class="fw-bold text-secondary">01</span>
-                                            </div>
-                                            <div class="ps-3">
-                                                <h6>Certified Listings</h6>
-                                                <span>All vehicles are inspected and verified by our team for your peace
-                                                    of mind.</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 wow fadeIn" data-wow-delay="0.3s">
-                                        <div class="d-flex">
-                                            <div class="bg-light d-flex flex-shrink-0 align-items-center justify-content-center mt-1"
-                                                style="width: 45px; height: 45px;">
-                                                <span class="fw-bold text-secondary">02</span>
-                                            </div>
-                                            <div class="ps-3">
-                                                <h6>Easy Financing</h6>
-                                                <span>Flexible loan options available directly through our
-                                                    platform.</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 wow fadeIn" data-wow-delay="0.5s">
-                                        <div class="d-flex">
-                                            <div class="bg-light d-flex flex-shrink-0 align-items-center justify-content-center mt-1"
-                                                style="width: 45px; height: 45px;">
-                                                <span class="fw-bold text-secondary">03</span>
-                                            </div>
-                                            <div class="ps-3">
-                                                <h6>Customer Satisfaction</h6>
-                                                <span>Thousands of happy customers and growing every day.</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <a href="" class="btn btn-primary py-3 px-5">Learn More<i
-                                        class="fa fa-arrow-right ms-3"></i></a>
+                            <a href="" class="btn btn-primary py-3 px-5">Learn More<i
+                                    class="fa fa-arrow-right ms-3"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Stats Start -->
+            <div class="container-fluid fact bg-dark my-5 py-5">
+                <div class="container">
+                    <div class="row g-4">
+                        <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
+                            <i class="fa fa-calendar-check fa-2x text-white mb-3"></i>
+                            <h2 class="text-white mb-2" data-toggle="counter-up">3</h2>
+                            <p class="text-white mb-0">Years in Business</p>
+                        </div>
+                        <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.3s">
+                            <i class="fa fa-car fa-2x text-white mb-3"></i>
+                            <h2 class="text-white mb-2" data-toggle="counter-up">30</h2>
+                            <p class="text-white mb-0">Cars Sold</p>
+                        </div>
+                        <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.5s">
+                            <i class="fa fa-smile fa-2x text-white mb-3"></i>
+                            <h2 class="text-white mb-2" data-toggle="counter-up">30</h2>
+                            <p class="text-white mb-0">Happy Customers</p>
+                        </div>
+                        <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s">
+                            <i class="fa fa-map-marker-alt fa-2x text-white mb-3"></i>
+                            <h2 class="text-white mb-2" data-toggle="counter-up">1</h2>
+                            <p class="text-white mb-0">Showrooms Nationwide</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Section End -->
+    </main>
+    <!-- End Main Content Section -->
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-widget">
+                        <h2>Proclan Motors</h2>
+                        <p>At Proclan Motors, we're committed to bringing you the finest selection of vehicles,
+                            exceptional service, and unparalleled customer satisfaction.</p>
+                        <div class="mt-4">
+                            <p><strong>Email:</strong> info@proclanmotors.co.ke</p>
+                            <p><strong>Phone:</strong> +254742832511</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="footer-widget">
+                        <h2>About</h2>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Career</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="footer-widget">
+                        <h2>Top Brands</h2>
+                        <div class="row">
+                            <div class="col-6">
+                                <ul>
+                                    <li><a href="#">Toyota</a></li>
+                                    <li><a href="#">Nissan</a></li>
+                                    <li><a href="#">Mazda</a></li>
+                                    <li><a href="#">Subaru</a></li>
+                                    <li><a href="#">Honda</a></li>
+                                    <li><a href="#">Mitsubishi</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-6">
+                                <ul>
+                                    <li><a href="#">Volkswagen</a></li>
+                                    <li><a href="#">Suzuki</a></li>
+                                    <li><a href="#">Isuzu</a></li>
+                                    <li><a href="#">Hyundai</a></li>
+                                    <li><a href="#">Kia</a></li>
+                                    <li><a href="#">Land Rover</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
-                <!-- Stats Start -->
-                <div class="container-fluid fact bg-dark my-5 py-5">
-                    <div class="container">
-                        <div class="row g-4">
-                            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
-                                <i class="fa fa-calendar-check fa-2x text-white mb-3"></i>
-                                <h2 class="text-white mb-2" data-toggle="counter-up">3</h2>
-                                <p class="text-white mb-0">Years in Business</p>
-                            </div>
-                            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.3s">
-                                <i class="fa fa-car fa-2x text-white mb-3"></i>
-                                <h2 class="text-white mb-2" data-toggle="counter-up">30</h2>
-                                <p class="text-white mb-0">Cars Sold</p>
-                            </div>
-                            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.5s">
-                                <i class="fa fa-smile fa-2x text-white mb-3"></i>
-                                <h2 class="text-white mb-2" data-toggle="counter-up">30</h2>
-                                <p class="text-white mb-0">Happy Customers</p>
-                            </div>
-                            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s">
-                                <i class="fa fa-map-marker-alt fa-2x text-white mb-3"></i>
-                                <h2 class="text-white mb-2" data-toggle="counter-up">1</h2>
-                                <p class="text-white mb-0">Showrooms Nationwide</p>
+                <div class="col-md-3">
+                    <div class="footer-widget">
+                        <h2>Newsletter</h2>
+                        <div class="footer-newsletter">
+                            <p>Subscribe to get latest news updates and information</p>
+                            <div class="footer-email-box">
+                                <input type="email" placeholder="Enter your email">
+                                <div class="footer-email-subscribe">
+                                    <i class="fa fa-arrow-right"></i>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-            <!-- Contact Section End -->
-        </main>
-        <!-- End Main Content Section -->
+            </div>
+            <div class="footer-copyright">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p>&copy; 2025 Proclan Motors. All rights reserved.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="footer-social text-md-end">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                            <a href="#"><i class="fab fa-behance"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-       <footer class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4">
-					<div class="footer-widget">
-						<h2>Proclan Motors</h2>
-						<p>At Proclan Motors, we're committed to bringing you the finest selection of vehicles, exceptional service, and unparalleled customer satisfaction.</p>
-						<div class="mt-4">
-							<p><strong>Email:</strong> info@proclanmotors.co.ke</p>
-							<p><strong>Phone:</strong> +254742832511</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-2">
-					<div class="footer-widget">
-						<h2>About</h2>
-						<ul>
-							<li><a href="#">About Us</a></li>
-							<li><a href="#">Career</a></li>
-							<li><a href="#">Terms of Service</a></li>
-							<li><a href="#">Privacy Policy</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="footer-widget">
-						<h2>Top Brands</h2>
-						<div class="row">
-							<div class="col-6">
-								<ul>
-									<li><a href="#">Toyota</a></li>
-									<li><a href="#">Nissan</a></li>
-									<li><a href="#">Mazda</a></li>
-									<li><a href="#">Subaru</a></li>
-									<li><a href="#">Honda</a></li>
-									<li><a href="#">Mitsubishi</a></li>
-								</ul>
-							</div>
-							<div class="col-6">
-								<ul>
-									<li><a href="#">Volkswagen</a></li>
-									<li><a href="#">Suzuki</a></li>
-									<li><a href="#">Isuzu</a></li>
-									<li><a href="#">Hyundai</a></li>
-									<li><a href="#">Kia</a></li>
-									<li><a href="#">Land Rover</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="footer-widget">
-						<h2>Newsletter</h2>
-						<div class="footer-newsletter">
-							<p>Subscribe to get latest news updates and information</p>
-							<div class="footer-email-box">
-								<input type="email" placeholder="Enter your email">
-								<div class="footer-email-subscribe">
-									<i class="fa fa-arrow-right"></i>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="footer-copyright">
-				<div class="row align-items-center">
-					<div class="col-md-6">
-						<p>&copy; 2025 Proclan Motors. All rights reserved.</p>
-					</div>
-					<div class="col-md-6">
-						<div class="footer-social text-md-end">
-							<a href="#"><i class="fab fa-facebook-f"></i></a>
-							<a href="#"><i class="fab fa-instagram"></i></a>
-							<a href="#"><i class="fab fa-linkedin-in"></i></a>
-							<a href="#"><i class="fab fa-pinterest-p"></i></a>
-							<a href="#"><i class="fab fa-behance"></i></a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+    <div id="scroll-Top">
+        <div class="return-to-top">
+            <i class="fa fa-angle-up"></i>
+        </div>
+    </div>
+    <!-- End Footer Section -->
 
-	<div id="scroll-Top">
-		<div class="return-to-top">
-			<i class="fa fa-angle-up"></i>
-		</div>
-	</div>
-        <!-- End Footer Section -->
-
-        <!-- JS Scripts Section -->
-        <script src="assets/js/jquery.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/bootsnav.js"></script>
-        <script src="assets/js/owl.carousel.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/wow/wow.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/counterup/counterup.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/tempusdominus/js/moment.min.js"></script>
-        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-        <script src="assets\js\Script.js"></script> <!-- Adjust path if needed -->
+    <!-- JS Scripts Section -->
+    <script src="assets/js/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/bootsnav.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="assets\js\Script.js"></script> <!-- Adjust path if needed -->
 
 </body>
 
