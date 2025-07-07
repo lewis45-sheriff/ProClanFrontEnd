@@ -118,6 +118,14 @@ const AuthModule = (() => {
    * Updates UI elements with user data
    * @param {Object} user - User data object
    */
+  document.addEventListener('DOMContentLoaded', () => {
+  const userJson = localStorage.getItem('user'); // Adjust key if needed
+  if (userJson) {
+    const user = JSON.parse(userJson);
+    updateUserInterface(user);
+  }
+});
+
   const updateUserInterface = (user) => {
     const userNameElement = document.getElementById('username');
     const userRoleElement = document.getElementById('userRole');
