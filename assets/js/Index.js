@@ -6,9 +6,9 @@
 // Global Configuration
 const CONFIG = {
   API_BASE_URL: 'https://your-api-endpoint.com/api',
-  LOCAL_API_URL: 'https://one.proclanmotors.co.ke/api/auth/v1',
-  CARS_API_URL: 'https://one.proclanmotors.co.ke/api/cars/v1',
-  CAR_FEATURES: 'https://one.proclanmotors.co.ke/api/cars/v1/car-features/',
+  LOCAL_API_URL: ' http://127.0.0.1:8000/api/auth/v1',
+  CARS_API_URL: 'http://127.0.0.1:8000/api/cars/v1',
+  CAR_FEATURES: 'http://127.0.0.1:8000/api/cars/v1/car-features/',
   REDIRECT_DELAY: 1500
 };
 

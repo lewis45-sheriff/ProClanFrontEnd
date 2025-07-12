@@ -16,678 +16,70 @@
 
 	<title>Contact Us - Proclan Motors</title>
 
-	<style>
-		:root {
-			--primary-color: #1e40af;
-			--primary-dark: #1e3a8a;
-			--secondary-color: #06b6d4;
-			--accent-color: #f59e0b;
-			--dark-color: #0f172a;
-			--light-color: #f8fafc;
-			--text-color: #334155;
-			--text-light: #64748b;
-			--border-color: #e2e8f0;
-			--shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-			--shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-			--shadow-heavy: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-			--gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-			--gradient-accent: linear-gradient(135deg, var(--accent-color) 0%, #ef4444 100%);
-		}
 
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-		}
-
-		body {
-			font-family: 'Poppins', sans-serif;
-			line-height: 1.6;
-			color: var(--text-color);
-			background: var(--light-color);
-			overflow-x: hidden;
-		}
-
-		/* Top Bar Styling */
-		.top-bar {
-			background: var(--gradient-primary);
-			color: white;
-			padding: 12px 0;
-			font-size: 14px;
-			position: relative;
-			overflow: hidden;
-		}
-
-		.top-bar::before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: -100%;
-			width: 100%;
-			height: 100%;
-			background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-			animation: shimmer 3s infinite;
-		}
-
-		@keyframes shimmer {
-			0% {
-				left: -100%;
-			}
-
-			100% {
-				left: 100%;
-			}
-		}
-
-		.left-info {
-			display: flex;
-			gap: 30px;
-			flex-wrap: wrap;
-			align-items: center;
-		}
-
-		.left-info>div {
-			display: flex;
-			align-items: center;
-			gap: 8px;
-			transition: transform 0.3s ease;
-		}
-
-		.left-info>div:hover {
-			transform: translateY(-2px);
-		}
-
-		.left-info i {
-			color: var(--accent-color);
-			font-size: 16px;
-		}
-
-		/* Navigation Styling */
-		.navbar {
-			background: rgba(255, 255, 255, 0.95) !important;
-			backdrop-filter: blur(10px);
-			border-bottom: 1px solid var(--border-color);
-			padding: 15px 0;
-			transition: all 0.3s ease;
-			position: sticky;
-			top: 0;
-			z-index: 1000;
-		}
-
-		.navbar.scrolled {
-			background: rgba(255, 255, 255, 0.98) !important;
-			box-shadow: var(--shadow-medium);
-		}
-
-		.logo-img {
-			height: 100px;
-			width: auto;
-			transition: transform 0.3s ease;
-		}
-
-		.logo-img:hover {
-			transform: scale(1.05);
-		}
-
-		.navbar-nav .nav-link {
-			color: var(--text-color) !important;
-			font-weight: 500;
-			margin: 0 15px;
-			position: relative;
-			transition: all 0.3s ease;
-		}
-
-		.navbar-nav .nav-link::after {
-			content: '';
-			position: absolute;
-			bottom: -5px;
-			left: 50%;
-			width: 0;
-			height: 3px;
-			background: var(--gradient-primary);
-			transition: all 0.3s ease;
-			transform: translateX(-50%);
-			border-radius: 2px;
-		}
-
-		.navbar-nav .nav-link:hover::after,
-		.navbar-nav .nav-link.active::after {
-			width: 100%;
-		}
-
-		.navbar-nav .nav-link:hover {
-			color: var(--primary-color) !important;
-			transform: translateY(-2px);
-		}
-
-		.btn-primary {
-			background: var(--gradient-primary);
-			border: none;
-			padding: 12px 30px;
-			font-weight: 600;
-			border-radius: 50px;
-			transition: all 0.3s ease;
-			position: relative;
-			overflow: hidden;
-		}
-
-		.btn-primary::before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: -100%;
-			width: 100%;
-			height: 100%;
-			background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-			transition: left 0.5s ease;
-		}
-
-		.btn-primary:hover::before {
-			left: 100%;
-		}
-
-		.btn-primary:hover {
-			transform: translateY(-2px);
-			box-shadow: var(--shadow-medium);
-		}
-
-		/* Contact Section */
-		.contact-section {
-			padding: 100px 0;
-			background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-			position: relative;
-		}
-
-		.contact-section::before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23e2e8f0" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-			pointer-events: none;
-		}
-
-		.section-heading {
-			text-align: center;
-			margin-bottom: 80px;
-			position: relative;
-		}
-
-		.section-heading h6 {
-			color: var(--primary-color);
-			font-weight: 700;
-			font-size: 14px;
-			letter-spacing: 2px;
-			margin-bottom: 20px;
-			position: relative;
-		}
-
-		.section-heading h6::before,
-		.section-heading h6::after {
-			content: '';
-			position: absolute;
-			top: 50%;
-			width: 40px;
-			height: 2px;
-			background: var(--gradient-primary);
-		}
-
-		.section-heading h6::before {
-			left: -60px;
-		}
-
-		.section-heading h6::after {
-			right: -60px;
-		}
-
-		.section-heading h1 {
-			font-family: 'Rufina', serif;
-			font-size: 3.5rem;
-			font-weight: 700;
-			color: var(--dark-color);
-			margin-bottom: 20px;
-			background: var(--gradient-primary);
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
-			background-clip: text;
-		}
-
-		/* Contact Info Cards */
-		.contact-card {
-			background: white;
-			border-radius: 20px;
-			padding: 40px 30px;
-			height: 100%;
-			box-shadow: var(--shadow-light);
-			border: 1px solid var(--border-color);
-			transition: all 0.3s ease;
-			position: relative;
-			overflow: hidden;
-		}
-
-		.contact-card::before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 4px;
-			background: var(--gradient-primary);
-			transform: scaleX(0);
-			transition: transform 0.3s ease;
-		}
-
-		.contact-card:hover::before {
-			transform: scaleX(1);
-		}
-
-		.contact-card:hover {
-			transform: translateY(-10px);
-			box-shadow: var(--shadow-heavy);
-		}
-
-		.contact-card h5 {
-			color: var(--dark-color);
-			font-weight: 700;
-			margin-bottom: 25px;
-			font-size: 1.1rem;
-		}
-
-		.contact-card p {
-			margin-bottom: 15px;
-			display: flex;
-			align-items: center;
-			color: var(--text-light);
-			transition: color 0.3s ease;
-		}
-
-		.contact-card:hover p {
-			color: var(--text-color);
-		}
-
-		.contact-card i {
-			margin-right: 12px;
-			font-size: 18px;
-			color: var(--primary-color);
-		}
-
-		/* Map and Form Container */
-		.contact-content {
-			background: white;
-			border-radius: 20px;
-			overflow: hidden;
-			box-shadow: var(--shadow-medium);
-			margin-top: 50px;
-		}
-
-		.map-container {
-			position: relative;
-			height: 500px;
-			overflow: hidden;
-		}
-
-		.map-container iframe {
-			width: 100%;
-			height: 100%;
-			border: none;
-			transition: filter 0.3s ease;
-		}
-
-		.map-container:hover iframe {
-			filter: saturate(1.2);
-		}
-
-		.form-container {
-			padding: 50px;
-			background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-		}
-
-		.form-floating {
-			margin-bottom: 25px;
-		}
-
-		.form-control {
-			border: 2px solid var(--border-color);
-			border-radius: 15px;
-			padding: 20px 15px;
-			font-size: 16px;
-			transition: all 0.3s ease;
-			background: rgba(255, 255, 255, 0.8);
-		}
-
-		.form-control:focus {
-			border-color: var(--primary-color);
-			box-shadow: 0 0 0 0.2rem rgba(30, 64, 175, 0.25);
-			background: white;
-			transform: translateY(-2px);
-		}
-
-		.form-floating>label {
-			color: var(--text-light);
-			font-weight: 500;
-		}
-
-		.btn-submit {
-			background: var(--gradient-primary);
-			border: none;
-			padding: 18px 40px;
-			font-weight: 600;
-			border-radius: 50px;
-			font-size: 16px;
-			width: 100%;
-			transition: all 0.3s ease;
-			position: relative;
-			overflow: hidden;
-		}
-
-		.btn-submit::before {
-			content: '';
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			width: 0;
-			height: 0;
-			background: rgba(255, 255, 255, 0.2);
-			border-radius: 50%;
-			transform: translate(-50%, -50%);
-			transition: all 0.3s ease;
-		}
-
-		.btn-submit:hover::before {
-			width: 300px;
-			height: 300px;
-		}
-
-		.btn-submit:hover {
-			transform: translateY(-3px);
-			box-shadow: var(--shadow-heavy);
-		}
-
-		/* Footer */
-		.footer {
-			background: var(--dark-color);
-			color: white;
-			padding: 80px 0 0;
-			position: relative;
-		}
-
-		.footer::before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			height: 4px;
-			background: var(--gradient-primary);
-		}
-
-		.footer-widget {
-			margin-bottom: 50px;
-		}
-
-		.footer-widget h2 {
-			font-size: 1.5rem;
-			font-weight: 700;
-			margin-bottom: 30px;
-			color: white;
-			position: relative;
-		}
-
-		.footer-widget h2::after {
-			content: '';
-			position: absolute;
-			bottom: -10px;
-			left: 0;
-			width: 50px;
-			height: 3px;
-			background: var(--gradient-primary);
-			border-radius: 2px;
-		}
-
-		.footer-widget ul {
-			list-style: none;
-		}
-
-		.footer-widget ul li {
-			margin-bottom: 12px;
-		}
-
-		.footer-widget ul li a {
-			color: #94a3b8;
-			text-decoration: none;
-			transition: all 0.3s ease;
-			position: relative;
-			padding-left: 20px;
-		}
-
-		.footer-widget ul li a::before {
-			content: '▶';
-			position: absolute;
-			left: 0;
-			color: var(--primary-color);
-			font-size: 10px;
-			opacity: 0;
-			transform: translateX(-10px);
-			transition: all 0.3s ease;
-		}
-
-		.footer-widget ul li a:hover {
-			color: white;
-			padding-left: 25px;
-		}
-
-		.footer-widget ul li a:hover::before {
-			opacity: 1;
-			transform: translateX(0);
-		}
-
-		.footer-newsletter {
-			background: rgba(255, 255, 255, 0.05);
-			border-radius: 15px;
-			padding: 30px;
-			margin-top: 20px;
-		}
-
-		.footer-email-box {
-			display: flex;
-			margin-top: 20px;
-		}
-
-		.footer-email-box input {
-			flex: 1;
-			padding: 15px 20px;
-			border: none;
-			border-radius: 50px 0 0 50px;
-			background: rgba(255, 255, 255, 0.1);
-			color: white;
-			backdrop-filter: blur(10px);
-		}
-
-		.footer-email-box input::placeholder {
-			color: #94a3b8;
-		}
-
-		.footer-email-subscribe {
-			background: var(--gradient-primary);
-			border-radius: 0 50px 50px 0;
-			padding: 15px 25px;
-			cursor: pointer;
-			transition: all 0.3s ease;
-		}
-
-		.footer-email-subscribe:hover {
-			transform: translateX(5px);
-		}
-
-		.footer-copyright {
-			border-top: 1px solid #334155;
-			padding: 30px 0;
-			text-align: center;
-			color: #94a3b8;
-		}
-
-		.footer-social a {
-			display: inline-block;
-			width: 45px;
-			height: 45px;
-			background: rgba(255, 255, 255, 0.1);
-			border-radius: 50%;
-			text-align: center;
-			line-height: 45px;
-			margin: 0 10px;
-			color: white;
-			transition: all 0.3s ease;
-		}
-
-		.footer-social a:hover {
-			background: var(--primary-color);
-			transform: translateY(-5px);
-		}
-
-		/* Scroll to top */
-		#scroll-Top {
-			position: fixed;
-			bottom: 30px;
-			right: 30px;
-			z-index: 1000;
-			opacity: 0;
-			visibility: hidden;
-			transition: all 0.3s ease;
-		}
-
-		#scroll-Top.show {
-			opacity: 1;
-			visibility: visible;
-		}
-
-		.return-to-top {
-			width: 55px;
-			height: 55px;
-			background: var(--gradient-primary);
-			border-radius: 50%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			color: white;
-			font-size: 20px;
-			cursor: pointer;
-			transition: all 0.3s ease;
-			box-shadow: var(--shadow-medium);
-		}
-
-		.return-to-top:hover {
-			transform: translateY(-5px);
-			box-shadow: var(--shadow-heavy);
-		}
-
-		/* Animations */
-		@keyframes fadeInUp {
-			from {
-				opacity: 0;
-				transform: translateY(30px);
-			}
-
-			to {
-				opacity: 1;
-				transform: translateY(0);
-			}
-		}
-
-		.fade-in-up {
-			animation: fadeInUp 0.6s ease forwards;
-		}
-
-		/* Responsive Design */
-		@media (max-width: 768px) {
-			.section-heading h1 {
-				font-size: 2.5rem;
-			}
-
-			.section-heading h6::before,
-			.section-heading h6::after {
-				display: none;
-			}
-
-			.left-info {
-				flex-direction: column;
-				gap: 15px;
-			}
-
-			.form-container {
-				padding: 30px 20px;
-			}
-
-			.contact-content {
-				margin-top: 30px;
-			}
-		}
-
-		@media (max-width: 576px) {
-			.navbar-nav .nav-link {
-				margin: 5px 0;
-			}
-
-			.contact-card {
-				padding: 30px 20px;
-			}
-		}
-	</style>
 </head>
 
 <body>
 	<div class="top-bar">
 		<div class="container">
 			<div class="left-info">
-				<div><i class="fas fa-map-marker-alt"></i><span>Milestone Business Center, Kiambu Road,
-						Ridgeways.</span></div>
-				<div><i class="far fa-clock"></i><span>Mon - Sat : 06.00 AM - 07.00 PM</span></div>
-				<div><i class="fas fa-phone-alt"></i><span>0742832511</span></div>
-			</div>
+    <div>
+        <i class="fas fa-map-marker-alt" style="color: black; font-weight: bold;"></i>
+        <span>Milestone Business Center, Kiambu Road, Ridgeways.</span>
+    </div>
+    <div>
+        <i class="far fa-clock" style="color: black; font-weight: bold;"></i>
+        <span>Mon - Sat : 06.00 AM - 07.00 PM</span>
+    </div>
+    <div>
+        <i class="fas fa-phone-alt" style="color: black; font-weight: bold;"></i>
+        <a href="tel:0742832511" style="color: inherit; text-decoration: none;">0742832511</a>
+    </div>
+</div>
+
 
 
 
 			<div class="right-info">
-					<div class="social-icons">
-						<a href="https://facebook.com" target="_blank" title="Facebook"><i
-								class="fab fa-facebook-f"></i></a>
-						<a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
-					
-						<a href="https://instagram.com" target="_blank" title="Instagram"><i
-								class="fab fa-instagram"></i></a>
-						<a href="https://tiktok.com" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-					</div>
+				<div class="social-icons">
+					<a href="https://facebook.com" target="_blank" title="Facebook"><i
+							class="fab fa-facebook-f"></i></a>
+					<a href="https://twitter.com" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a>
+
+					<a href="https://instagram.com" target="_blank" title="Instagram"><i
+							class="fab fa-instagram"></i></a>
+					<a href="https://tiktok.com" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
 				</div>
+			</div>
 		</div>
 	</div>
 	<div class="chat-bot-container">
-	<div class="chat-launcher">
-		<span class="chat-description">Live Chat</span>
-		<button class="chat-toggle" id="chatToggle">
-			<i class="fas fa-comments"></i>
-		</button>
-	</div>
+		<div class="chat-launcher">
+			<span class="chat-description">Live Chat</span>
+			<button class="chat-toggle" id="chatToggle">
+				<i class="fas fa-comments"></i>
+			</button>
+		</div>
 
-	<div class="chat-box" id="chatBox">
-		<div class="chat-header">
-			Proclan Motors Support
-			<button class="close-chat" id="closeChat">&times;</button>
-		</div>
-		<div class="chat-body">
-			<p><strong>Hello! How can I help you today?</p>
-		</div>
-		<div class="chat-footer">
-			<input type="text" placeholder="Type a message..." />
-			<button><i class="fas fa-paper-plane"></i></button>
+		<div class="chat-box" id="chatBox">
+			<div class="chat-header">
+				Proclan Motors Support
+				<button class="close-chat" id="closeChat">&times;</button>
+			</div>
+			<div class="chat-body">
+				<p><strong>Hello! How can I help you today?</p>
+			</div>
+			<div class="chat-footer">
+				<input type="text" placeholder="Type a message..." />
+				<button><i class="fas fa-paper-plane"></i></button>
+			</div>
 		</div>
 	</div>
-</div>
 
 	<nav class="navbar navbar-expand-lg" id="mainNav">
 		<div class="container">
 			<a href="index.html" class="navbar-brand">
-				<img src="assets\logo\PROCLAN MOTORS LOGO NEW-1_page-0001c.jpg" alt="Proclan Motors" class="logo-img" />
+				<img src="assets\logo\PROCLAN LOGO 2nn_page-0001.jpg" alt="Proclan Motors" class="logo-img" />
 			</a>
 
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
@@ -709,11 +101,23 @@
 			</div>
 		</div>
 	</nav>
+	<div class="bg-light py-3">
+		<div class="container">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb mb-0">
+					<li class="breadcrumb-item"><a href="index.html"><i class="bi bi-house-door me-1"></i>Home</a></li>
+					<li class="breadcrumb-item"><i class="bi bi-car-front me-1"></i>Contact Us </a>
+					</li>
+
+				</ol>
+			</nav>
+		</div>
+	</div>
 
 	<section class="contact-section">
 		<div class="container">
 			<div class="section-heading fade-in-up">
-				<h6>// GET IN TOUCH //</h6>
+				<h6> GET IN TOUCH</h6>
 				<h1>Contact Proclan Motors</h1>
 				<p class="text-muted">Looking for a vehicle or have questions? Reach out to us and we'll be happy to
 					help!</p>
@@ -722,22 +126,22 @@
 			<div class="row g-4 mb-5">
 				<div class="col-md-4">
 					<div class="contact-card fade-in-up">
-						<h5>// SALES INQUIRIES //</h5>
-						<p><i class="fa fa-envelope-open"></i>sales@proclanmotors.com</p>
+						<h5> SALES INQUIRIES </h5>
+						<p><i class="fa fa-envelope-open"></i>info@proclanmotors.co.ke</p>
 						<p><i class="fa fa-phone"></i>0742 832 511</p>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="contact-card fade-in-up">
-						<h5>// GENERAL QUERIES //</h5>
-						<p><i class="fa fa-envelope-open"></i>info@proclanmotors.com</p>
+						<h5> GENERAL QUERIES </h5>
+						<p><i class="fa fa-envelope-open"></i>info@proclanmotors.co.ke</p>
 						<p><i class="fa fa-phone"></i>0742 832 511</p>
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="contact-card fade-in-up">
-						<h5>// TECHNICAL SUPPORT //</h5>
-						<p><i class="fa fa-envelope-open"></i>support@proclanmotors.com</p>
+						<h5> TECHNICAL SUPPORT </h5>
+						<p><i class="fa fa-envelope-open"></i>support@proclanmotors.co.ke</p>
 						<p><i class="fa fa-phone"></i>0742 832 511</p>
 					</div>
 				</div>

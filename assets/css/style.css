@@ -1,23 +1,111 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Enhanced Responsive Design System */
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 9%;
+
+    --primary: 0 84% 50%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89%;
+    --input: 0 0% 89%;
+    --ring: 0 84% 50%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 15%;
+    --sidebar-primary: 0 84% 50%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 84% 50%;
+    --sidebar-border: 0 0% 89%;
+    --sidebar-ring: 0 84% 50%;
+  }
+
+  .dark {
+    --background: 0 0% 9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 84% 50%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 0 84% 50%;
+    --sidebar-background: 0 0% 9%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 0 84% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 15%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 0 84% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Enhanced Responsive Design System with White and Red Theme */
 :root {
-	--primary-color: #1e40af;
-	--primary-dark: #1e3a8a;
-	--secondary-color: #06b6d4;
-	--accent-color: #f59e0b;
-	--dark-color: #0f172a;
-	--light-color: #f8fafc;
-	--text-color: #334155;
-	--text-light: #64748b;
-	--border-color: #e2e8f0;
-	--shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-	--shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-	--shadow-heavy: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-	--gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-	--gradient-accent: linear-gradient(135deg, var(--accent-color) 0%, #ef4444 100%);
+	--primary-color: #dc2626;
+	--primary-dark: #b91c1c;
+	--secondary-color: #ffffff;
+	--accent-color: #ef4444;
+	--dark-color: #1f2937;
+	--light-color: #ffffff;
+	--text-color: #374151;
+	--text-light: #6b7280;
+	--border-color: #e5e7eb;
+	--shadow-light: 0 4px 6px -1px rgba(220, 38, 38, 0.1);
+	--shadow-medium: 0 10px 15px -3px rgba(220, 38, 38, 0.1);
+	--shadow-heavy: 0 25px 50px -12px rgba(220, 38, 38, 0.25);
+	--gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+	--gradient-accent: linear-gradient(135deg, var(--accent-color) 0%, #dc2626 100%);
 
 	/* Enhanced Fluid Typography */
 	--fs-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.85rem);
@@ -230,20 +318,20 @@ body {
 .custom-login-btn {
 	display: inline-block;
 	padding: clamp(10px, 2vw, 12px) clamp(20px, 4vw, 24px);
-	background: linear-gradient(135deg, #007bff, #00c6ff);
+	background: linear-gradient(135deg, #dc2626, #ef4444);
 	color: white;
 	border: none;
 	border-radius: 50px;
 	font-weight: 600;
 	text-decoration: none;
-	box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+	box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
 	transition: all 0.3s ease;
 	font-size: var(--fs-sm);
 }
 
 .custom-login-btn:hover {
-	background: linear-gradient(135deg, #0056b3, #0099cc);
-	box-shadow: 0 6px 16px rgba(0, 123, 255, 0.6);
+	background: linear-gradient(135deg, #b91c1c, #dc2626);
+	box-shadow: 0 6px 16px rgba(220, 38, 38, 0.6);
 	transform: translateY(-2px);
 	text-decoration: none;
 }
@@ -292,7 +380,7 @@ body {
 .social-icons a {
 	text-decoration: none;
 	color: #fff;
-	background-color: #333;
+	background-color: var(--primary-color);
 	width: clamp(35px, 6vw, 40px);
 	height: clamp(35px, 6vw, 40px);
 	border-radius: 50%;
@@ -304,7 +392,7 @@ body {
 }
 
 .social-icons a:hover {
-	background-color: var(--primary-color);
+	background-color: var(--primary-dark);
 	transform: scale(1.1);
 }
 
@@ -337,7 +425,7 @@ body {
 }
 
 .chat-toggle {
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
 	color: #fff;
 	border: none;
 	border-radius: 50%;
@@ -345,7 +433,7 @@ body {
 	height: clamp(50px, 10vw, 60px);
 	font-size: clamp(20px, 4vw, 24px);
 	cursor: pointer;
-	box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+	box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
 	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	position: relative;
 	overflow: hidden;
@@ -365,7 +453,7 @@ body {
 
 .chat-toggle:hover {
 	transform: translateY(-2px) scale(1.05);
-	box-shadow: 0 12px 35px rgba(102, 126, 234, 0.6);
+	box-shadow: 0 12px 35px rgba(220, 38, 38, 0.6);
 }
 
 .chat-toggle:hover::before {
@@ -407,7 +495,7 @@ body {
 }
 
 .chat-header {
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
 	color: white;
 	padding: clamp(15px, 3vw, 20px);
 	font-weight: 600;
@@ -450,12 +538,12 @@ body {
 }
 
 .chat-body::-webkit-scrollbar-thumb {
-	background: linear-gradient(135deg, #667eea, #764ba2);
+	background: linear-gradient(135deg, #dc2626, #ef4444);
 	border-radius: 10px;
 }
 
 .chat-body::-webkit-scrollbar-thumb:hover {
-	background: linear-gradient(135deg, #5a6fd8, #6a42a0);
+	background: linear-gradient(135deg, #b91c1c, #dc2626);
 }
 
 .chat-footer {
@@ -471,7 +559,7 @@ body {
 .chat-footer input {
 	flex: 1;
 	padding: clamp(10px, 2vw, 12px) clamp(12px, 2.5vw, 16px);
-	border: 2px solid rgba(102, 126, 234, 0.2);
+	border: 2px solid rgba(220, 38, 38, 0.2);
 	border-radius: 25px;
 	background: rgba(255, 255, 255, 0.9);
 	font-size: clamp(12px, 2.5vw, 14px);
@@ -482,8 +570,8 @@ body {
 }
 
 .chat-footer input:focus {
-	border-color: #667eea;
-	box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+	border-color: #dc2626;
+	box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
 	transform: translateY(-1px);
 }
 
@@ -493,7 +581,7 @@ body {
 }
 
 .chat-footer button {
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
 	color: white;
 	border: none;
 	padding: clamp(10px, 2vw, 12px) clamp(12px, 2.5vw, 16px);
@@ -506,18 +594,20 @@ body {
 	justify-content: center;
 	font-size: clamp(14px, 2.5vw, 16px);
 	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-	box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+	box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
 	flex-shrink: 0;
 }
 
 .chat-footer button:hover {
 	transform: translateY(-2px) scale(1.05);
-	box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+	box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
 }
 
 .chat-footer button:active {
 	transform: translateY(0) scale(0.95);
 }
+
+/* ... keep existing code (all other styles remain the same with red/white theme applied) */
 
 .close-chat {
 	background: none;
@@ -564,7 +654,7 @@ body {
 }
 
 .message.user {
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
 	color: white;
 	margin-left: auto;
 	border-bottom-right-radius: 4px;
@@ -574,7 +664,7 @@ body {
 	background: rgba(246, 248, 250, 0.8);
 	color: #333;
 	border-bottom-left-radius: 4px;
-	border: 1px solid rgba(0, 0, 0, 0.05);
+	border: 1px solid rgba(220, 38, 38, 0.05);
 }
 
 .typing-indicator {
@@ -587,7 +677,7 @@ body {
 .typing-indicator span {
 	height: clamp(6px, 1.5vw, 8px);
 	width: clamp(6px, 1.5vw, 8px);
-	background: #999;
+	background: #dc2626;
 	border-radius: 50%;
 	display: inline-block;
 	margin-right: 4px;
@@ -661,7 +751,7 @@ body {
 	letter-spacing: 2px;
 	margin-bottom: var(--space-md);
 	opacity: 0.9;
-	color: black;
+	color: var(--primary-color);
 }
 
 .carousel-heading {
@@ -670,13 +760,14 @@ body {
 	font-weight: 700;
 	line-height: 1.2;
 	text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+	color: var(--dark-color);
 }
 
 .carousel-control-prev,
 .carousel-control-next {
 	width: clamp(45px, 8vw, 60px);
 	height: clamp(45px, 8vw, 60px);
-	background: rgba(30, 64, 175, 0.8);
+	background: rgba(220, 38, 38, 0.8);
 	border-radius: 50%;
 	top: 50%;
 	transform: translateY(-50%);
@@ -694,9 +785,9 @@ body {
 
 .carousel-control-prev:hover,
 .carousel-control-next:hover {
-	background: rgba(30, 64, 175, 1);
+	background: rgba(220, 38, 38, 1);
 	transform: translateY(-50%) scale(1.1);
-	box-shadow: 0 8px 25px rgba(30, 64, 175, 0.4);
+	box-shadow: 0 8px 25px rgba(220, 38, 38, 0.4);
 }
 
 .carousel-indicators {
@@ -723,7 +814,7 @@ body {
 /* Enhanced Contact Section */
 .contact-section {
 	padding: var(--space-3xl) 0;
-	background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+	background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
 	position: relative;
 }
 
@@ -734,7 +825,7 @@ body {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23e2e8f0" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+	background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23dc2626" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
 	pointer-events: none;
 }
 
@@ -874,7 +965,7 @@ body {
 
 .form-container {
 	padding: clamp(30px, 6vw, 50px);
-	background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+	background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
 }
 
 .form-floating {
@@ -893,7 +984,7 @@ body {
 
 .form-control:focus {
 	border-color: var(--primary-color);
-	box-shadow: 0 0 0 0.2rem rgba(30, 64, 175, 0.25);
+	box-shadow: 0 0 0 0.2rem rgba(220, 38, 38, 0.25);
 	background: white;
 	transform: translateY(-2px);
 }
@@ -977,7 +1068,7 @@ body {
 }
 
 .single-model-search h3 i {
-	color: black;
+	color: var(--primary-color);
 	font-size: var(--fs-xl);
 	flex-shrink: 0;
 }
@@ -997,7 +1088,7 @@ body {
 .model-select-icon select:focus {
 	outline: none;
 	border-color: var(--primary-color);
-	box-shadow: 0 0 0 0.2rem rgba(30, 64, 175, 0.25);
+	box-shadow: 0 0 0 0.2rem rgba(220, 38, 38, 0.25);
 	transform: translateY(-2px);
 }
 
@@ -1054,12 +1145,13 @@ body {
 .spinner-border {
 	width: clamp(2rem, 4vw, 3rem);
 	height: clamp(2rem, 4vw, 3rem);
+	color: var(--primary-color);
 }
 
 /* Enhanced Featured Cars Section */
 .featured-cars {
 	padding: var(--space-3xl) 0;
-	background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+	background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
 	position: relative;
 }
 
@@ -1070,7 +1162,7 @@ body {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23e2e8f0" opacity="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
+	background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="%23dc2626" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
 	pointer-events: none;
 }
 
@@ -1248,7 +1340,7 @@ body {
 
 /* Enhanced Footer */
 .footer {
-	background: var(--dark-color);
+	background: black;
 	color: white;
 	padding: var(--space-2xl) 0 0;
 	position: relative;
@@ -1296,7 +1388,7 @@ body {
 }
 
 .footer-widget ul li a {
-	color: #94a3b8;
+	color: #9ca3af;
 	text-decoration: none;
 	transition: all 0.3s ease;
 	position: relative;
@@ -1354,7 +1446,7 @@ body {
 }
 
 .footer-email-box input::placeholder {
-	color: #94a3b8;
+	color: #9ca3af;
 }
 
 .footer-email-subscribe {
@@ -1373,10 +1465,10 @@ body {
 }
 
 .footer-copyright {
-	border-top: 1px solid #334155;
+	border-top: 1px solid #4b5563;
 	padding: var(--space-lg) 0;
 	text-align: center;
-	color: #94a3b8;
+	color: #9ca3af;
 	font-size: var(--fs-sm);
 }
 
@@ -1468,7 +1560,7 @@ body {
 	background-color: var(--secondary-color);
 	border-radius: 10px;
 	padding: clamp(20px, 4vw, 25px);
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 4px 6px rgba(220, 38, 38, 0.05);
 }
 
 .spec-item {
@@ -1485,7 +1577,7 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: rgba(30, 115, 190, 0.1);
+	background-color: rgba(220, 38, 38, 0.1);
 	color: var(--primary-color);
 	border-radius: 8px;
 	font-size: var(--fs-xl);
@@ -1542,6 +1634,7 @@ body {
 	align-items: center;
 	font-size: var(--fs-sm);
 	gap: var(--space-xs);
+	border: 1px solid rgba(220, 38, 38, 0.1);
 }
 
 .feature-badge i {
@@ -1553,7 +1646,7 @@ body {
 	background-color: #fff;
 	border-radius: 10px;
 	padding: clamp(20px, 4vw, 25px);
-	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+	box-shadow: 0 4px 15px rgba(220, 38, 38, 0.08);
 }
 
 .btn-primary {
@@ -1567,6 +1660,8 @@ body {
 }
 
 .btn-primary:hover {
+	background-color: var(--primary-dark);
+	border-color: var(--primary-dark);
 	transform: translateY(-2px);
 	box-shadow: var(--shadow-medium);
 }
@@ -1948,7 +2043,7 @@ body {
 /* High DPI / Retina Display Adjustments */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
 	.chat-toggle {
-		box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+		box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
 	}
 	
 	.chat-box {
@@ -1956,11 +2051,11 @@ body {
 	}
 	
 	.car-card {
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+		box-shadow: 0 2px 8px rgba(220, 38, 38, 0.08);
 	}
 	
 	.contact-card {
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+		box-shadow: 0 2px 8px rgba(220, 38, 38, 0.08);
 	}
 }
 

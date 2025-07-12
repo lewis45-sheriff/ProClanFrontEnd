@@ -13,7 +13,7 @@
  */
 async function fetchCars() {
     try {
-        const response = await fetch('https://one.proclanmotors.co.ke/api/cars/v1/my-cars');
+        const response = await fetch('http://127.0.0.1:8000/api/cars/v1/my-cars');
         if (!response.ok) {
             throw new Error('Failed to fetch cars');
         }
@@ -27,7 +27,7 @@ async function fetchCars() {
 async function fetchCarsByMake(make) {
     try {
         // const url = `http://localhost:8080/api/v1/cars/get-by-car/${make}?make=${encodeURIComponent(make)}`;
-        const url = `https://one.proclanmotors.co.ke/api/cars/v1/search-by-make/${make}?make=${encodeURIComponent(make)}`;
+        const url = `http://127.0.0.1:8000/api/cars/v1/search-by-make/${make}?make=${encodeURIComponent(make)}`;
 
         const response = await fetch(url);
 
@@ -46,7 +46,7 @@ async function fetchCarsByMake(make) {
 async function fetchSearchCars(make, model, price) {
     try {
         // const response = await fetch(`http://localhost:8080/api/v1/cars/search-by-make-model/${make}/${model}/${price}`);
-        const response = await fetch(`https://one.proclanmotors.co.ke/api/cars/v1/search-by-make-model/${make}/${model}/${price}`);
+        const response = await fetch(`http://127.0.0.1:8000/api/cars/v1/search-by-make-model/${make}/${model}/${price}`);
 
         if (!response.ok) {
             throw new Error('Failed to fetch cars');
@@ -66,7 +66,7 @@ async function fetchSearchCars(make, model, price) {
  */
 async function fetchCarById(carId) {
     try {
-        const response = await fetch(`https://one.proclanmotors.co.ke/api/cars/v1/${carId}`);
+        const response = await fetch(`http://127.0.0.1:8000/api/cars/v1/${carId}`);
         if (!response.ok) {
             throw new Error('Failed to fetch car details');
         }
@@ -509,14 +509,9 @@ async function fetchYearData() {
  * @param {Object} car - Car object containing details
  * @returns {HTMLElement} DOM element for the car card
  */
-function renderCarCard(car) {
+function renderCarCard(car, imagePayload = null) {
     // Format price with commas (KES currency)
     const formattedPrice = formatCurrency(car.price);
-
-    // Get car image or use placeholder
-    const carImage = car.images && car.images.length > 0 && car.images[0].imageData
-        ? car.images[0].imageData
-        : 'https://via.placeholder.com/300x200/f8f9fa/6c757d?text=No+Image';
 
     // Create main column element
     const colDiv = document.createElement('div');
@@ -540,26 +535,199 @@ function renderCarCard(car) {
         background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
     `;
 
-    // Create image wrapper with fixed aspect ratio
+    // Create image wrapper with fixed aspect ratio (16:9 ratio for better car display)
     const carsImgDiv = document.createElement('div');
     carsImgDiv.className = 'featured-cars-img overflow-hidden';
     carsImgDiv.style.cssText = `
         height: 220px;
         background: #f8f9fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
     `;
 
-    // Create image element with smooth loading
+    // Create loading placeholder
+    const loadingPlaceholder = document.createElement('div');
+    loadingPlaceholder.className = 'w-100 h-100 d-flex align-items-center justify-content-center';
+    loadingPlaceholder.style.cssText = `
+        background: #f8f9fa;
+        color: #6c757d;
+        font-size: 0.9rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    `;
+
+    // Create image element with improved fitting
     const imgElement = document.createElement('img');
-    imgElement.src = car.images[0].image_data; // Use the Base64 data URL directly
     imgElement.alt = `${car.make} ${car.model}`;
     imgElement.className = 'w-100 h-100';
     imgElement.style.cssText = `
-    object-fit: cover;
-    transition: transform 0.3s ease;
-    filter: contrast(1.05) saturate(0.9);
-`;
+        object-fit: cover;
+        object-position: center;
+        transition: transform 0.3s ease;
+        filter: contrast(1.05) saturate(0.9);
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    `;
+
+    // Add loading attribute for better performance
+    imgElement.loading = 'lazy';
+
+    // Function to show placeholder when image fails to load or no image available
+    function showPlaceholderImage() {
+        loadingPlaceholder.innerHTML = `
+            <div class="text-center">
+                <i class="bi bi-image" style="font-size: 2rem; color: #6c757d; margin-bottom: 8px;"></i>
+                <div style="font-size: 0.85rem; color: #6c757d;">No Image Available</div>
+            </div>
+        `;
+        loadingPlaceholder.style.display = 'flex';
+        imgElement.style.display = 'none';
+    }
+
+    // Function to handle successful image load
+    function handleImageLoad() {
+        // Add a small delay to ensure smooth transition
+        setTimeout(() => {
+            loadingPlaceholder.style.opacity = '0';
+            loadingPlaceholder.style.transition = 'opacity 0.3s ease';
+            imgElement.style.display = 'block';
+            imgElement.style.opacity = '0';
+            imgElement.style.transition = 'opacity 0.3s ease';
+            
+            // Fade in the image
+            requestAnimationFrame(() => {
+                imgElement.style.opacity = '1';
+            });
+        }, 100);
+    }
+
+    // Function to load car image from payload or API
+    function loadCarImage() {
+        // If imagePayload is provided, use it directly
+        if (imagePayload && imagePayload.entity && imagePayload.entity.images && imagePayload.entity.images.length > 0) {
+            const images = imagePayload.entity.images;
+            
+            // Find primary image or use first image
+            let selectedImage = images.find(img => img.is_primary === true) || images[0];
+            
+            if (selectedImage && selectedImage.image_data) {
+                // Show loading initially
+                loadingPlaceholder.innerHTML = `
+                    <div class="text-center">
+                        <div class="spinner-border spinner-border-sm mb-2" role="status" style="color: #6c757d;">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <div style="font-size: 0.85rem; color: #6c757d;">Loading image...</div>
+                    </div>
+                `;
+                loadingPlaceholder.style.display = 'flex';
+                loadingPlaceholder.style.opacity = '1';
+                
+                // Preload image to check if it's valid
+                const tempImg = new Image();
+                tempImg.onload = function() {
+                    // Image is valid, now load it in the actual element
+                    imgElement.src = selectedImage.image_data;
+                    imgElement.onload = handleImageLoad;
+                };
+                tempImg.onerror = function() {
+                    showPlaceholderImage();
+                };
+                tempImg.src = selectedImage.image_data;
+                
+                // Handle image load error on main element
+                imgElement.onerror = function() {
+                    showPlaceholderImage();
+                };
+            } else {
+                showPlaceholderImage();
+            }
+        } else {
+            // Fallback to API call if no imagePayload provided
+            loadCarImageFromAPI();
+        }
+    }
+
+    // Original API loading function (kept as fallback)
+    async function loadCarImageFromAPI() {
+        try {
+            // Show loading initially
+            loadingPlaceholder.innerHTML = `
+                <div class="text-center">
+                    <div class="spinner-border spinner-border-sm mb-2" role="status" style="color: #6c757d;">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <div style="font-size: 0.85rem; color: #6c757d;">Loading image...</div>
+                </div>
+            `;
+            loadingPlaceholder.style.display = 'flex';
+            loadingPlaceholder.style.opacity = '1';
+
+            const response = await fetch(`http://127.0.0.1:8000/api/cars/v1//cars/${car.id}/images`);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const imageData = await response.json();
+            
+            // Check if images exist
+            if (imageData && imageData.entity && imageData.entity.images && imageData.entity.images.length > 0) {
+                const images = imageData.entity.images;
+                
+                // First try to find the primary image
+                let selectedImage = images.find(img => img.is_primary === true);
+                
+                // If no primary image found, use the first image
+                if (!selectedImage) {
+                    selectedImage = images[0];
+                }
+                
+                // Check if the selected image has valid data
+                if (selectedImage && selectedImage.image_data) {
+                    // Preload image to check if it's valid
+                    const tempImg = new Image();
+                    tempImg.onload = function() {
+                        // Image is valid, now load it in the actual element
+                        imgElement.src = selectedImage.image_data;
+                        imgElement.onload = handleImageLoad;
+                    };
+                    tempImg.onerror = function() {
+                        showPlaceholderImage();
+                    };
+                    tempImg.src = selectedImage.image_data;
+                    
+                    // Handle image load error on main element
+                    imgElement.onerror = function() {
+                        showPlaceholderImage();
+                    };
+                } else {
+                    // Selected image has no data
+                    showPlaceholderImage();
+                }
+            } else {
+                // No images available
+                showPlaceholderImage();
+            }
+        } catch (error) {
+            console.error('Error loading car image:', error);
+            showPlaceholderImage();
+        }
+    }
+
+    // Add placeholder and image to container
+    carsImgDiv.appendChild(loadingPlaceholder);
     carsImgDiv.appendChild(imgElement);
 
+    // Load the car image
+    loadCarImage();
 
     // Create minimalist specs overlay
     const specsOverlay = document.createElement('div');
@@ -567,6 +735,7 @@ function renderCarCard(car) {
     specsOverlay.style.cssText = `
         background: linear-gradient(transparent, rgba(0,0,0,0.7));
         backdrop-filter: blur(2px);
+        z-index: 3;
     `;
 
     const specsContainer = document.createElement('div');
@@ -586,11 +755,12 @@ function renderCarCard(car) {
             badge.style.cssText = `
                 background: rgba(255,255,255,0.9);
                 color: #495057;
-                font-size: 0.9rem;
+                font-size: 0.75rem;
                 font-weight: 500;
-                padding: 8px 12px;
-                border-radius: 8px;
+                padding: 6px 10px;
+                border-radius: 6px;
                 backdrop-filter: blur(4px);
+                white-space: nowrap;
             `;
             badge.textContent = `${spec.icon} ${spec.value}`;
             specsContainer.appendChild(badge);
@@ -692,20 +862,21 @@ function renderCarCard(car) {
     const favBtn = document.createElement('button');
     favBtn.className = 'btn btn-outline-primary position-absolute';
     favBtn.style.cssText = `
-    top: 12px;
-    right: 12px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.95);
-    border: 1px solid rgba(0,0,0,0.1);
-    color: #6c757d;
-    backdrop-filter: blur(4px);
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-`;
+        top: 12px;
+        right: 12px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.95);
+        border: 1px solid rgba(0,0,0,0.1);
+        color: #6c757d;
+        backdrop-filter: blur(4px);
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 4;
+    `;
 
     favBtn.innerHTML = `<i class="bi bi-heart" style="font-size: 18px; color: #6c757d;"></i>`;
 
@@ -718,20 +889,19 @@ function renderCarCard(car) {
         if (icon.classList.contains('bi-heart')) {
             icon.classList.replace('bi-heart', 'bi-heart-fill');
             this.classList.replace('btn-outline-primary', 'btn-danger');
-            this.style.color = '#dc3545';         // button color (if icon inherits)
-            icon.style.color = '#dc3545';         // explicitly set icon color to red
+            this.style.color = '#dc3545';
+            icon.style.color = '#dc3545';
             showNotification('Car saved to favorites!');
         } else {
             icon.classList.replace('bi-heart-fill', 'bi-heart');
             this.classList.replace('btn-danger', 'btn-outline-primary');
-            this.style.color = '#6c757d';         // button color gray
-            icon.style.color = '#6c757d';         // explicitly set icon color gray
+            this.style.color = '#6c757d';
+            icon.style.color = '#6c757d';
             showNotification('Car removed from favorites');
         }
     });
 
     imgBoxDiv.appendChild(favBtn);
-
 
     // Add featured badge if needed
     if (car.featured) {
@@ -740,7 +910,7 @@ function renderCarCard(car) {
         featuredBadge.style.cssText = `
             top: 12px;
             left: 12px;
-            z-index: 2;
+            z-index: 4;
         `;
 
         const badge = document.createElement('span');
@@ -768,7 +938,9 @@ function renderCarCard(car) {
     carDiv.addEventListener('mouseenter', () => {
         carDiv.style.transform = 'translateY(-4px)';
         carDiv.style.boxShadow = '0 8px 25px rgba(0,0,0,0.15)';
-        imgElement.style.transform = 'scale(1.02)';
+        if (imgElement.style.display !== 'none') {
+            imgElement.style.transform = 'scale(1.02)';
+        }
         detailsBtn.style.background = '#e9ecef';
         detailsBtn.style.borderColor = '#dee2e6';
         modelLink.style.color = '#495057';
@@ -777,14 +949,15 @@ function renderCarCard(car) {
     carDiv.addEventListener('mouseleave', () => {
         carDiv.style.transform = 'translateY(0)';
         carDiv.style.boxShadow = '0 2px 8px rgba(0,0,0,0.08)';
-        imgElement.style.transform = 'scale(1)';
+        if (imgElement.style.display !== 'none') {
+            imgElement.style.transform = 'scale(1)';
+        }
         detailsBtn.style.background = '#f8f9fa';
         detailsBtn.style.borderColor = '#e9ecef';
         modelLink.style.color = '#212529';
     });
 
     return colDiv;
-
 }
 // =========================================
 // UI Component Functions
